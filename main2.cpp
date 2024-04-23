@@ -1,0 +1,582 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <cmath>
+
+using namespace std;
+
+class Instructions
+{
+private:
+    vector<string> instructions = {
+        "Welcome to the Quadratic Equation Calculator. Type in any of the quadratic equations and the program will give you the detailed solutions"
+        "to any of those equations.",
+        "Here is the full list of 8 types of Quadratic equations:",
+        "The first type: a = 0, b = 0, c = 0.",
+        "0 * x^2 + 0 * x + 0 = 0",
+        "In this case the solution is all the x that belong to the range of (-inf, +inf).",
+        "The second type: a != 0, b = 0, c = 0.",
+        "a * x^2 + 0 * x + 0 = 0",
+        "In this case the equation is a * x^2 = 0, the only solution to this equation is x = 0.",
+        "The third type: c = 0, a is undefnied, b is undefined",
+        "In this case the equation is not being fully defined. There are no solutions.",
+        "The fourth type: a != 0, b = 0, c != 0",
+        "a * x^2 + c = 0",
+        "In this case the solution depends on the result of (-c/a).",
+        "if (-c/a) < 0, then there are no solutions. if (-c/a) > 0 then the solution is sqrt(-c/a) and -sqrt(-c/a)",
+        "The fifth type: a = 0, b != 0, c != 0",
+        "bx + c = 0",
+        "In this case the solution is (-c/b)",
+        "The sixth type: a != 0, b != 0, c != 0",
+        "ax^2 + bx + c = 0",
+        "In this case there are many solutions. One of which is finding the Discriminant: x = (-b + sqrt(D)) / 2a, where D = b^2 - 4ac",
+        "The seventh type: a = 0, b != 0, c = 0",
+        "bx = 0",
+        "In this case the solution is x = 0.",
+        "The eigth type: a != 0, b != 0, c = 0",
+        "ax^2 + bx = 0",
+        "In this case the solution is x = 0 and x = -b/a",
+        "Enter an equation in the following format: a b c"
+        "where a b c are the parameters of the equation"
+        "\n",
+        "\n",
+    };
+
+    vector<string> onStartInstructions = {"\tShow help:\n\t\tHELP\n",
+                                          "\tQuit the program:\n\t\tQUIT\n",
+                                          "\tType an equation and find the solution:\n\t\tEQUATION\n"};
+
+    vector <vector<int>> 
+
+    vector<string>
+        systemInstructions = {
+            "Enter a: ",
+            "Enter b: ",
+            "Enter c: "};
+
+public:
+    void show()
+    {
+        for (int i = 0; i < instructions.size(); i += 1)
+        {
+            cout << instructions[i] << endl;
+        }
+    }
+
+    void formatOutputTable(string operation, string command)
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            cout << "\t\t\t\t";
+            if (i == 3)
+            {
+                int j = 0;
+                while (j < 50)
+                {
+                    if (j == 0)
+                    {
+                        cout << "|";
+                        j++;
+                        continue;
+                    }
+                    if (j == 8)
+                    {
+                        cout << operation;
+                        j += operation.size();
+                        continue;
+                    }
+                    if (j < 5)
+                    {
+                        cout << " ";
+                        j++;
+                        continue;
+                    }
+                    if (j < 25)
+                    {
+                        cout << " ";
+                        j++;
+                        continue;
+                    }
+                    if (j == 49)
+                    {
+                        cout << "|";
+                        j++;
+                        continue;
+                    }
+                    if (j == 25)
+                    {
+                        cout << "|";
+                        j++;
+                        continue;
+                    }
+                    if (j < 34)
+                    {
+                        cout << " ";
+                        j++;
+                        continue;
+                    }
+                    if (j == 34)
+                    {
+                        cout << command;
+                        j += command.size();
+                        continue;
+                    }
+                    if (j < 49)
+                    {
+                        cout << " ";
+                        j++;
+                        continue;
+                    }
+                }
+                cout << endl;
+            }
+            else
+            {
+                int j = 0;
+                while (j < 50)
+                {
+                    if (j == 0 || j == 49 || j == 25)
+                    {
+                        cout << "|";
+                        j++;
+                        continue;
+                    }
+                    cout << " ";
+                    j++;
+                }
+                cout << endl;
+            }
+        }
+        cout << "\t\t\t\t";
+        for (int i = 0; i < 50; i++)
+        {
+            cout << "~";
+        }
+        cout << endl;
+    }
+
+    void showOnStart()
+    {
+        cout << "\t\t";
+        for (int i = 0; i < 90; i++)
+        {
+            cout << '-';
+        }
+        cout << endl;
+        cout << "\t\t|    Welcome to the Quadratic Equation Solver. Here is the list of available commands     |" << endl;
+        cout << "\t\t";
+        for (int i = 0; i < 90; i++)
+        {
+            cout << '-';
+        }
+        cout << endl;
+        cout << "\t\t\t\t";
+        for (int i = 0; i < 50; i++)
+        {
+            cout << "~";
+        }
+        cout << endl;
+        formatOutputTable("OPERATION", "COMMAND");
+        formatOutputTable("Show help", "HELP");
+        formatOutputTable("Exit the program", "QUIT");
+        formatOutputTable("Solve equation", "EQUATION");
+        formatOutputTable("Equation info", "INFO");
+        /*
+        for (int i = 0; i < onStartInstructions.size(); i += 1)
+        {
+            cout << onStartInstructions[i] << endl;
+        } */
+    }
+
+    void setEquationRowsValues()
+
+    void formatEquationTable(string type, string parameters, string form, string solution)
+    {
+        
+    }
+
+    void formatEquationColumnHeader()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            if (i == 3)
+            {
+                int j = 0;
+                while (j <= 80)
+                {
+                    if (j == 0 || j == 14 || j == 36 || j == 52 || j == 80)
+                    {
+                        cout << "|";
+                        j++;
+                        continue;
+                    }
+                    if (j == 5)
+                    {
+                        cout << "TYPE";
+                        j += 4;
+                        continue;
+                    }
+                    if (j == 20)
+                    {
+                        cout << "PARAMETERS";
+                        j += 10;
+                        continue;
+                    }
+                    if (j == 42)
+                    {
+                        cout << "FORM";
+                        j += 4;
+                        continue;
+                    }
+                    if (j == 62)
+                    {
+                        cout << "SOLUTION";
+                        j += 8;
+                        continue;
+                    }
+                    if (j < 5 || j < 14 || j < 20 || j < 36 || j < 42 || j < 52 || j < 62 || j < 80)
+                    {
+                        cout << " ";
+                        j++;
+                        continue;
+                    }
+                }
+                cout << endl;
+            }
+            else
+            {
+                int j = 0;
+                while (j <= 80)
+                {
+                    if (j == 0 || j == 14 || j == 36 || j == 52 || j == 80)
+                    {
+                        cout << "|";
+                        j++;
+                        continue;
+                    }
+                    if (j < 5 || j < 14 || j < 20 || j < 36 || j < 42 || j < 52 || j < 58 || j < 80)
+                    {
+                        cout << " ";
+                        j++;
+                        continue;
+                    }
+                }
+                cout << endl;
+            }
+        }
+        for (int i = 0; i <= 80; i++)
+        {
+            cout << "~";
+        }
+        cout << endl;
+    }
+
+    void showEquationInfo()
+    {
+        cout << "\n\nQuadratic equation is an equation that can be rearranged in standard form as:\n\n ";
+        cout << "\t\t\t\t\tax^2 + bx + c = 0\n\n";
+        cout << "The table below represents eight types of existing quadratic equations...\n\n\n";
+        cout << "Table 1. Types of Quadratic Equations\n";
+        for (int i = 0; i <= 80; i++)
+        {
+            cout << "~";
+        }
+        cout << endl;
+        formatEquationColumnHeader();
+        formatEquationTable("1", "a=0,b=0,c=0", "ax + bx + c = 0", "solution");
+    }
+
+    void showInstructions(int i)
+    {
+        cout << systemInstructions[i];
+    }
+};
+
+class Input
+{
+public:
+    string command;
+
+    void prompt()
+    {
+        getline(cin, command);
+    }
+
+    string getInput()
+    {
+        return command;
+    }
+};
+
+class Equation
+{
+private:
+    vector<int> parameters;
+
+public:
+    void setEquation(vector<int> params)
+    {
+        parameters = params;
+    }
+
+    void showEquation()
+    {
+        for (int i = 0; i < 3; i += 1)
+        {
+            cout << parameters[i] << endl;
+        }
+    }
+
+    void solveFirstType()
+    {
+        cout << "all parameters equal to zero, the equation is:\n0*x^2 + 0*x + 0 = 0\n";
+        cout << "the x can be any integer in range (-inf, +inf)\n";
+        cout << "Answer: x = (-inf, +inf)\n";
+    }
+
+    void solveSecondType()
+    {
+        cout << "the equation can be rewritten as:\n"
+             << parameters[0] << "x^2 = 0\n";
+        cout << "divide the right side of the equation by a:\nx^2 = 0/" << parameters[0] << "\n";
+        cout << "the only solution is x = 0.\n";
+        cout << "Answer: x = 0\n";
+    }
+
+    void solveThirdType()
+    {
+        cout << "The equation can be rewritten as:\n " << parameters[2] << "=0\n";
+        cout << "The expression is not correct, because " << parameters[2] << "!=0\n";
+        cout << "That means the given parameters are incorrect and the solution does not exist.\n";
+        cout << "Answer: the solution does not exist\n";
+    }
+
+    void solveFourthType()
+    {
+        cout << "The equation can be rewritten as:\n"
+             << parameters[0] << "x^2 = " << -1 * parameters[2] << "\n";
+        if ((-1 * parameters[2]) / parameters[0] < 0)
+        {
+            cout << "the value of " << -1 * parameters[2] << "/" << parameters[0] << " is less than zero\nthat means there are";
+            cout << "no solutions to the equation\n";
+            cout << "Answer: the solution does not exist\n";
+        }
+        else
+        {
+            cout << "The solution is sqrt(" << -1 * parameters[2] / parameters[0] << ")";
+            cout << "and -sqrt(" << -1 * parameters[2] / parameters[0] << ")\n";
+            cout << "Answer: " << sqrt(-1 * parameters[2] / parameters[0]) << "; " << -1 * sqrt(-1 * parameters[2] / parameters[0]) << endl;
+        }
+    }
+
+    void solveFifthType()
+    {
+        cout << "Rewrite the equation as\n"
+             << parameters[1] << "x + " << parameters[2] << " = 0\n";
+        cout << "Shift the independent variables to the right side of the equation:\n"
+             << parameters[1] << "x = " << -1 * parameters[2] << endl;
+        cout << "find the x:\n x = " << -1 * parameters[2] << " / " << parameters[1] << " = " << -1 * parameters[2] / parameters[1] << endl;
+        cout << "Answer: x = " << -1 * parameters[2] / parameters[1] << endl;
+    }
+
+    void solveSixthType()
+    {
+        cout << "Rewrite the equation as\n"
+             << parameters[0] << "x^2 + " << parameters[1] << "x + " << parameters[2] << " = 0\n";
+        cout << "Find the Discriminant: \n";
+        int D = parameters[1] * parameters[1] - 4 * parameters[0] * parameters[2];
+        cout << "D = " << parameters[1] << "^2 - " << 4 << "*" << parameters[0] << "*" << parameters[2] << endl;
+        if (D < 0)
+        {
+            cout << "D < 0, then the solution does not exist.\n";
+            return;
+        }
+        cout << "General formula for finding the roots of the equaiton:\n x = (-b +/- sqrt(D)) / 2a\n";
+        if (D == 0)
+        {
+            cout << "There is only one solution to the equation\n";
+            cout << "according the formula described above: x = (" << -1 * parameters[1] << " + " << sqrt(D) << ") / " << 2 * parameters[0] << " = "
+                 << -1 * parameters[1] / (2 * parameters[0]) << endl;
+            cout << "Answer: x = " << (-1 * parameters[1] - sqrt(D)) / (2 * parameters[0]) << endl;
+        }
+        else
+        {
+            cout << "There are two solutions to the equation\n";
+            cout << "according the formula described above: x1 = (" << -1 * parameters[1] << " + " << sqrt(D) << ") / " << 2 * parameters[0] << " = "
+                 << (-1 * parameters[1] + sqrt(D)) / (2 * parameters[0]) << endl;
+            cout << "according the formula described above: x2 = (" << -1 * parameters[1] << " - " << sqrt(D) << ") / " << 2 * parameters[0] << " = "
+                 << (-1 * parameters[1] - sqrt(D)) / (2 * parameters[0]) << endl;
+            cout << "Answer: x1 = " << (-1 * parameters[1] + sqrt(D)) / (2 * parameters[0]) << "; x2 = " << (-1 * parameters[1] - sqrt(D)) / (2 * parameters[0]) << endl;
+        }
+    }
+
+    void solveSeventhType()
+    {
+        cout << "Rewrite the equation:\n"
+             << parameters[1] << "x = 0" << endl;
+        cout << "x = " << 0 << " / " << parameters[1] << " = 0" << endl;
+        cout << "Answer: x = 0" << endl;
+    }
+
+    void solveEigthType()
+    {
+        cout << "Rewrite theb equation:\n"
+             << parameters[0] << "x^2 + " << parameters[1] << "x = 0" << endl;
+        cout << "Apply the factorization based on the x:\n x(" << parameters[0] << "x + " << parameters[1] << ") = 0" << endl;
+        cout << "The first root of the equation is 0\n";
+        cout << "Find the solution to the equation " << parameters[0] << "x + " << parameters[1] << " = 0" << endl;
+        cout << "x = " << -1 * parameters[1] << "/" << parameters[0] << " = " << (-1 * parameters[1]) / parameters[0] << endl;
+        cout << "Answer: x = 0; x = " << (-1 * parameters[1]) / (parameters[0]) << endl;
+    }
+
+    int determineType()
+    {
+        if (parameters[0] == 0 and parameters[1] == 0 and parameters[2] == 0)
+        {
+            return 1;
+        }
+        else if (parameters[0] != 0 and parameters[1] == 0 and parameters[2] == 0)
+        {
+            return 2;
+        }
+        else if (parameters[0] == -999 and parameters[1] == -999 and parameters[2] == 0)
+        {
+            return 3;
+        }
+        else if (parameters[0] != 0 and parameters[1] == 0 and parameters[2] != 0)
+        {
+            return 4;
+        }
+        else if (parameters[0] == 0 and parameters[1] != 0 and parameters[2] != 0)
+        {
+            return 5;
+        }
+        else if (parameters[0] != 0 and parameters[1] != 0 and parameters[2] != 0)
+        {
+            return 6;
+        }
+        else if (parameters[0] == 0 and parameters[1] != 0 and parameters[2] == 0)
+        {
+            return 7;
+        }
+        else if (parameters[0] != 0 and parameters[1] != 0 and parameters[2] == 0)
+        {
+            return 8;
+        }
+    }
+
+    void solveEquation()
+    {
+        int type = determineType();
+        if (type == 1)
+        {
+            solveFirstType();
+        }
+        else if (type == 2)
+        {
+            solveSecondType();
+        }
+        else if (type == 3)
+        {
+            solveThirdType();
+        }
+        else if (type == 4)
+        {
+            solveFourthType();
+        }
+        else if (type == 5)
+        {
+            solveFifthType();
+        }
+        else if (type == 6)
+        {
+            solveSixthType();
+        }
+        else if (type == 7)
+        {
+            solveSeventhType();
+        }
+        else if (type == 8)
+        {
+            solveEigthType();
+        }
+    }
+};
+
+class userInterface
+{
+private:
+    string command = "";
+    vector<int> nums = {-999, -999, -999};
+
+public:
+    Instructions instructions;
+    void help()
+    {
+        instructions.show();
+    }
+
+    void helpInstruction(int i)
+    {
+        instructions.showInstructions(i);
+    }
+
+    void showOnStart()
+    {
+        instructions.showOnStart();
+    }
+
+    void showEquationInfo()
+    {
+        instructions.showEquationInfo();
+    }
+
+    void setCommand(Input &input)
+    {
+        command = input.getInput();
+    }
+
+    void quit()
+    {
+        cout << "THe end!";
+        exit(0);
+    }
+    void processInput()
+    {
+        showOnStart();
+        while (command != "QUIT")
+        {
+            Input input;
+            input.prompt();
+            setCommand(input);
+            if (command == "HELP")
+            {
+                showOnStart();
+            }
+            else if (command == "INFO")
+            {
+                showEquationInfo();
+            }
+            else if (command == "EQUATION")
+            {
+                int num = 0;
+                for (int i = 0; i < 3; i++)
+                {
+                    helpInstruction(i);
+                    cin >> num;
+                    nums[i] = num;
+                }
+                Equation equation;
+                equation.setEquation(nums);
+                equation.solveEquation();
+            }
+        }
+        quit();
+    }
+};
+
+int main()
+{
+    userInterface UI;
+    UI.processInput();
+}
