@@ -179,6 +179,7 @@ public:
         formatOutputTable("Exit the program", "QUIT");
         formatOutputTable("Solve equation", "EQUATION");
         formatOutputTable("Equation info", "INFO");
+        formatOutputTable("Switch language", "SWITCH");
         /*
         for (int i = 0; i < onStartInstructions.size(); i += 1)
         {
