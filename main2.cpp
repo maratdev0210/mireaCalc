@@ -46,8 +46,6 @@ private:
                                           "\tQuit the program:\n\t\tQUIT\n",
                                           "\tType an equation and find the solution:\n\t\tEQUATION\n"};
 
-    vector <vector<int>> 
-
     vector<string>
         systemInstructions = {
             "Enter a: ",
@@ -188,53 +186,56 @@ public:
         } */
     }
 
-    void setEquationRowsValues()
+    void setEquationRowsValues();
 
     void formatEquationTable(string type, string parameters, string form, string solution)
     {
-        
-    }
-
-    void formatEquationColumnHeader()
-    {
+        int cur = 0;
+        bool solutionDisplayed = false;
         for (int i = 0; i < 6; i++)
         {
+            if (cur >= solution.size())
+            {
+                solutionDisplayed = true;
+            }
             if (i == 3)
             {
                 int j = 0;
-                while (j <= 80)
+                while (j <= 140)
                 {
-                    if (j == 0 || j == 14 || j == 36 || j == 52 || j == 80)
+                    if (j == 0 || j == 15 || j == 42 || j == 71 || j == 140)
                     {
                         cout << "|";
                         j++;
                         continue;
                     }
-                    if (j == 5)
+                    if (j == 6)
                     {
-                        cout << "TYPE";
-                        j += 4;
+                        cout << type;
+                        j += 1;
                         continue;
                     }
-                    if (j == 20)
+                    if (j == 18)
                     {
-                        cout << "PARAMETERS";
-                        j += 10;
+                        cout << parameters;
+                        j += parameters.size();
                         continue;
                     }
-                    if (j == 42)
+                    if (j == 47)
                     {
-                        cout << "FORM";
-                        j += 4;
+                        cout << form;
+                        j += form.size();
                         continue;
                     }
-                    if (j == 62)
+                    if (j == 75 && !solutionDisplayed)
                     {
-                        cout << "SOLUTION";
-                        j += 8;
+                        string line = solution.substr(cur, cur + min(50ull, solution.size() - cur));
+                        cout << line;
+                        j += min(50ull, solution.size() - cur);
+                        cur += 50;
                         continue;
                     }
-                    if (j < 5 || j < 14 || j < 20 || j < 36 || j < 42 || j < 52 || j < 62 || j < 80)
+                    if (j < 6 || j < 15 || j < 18 || j < 42 || j < 47 || j < 70 || j < 75 || j < 140)
                     {
                         cout << " ";
                         j++;
@@ -246,15 +247,23 @@ public:
             else
             {
                 int j = 0;
-                while (j <= 80)
+                while (j <= 140)
                 {
-                    if (j == 0 || j == 14 || j == 36 || j == 52 || j == 80)
+                    if (j == 0 || j == 15 || j == 42 || j == 71 || j == 140)
                     {
                         cout << "|";
                         j++;
                         continue;
                     }
-                    if (j < 5 || j < 14 || j < 20 || j < 36 || j < 42 || j < 52 || j < 58 || j < 80)
+                    if (j == 75 && !solutionDisplayed)
+                    {
+                        string line = solution.substr(cur, min(50ull, solution.size() - cur));
+                        cout << line;
+                        j += min(50ull, solution.size() - cur);
+                        cur += 50;
+                        continue;
+                    }
+                    if (j < 6 || j < 15 || j < 22 || j < 42 || j < 53 || j < 70 || j < 75 || j < 140)
                     {
                         cout << " ";
                         j++;
@@ -264,7 +273,83 @@ public:
                 cout << endl;
             }
         }
-        for (int i = 0; i <= 80; i++)
+        for (int i = 0; i <= 140; i++)
+        {
+            cout << "~";
+        }
+        cout << endl;
+    }
+
+    void formatEquationColumnHeader()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            if (i == 3)
+            {
+                int j = 0;
+                while (j <= 140)
+                {
+                    if (j == 0 || j == 15 || j == 42 || j == 71 || j == 140)
+                    {
+                        cout << "|";
+                        j++;
+                        continue;
+                    }
+                    if (j == 6)
+                    {
+                        cout << "TYPE";
+                        j += 4;
+                        continue;
+                    }
+                    if (j == 22)
+                    {
+                        cout << "PARAMETERS";
+                        j += 10;
+                        continue;
+                    }
+                    if (j == 53)
+                    {
+                        cout << "FORM";
+                        j += 4;
+                        continue;
+                    }
+                    if (j == 85)
+                    {
+                        cout << "SOLUTION";
+                        j += 8;
+                        continue;
+                    }
+                    if (j < 6 || j < 15 || j < 22 || j < 42 || j < 53 || j < 70 || j < 85 || j < 140)
+                    {
+                        cout << " ";
+                        j++;
+                        continue;
+                    }
+                }
+                cout << endl;
+            }
+            else
+            {
+                int j = 0;
+                while (j <= 140)
+                {
+                    if (j == 0 || j == 15 || j == 42 || j == 71 || j == 140)
+                    {
+                        cout << "|";
+                        j++;
+                        continue;
+                    }
+                    if (j < 6 || j < 15 || j < 22 || j < 42 || j < 53 || j < 70 || j < 85 || j < 140)
+                    {
+                        cout << " ";
+                        j++;
+                        continue;
+                    }
+                }
+                cout << endl;
+            }
+        }
+        for (int i = 0; i <= 140; i++)
         {
             cout << "~";
         }
@@ -277,13 +362,20 @@ public:
         cout << "\t\t\t\t\tax^2 + bx + c = 0\n\n";
         cout << "The table below represents eight types of existing quadratic equations...\n\n\n";
         cout << "Table 1. Types of Quadratic Equations\n";
-        for (int i = 0; i <= 80; i++)
+        for (int i = 0; i <= 140; i++)
         {
             cout << "~";
         }
         cout << endl;
         formatEquationColumnHeader();
-        formatEquationTable("1", "a=0,b=0,c=0", "ax + bx + c = 0", "solution");
+        formatEquationTable("1", "a=0,b=0,c=0", "0 * x^2 + 0 * x + 0 = 0", "all x in range(-inf, +inf)");
+        formatEquationTable("2", "a != 0, b = 0, c = 0", "a * x^2 = 0", "the only solution is x = 0");
+        formatEquationTable("3", "c = 0", "form doesn't exist", "equation is not valid, because only one parameter c is being passed");
+        formatEquationTable("4", "a != 0, b = 0, c != 0", "a * x^2 + c = 0", "x^2 = -c / a if -c / a < 0, the solution does not exist if -c / a > 0 x1 = sqrt(-c/a), x2 = -sqrt(-c/a)");
+        formatEquationTable("5", "a = 0, b != 0, c != 0", "bx + c = 0", "x = -c / b");
+        formatEquationTable("6", "a != 0, b != 0, c != 0", "a * x^2 + bx + c = 0", "find the Discriminant: D = b^2 - 4ac. 1. if D > 0 x = (-b +/- sqrt(b^2 - 4ac) / 2a); 2. if D = 0 x = -b / 2a; if D < 0 the solution does not exist");
+        formatEquationTable("7", "a = 0, b != 0, c = 0", "bx = 0", "the only solution is x = 0");
+        formatEquationTable("8", "a != 0, b != 0, c = 0", "ax^2 + bx = 0", "rewrite the equation: x(ax + b) = 0. x1 = 0, x2 = -b/a");
     }
 
     void showInstructions(int i)
