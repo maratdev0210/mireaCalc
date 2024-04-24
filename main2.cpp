@@ -229,10 +229,29 @@ public:
                     }
                     if (j == 75 && !solutionDisplayed)
                     {
-                        string line = solution.substr(cur, cur + min(50ull, solution.size() - cur));
+                        /*string line = solution.substr(cur, cur + min(50ull, solution.size() - cur));
                         cout << line;
                         j += min(50ull, solution.size() - cur);
-                        cur += 50;
+                        cur += 50; */
+                        string line = "";
+                        bool seen = false;
+                        for (unsigned long long k = cur; k < cur + min(50ull, solution.size() - cur); k++)
+                        {
+                            if (solution[k] == 'b' && solution[k + 1] == 'r')
+                            {
+                                cur += (k - cur + 2);
+                                j += (k - cur + 2);
+                                seen = true;
+                                break;
+                            }
+                            line += solution[k];
+                        }
+                        if (!seen)
+                        {
+                            j += min(50ull, solution.size() - cur);
+                            cur += 50;
+                        }
+                        cout << line;
                         continue;
                     }
                     if (j < 6 || j < 15 || j < 18 || j < 42 || j < 47 || j < 70 || j < 75 || j < 140)
@@ -257,10 +276,26 @@ public:
                     }
                     if (j == 75 && !solutionDisplayed)
                     {
-                        string line = solution.substr(cur, min(50ull, solution.size() - cur));
+                        string line = "";
+                        bool seen = false;
+                        for (unsigned long long k = cur; k < cur + min(50ull, solution.size() - cur); k++)
+                        {
+                            if (solution[k] == 'b' && solution[k + 1] == 'r')
+                            {
+
+                                j += (k - cur);
+                                cur += (k - cur + 2);
+                                seen = true;
+                                break;
+                            }
+                            line += solution[k];
+                        }
+                        if (!seen)
+                        {
+                            j += min(50ull, solution.size() - cur);
+                            cur += 50;
+                        }
                         cout << line;
-                        j += min(50ull, solution.size() - cur);
-                        cur += 50;
                         continue;
                     }
                     if (j < 6 || j < 15 || j < 22 || j < 42 || j < 53 || j < 70 || j < 75 || j < 140)
@@ -371,11 +406,11 @@ public:
         formatEquationTable("1", "a=0,b=0,c=0", "0 * x^2 + 0 * x + 0 = 0", "all x in range(-inf, +inf)");
         formatEquationTable("2", "a != 0, b = 0, c = 0", "a * x^2 = 0", "the only solution is x = 0");
         formatEquationTable("3", "c = 0", "form doesn't exist", "equation is not valid, because only one parameter c is being passed");
-        formatEquationTable("4", "a != 0, b = 0, c != 0", "a * x^2 + c = 0", "x^2 = -c / a if -c / a < 0, the solution does not exist if -c / a > 0 x1 = sqrt(-c/a), x2 = -sqrt(-c/a)");
+        formatEquationTable("4", "a != 0, b = 0, c != 0", "a * x^2 + c = 0", "x^2 = -c / a brif -c / a < 0, the solution does not exist brif -c / a > 0: br    x1 = sqrt(-c/a), x2 = -sqrt(-c/a)");
         formatEquationTable("5", "a = 0, b != 0, c != 0", "bx + c = 0", "x = -c / b");
-        formatEquationTable("6", "a != 0, b != 0, c != 0", "a * x^2 + bx + c = 0", "find the Discriminant: D = b^2 - 4ac. 1. if D > 0 x = (-b +/- sqrt(b^2 - 4ac) / 2a); 2. if D = 0 x = -b / 2a; if D < 0 the solution does not exist");
+        formatEquationTable("6", "a != 0, b != 0, c != 0", "a * x^2 + bx + c = 0", "find the Discriminant: D = b^2 - 4ac. br1. if D > 0 x = (-b +/- sqrt(b^2 - 4ac) / 2a); br2. if D = 0 x = -b / 2a; if D < 0 the solution brdoes not exist");
         formatEquationTable("7", "a = 0, b != 0, c = 0", "bx = 0", "the only solution is x = 0");
-        formatEquationTable("8", "a != 0, b != 0, c = 0", "ax^2 + bx = 0", "rewrite the equation: x(ax + b) = 0. x1 = 0, x2 = -b/a");
+        formatEquationTable("8", "a != 0, b != 0, c = 0", "ax^2 + bx = 0", "rewrite the equation: br           x(ax + b) = 0. brx1 = 0, x2 = -b/a");
     }
 
     void showInstructions(int i)
