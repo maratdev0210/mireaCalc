@@ -142,7 +142,7 @@ public:
         cout << endl;
         if (russian)
         {
-            cout << "\t\t|    Добро пожаловать в калькулятор по решению квадратных уравнений. Список доступных комманд:     |" << endl;
+            cout << "\t\t|    пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ:     |" << endl;
         }
         else
         {
@@ -162,12 +162,12 @@ public:
         cout << endl;
         if (russian)
         {
-            formatOutputTable("Операция", "Комманда");
-            formatOutputTable("показать помощь", "HELP");
-            formatOutputTable("Выйти из программы", "QUIT");
-            formatOutputTable("Решить уравнение", "EQUATION");
-            formatOutputTable("Информация об уравнениях", "INFO");
-            formatOutputTable("Смена языка", "SWITCH");
+            formatOutputTable("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+            formatOutputTable("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", "HELP");
+            formatOutputTable("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "QUIT");
+            formatOutputTable("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "EQUATION");
+            formatOutputTable("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "INFO");
+            formatOutputTable("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", "SWITCH");
             return;
         }
         formatOutputTable("OPERATION", "COMMAND");
@@ -331,7 +331,7 @@ public:
                     {
                         if (russian)
                         {
-                            cout << "ТИП";
+                            cout << "пїЅпїЅпїЅ";
                             j += 3;
                         }
                         else
@@ -345,7 +345,7 @@ public:
                     {
                         if (russian)
                         {
-                            cout << "ПАРАМЕТРЫ";
+                            cout << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
                             j += 9;
                         }
                         else
@@ -359,7 +359,7 @@ public:
                     {
                         if (russian)
                         {
-                            cout << "ФОРМА";
+                            cout << "пїЅпїЅпїЅпїЅпїЅ";
                             j += 5;
                         }
                         else
@@ -373,7 +373,7 @@ public:
                     {
                         if (russian)
                         {
-                            cout << "РЕШЕНИЕ";
+                            cout << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
                             j += 7;
                         }
                         else
@@ -499,24 +499,24 @@ public:
     {
         if (russian)
         {
-            cout << "\n\nКвадратное уравнение - это уравнение следующего вида:\n\n ";
+            cout << "\n\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ:\n\n ";
             cout << "\t\t\t\t\tax^2 + bx + c = 0\n\n";
-            cout << "В таблице представлено 8 типов квадратных уравнений...\n\n\n";
-            cout << "Таблица 1. Типы квадратных уравнений\n";
+            cout << "пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 8 пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ...\n\n\n";
+            cout << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 1. пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\n";
             for (int i = 0; i <= 140; i++)
             {
                 cout << "~";
             }
             cout << endl;
             formatEquationColumnHeaderRussian();
-            formatEquationTable("1", "a=0,b=0,c=0", "0 * x^2 + 0 * x + 0 = 0", "все x в промежутке (-inf, +inf)");
-            formatEquationTable("2", "a != 0, b = 0, c = 0", "a * x^2 = 0", "единственное решение x = 0");
-            formatEquationTable("3", "c = 0", "не существует", "решений нет, так как дан только один параметр c");
-            formatEquationTable("4", "a != 0, b = 0, c != 0", "a * x^2 + c = 0", "x^2 = -c / a brесли -c / a < 0, то решения не существует brесли -c / a > 0: br    x1 = sqrt(-c/a), x2 = -sqrt(-c/a)");
+            formatEquationTable("1", "a=0,b=0,c=0", "0 * x^2 + 0 * x + 0 = 0", "пїЅпїЅпїЅ x пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (-inf, +inf)");
+            formatEquationTable("2", "a != 0, b = 0, c = 0", "a * x^2 = 0", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ x = 0");
+            formatEquationTable("3", "c = 0", "пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ c");
+            formatEquationTable("4", "a != 0, b = 0, c != 0", "a * x^2 + c = 0", "x^2 = -c / a brпїЅпїЅпїЅпїЅ -c / a < 0, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ brпїЅпїЅпїЅпїЅ -c / a > 0: br    x1 = sqrt(-c/a), x2 = -sqrt(-c/a)");
             formatEquationTable("5", "a = 0, b != 0, c != 0", "bx + c = 0", "x = -c / b");
-            formatEquationTable("6", "a != 0, b != 0, c != 0", "a * x^2 + bx + c = 0", "Дискриминант: D = b^2 - 4ac. br1. если D > 0 x = (-b +/- sqrt(b^2 - 4ac) / 2a); br2. если D = 0 x = -b / 2a; если D < 0 то решения brне существует");
-            formatEquationTable("7", "a = 0, b != 0, c = 0", "bx = 0", "единственное решение x = 0");
-            formatEquationTable("8", "a != 0, b != 0, c = 0", "ax^2 + bx = 0", "перепишем уравнение: br           x(ax + b) = 0. brx1 = 0, x2 = -b/a");
+            formatEquationTable("6", "a != 0, b != 0, c != 0", "a * x^2 + bx + c = 0", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: D = b^2 - 4ac. br1. пїЅпїЅпїЅпїЅ D > 0 x = (-b +/- sqrt(b^2 - 4ac) / 2a); br2. пїЅпїЅпїЅпїЅ D = 0 x = -b / 2a; пїЅпїЅпїЅпїЅ D < 0 пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ brпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+            formatEquationTable("7", "a = 0, b != 0, c = 0", "bx = 0", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ x = 0");
+            formatEquationTable("8", "a != 0, b != 0, c = 0", "ax^2 + bx = 0", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: br           x(ax + b) = 0. brx1 = 0, x2 = -b/a");
             return;
         }
         cout << "\n\nQuadratic equation is an equation that can be rearranged in standard form as:\n\n ";
@@ -565,6 +565,9 @@ class Equation
 {
 private:
     vector<int> parameters;
+    string number1;
+    string number2;
+    string number3;
 
 public:
     // \/
@@ -585,11 +588,152 @@ public:
 
     vector<vector<string>> numberCodes;
     vector<string> exponent = {"  ___", " /   \\ ", "/--^--\\"};
-    vector<string> variable = {"\\     /", " \\   /", "  \\./", "  / \\", " /   \\", "/     \\"};
+    vector<string> variable = {"\\     /", " \\   / ", "  \\./  ", "  / \\  ", " /   \\ ", "/     \\"};
     // vector<string> multiply = {"    _    ", "  /\\| |/\\", "  \\ ` ' / ", " |_     _|", "  / , . \\", "  \\/|_|\\/"};
     vector<string> multiplyX = {"     _     \\     / ", " /\\| |/\\   \\   / ", "  \\ ` ' /   \\./", " |_     _|  / \\", "  / , . \\  /   \\", "  \\/|_| \\//     \\"};
     vector<string> multiply = {"\\/", "/\\"};
+    vector<string> minus = {" ______ ", "|______|"};
+    vector<string> plus = {" _| |_ ", "|_   _|", "  |_|  "};
+    vector<string> equal = {" ______ ", "|______|", " ______ ", "|______|"};
     // display the number graphical code
+
+    void initialEquationMessage()
+    {
+        cout << " _______  _              _         _  _    _         _                              _    _                  " << endl;
+        cout << "|__   __|| |            (_)       (_)| |  (_)       | |                            | |  (_)               _ " << endl;
+        cout << "   | |   | |__    ___    _  _ __   _ | |_  _   __ _ | |   ___   __ _  _   _   __ _ | |_  _   ___   _ __  (_)" << endl;
+        cout << "   | |   | '_ \\  / _ \\  | || '_ \\ | || __|| | / _` || |  / _ \\ / _` || | | | / _` || __|| | / _ \\ | '_ \\    " << endl;
+        cout << "   | |   | | | ||  __/ |  || | | || || |_ | || (_| || | |  __/| (_| || |_| || (_| || |_ | || (_) || | | | _ " << endl;
+        cout << "   |_|   |_| |_| \\___|  |_||_| |_||_| \\__||_| \\__,_||_|  \\___| \\__, | \\__,_| \\__,_| \\__||_| \\___/ |_| |_|(_)" << endl;
+        cout << "                                                                 | |                                       " << endl;
+        cout << "                                                                 |_|                                       " << endl;
+    }
+
+    void displayFullForm(string number1, string sign, string number2, string sign2, string number3)
+    {
+        initNumberCodes();
+        int count = 0;
+        for (int i = 0; i < number1.size(); i++)
+        {
+            if (number1[i] == '-')
+            {
+                count += 9;
+            }
+            else
+            {
+                int cur = number1[i] - '0';
+                count += numberCodes[cur][0].size();
+            }
+        }
+        count += 8; // for x variable
+        string s = "";
+        for (int i = 0; i < count; i++)
+        {
+            s = " " + s;
+        }
+        cout << s << "2" << endl;
+        int start = 0;
+        for (int j = 0; j < 6; j++)
+        {
+            if (number1[0] == '-')
+            {
+                if (j >= 2 && j <= 3)
+                {
+                    int index = j - 2;
+                    cout << minus[index];
+                }
+                else
+                {
+                    cout << "        ";
+                }
+                start = 1;
+            }
+                for (int i = start; i < number1.size(); i++)
+                {
+                    int cur = number1[i] - '0';
+                    cout << numberCodes[cur][j];
+                }
+
+            cout << variable[j];
+            cout << "       ";
+            if (sign == "plus")
+            {
+                if (j >= 2 && j <= 4)
+                {
+                    int index = j - 2;
+                    cout << plus[index];
+                }
+                else
+                {
+                    cout << "       ";
+                }
+            }
+            else
+            {
+                if (j >= 2 && j <= 3)
+                {
+                    int index = j - 2;
+                    cout << minus[index];
+                }
+                else
+                {
+                    cout << "        ";
+                }
+            }
+            cout << "       ";
+            for (int i = 0; i < number2.size(); i++)
+            {
+                int cur = number2[i] - '0';
+                cout << numberCodes[cur][j];
+            }
+            cout << variable[j];
+            cout << "       ";
+            if (sign2 == "plus")
+            {
+                if (j >= 2 && j <= 4)
+                {
+                    int index = j - 2;
+                    cout << plus[index];
+                }
+                else
+                {
+                    cout << "       ";
+                }
+            }
+            else
+            {
+                if (j >= 2 && j <= 3)
+                {
+                    int index = j - 2;
+                    cout << minus[index];
+                }
+                else
+                {
+                    cout << "        ";
+                }
+            }
+            cout << "       ";
+            for (int i = 0; i < number3.size(); i++)
+            {
+                int cur = number3[i] - '0';
+                cout << numberCodes[cur][j];
+            }
+            cout << "       ";
+            if (j >= 1 && j <= 4)
+            {
+                int index = j - 1;
+                cout << equal[index];
+            }
+            else
+            {
+                cout << "        ";
+            }
+            cout << "       ";
+            cout << numberCodes[0][j];
+            cout << endl;
+        }
+    }
+
     void displayStep(int number1, int number2, int number3)
     {
         initNumberCodes();
@@ -610,14 +754,14 @@ public:
                 continue;
             }
             cout << endl; */
-            cout << numberCodes[2][i] << " " << variable[i] << endl;
+            cout << numberCodes[2][i] << variable[i] << endl;
         }
 
         for (int i = 0; i <= 10; i++)
         {
             for (int j = 0; j < 6; j++)
             {
-                cout << numberCodes[i][j] << " " << variable[j] << endl;
+                cout << numberCodes[i][j].size() << endl;
             }
             cout << endl;
         }
@@ -639,15 +783,15 @@ public:
 
     void initNumberCodes()
     {
-        vector<string> zero = {"  ___    ", " / _ \\   ", "| | | |  ", "| | | |  ", "| |_| |  ", " \\___/   "};
-        vector<string> one = {" __  ", "/_ | ", " | | ", " | | ", " | | ", " |_| "};
+        vector<string> zero = {"  ___  ", " / _ \\ ", "| | | |", "| | | |", "| |_| |", " \\___/ "};
+        vector<string> one = {" __ ", "/_ |", " | |", " | |", " | |", " |_|"};
         vector<string> two = {" ___  ", "|__ \\ ", "   ) |", "  / / ", " / /_ ", "|____|"};
         vector<string> three = {" ____  ", "|___ \\ ", "  __) |", " |__ < ", " ___) |", "|____/ "};
         vector<string> four = {" _  _   ", "| || |  ", "| || |_ ", "|__   _|", "   | |  ", "   |_|  "};
         vector<string> five = {" _____ ", "| ____|", "| |__  ", "|___ \\ ", " ___) |", "|____/ "};
-        vector<string> six = {"   __   ", "  / /   ", " / /_   ", "| '_ \\  ", "| (_) | ", " \\___/  "};
+        vector<string> six = {"   __  ", "  / /  ", " / /_  ", "| '_ \\ ", "| (_) |", " \\___/ "};
         vector<string> seven = {" ______ ", "|____  |", "    / / ", "   / /  ", "  / /   ", " /_/    "};
-        vector<string> eight = {"  ___   ", " / _ \\  ", "| (_) | ", " > _ <  ", "| (_) | ", " \\___/  "};
+        vector<string> eight = {"  ___  ", " / _ \\ ", "| (_) |", " > _ < ", "| (_) |", " \\___/ "};
         vector<string> nine = {"  ___  ", " / _ \\ ", "| (_) |", " \\__, |", "   / / ", "  /_/  "};
 
         numberCodes.push_back(zero);
@@ -729,6 +873,9 @@ public:
     void setEquation(vector<int> params)
     {
         parameters = params;
+        number1 = to_string(parameters[0]);
+        number2 = to_string(parameters[1]);
+        number3 = to_string(parameters[2]);
     }
 
     void showEquation()
@@ -745,7 +892,7 @@ public:
         cout << "all parameters equal to zero, the equation is:\n0*x^2 + 0*x + 0 = 0\n";
         cout << "the x can be any integer in range (-inf, +inf)\n";
         cout << "Answer: x = (-inf, +inf)\n";
-        displayStep(1, 0, 0);
+        displayFullForm(number1, "plus", number2, "plus", number3);
     }
 
     void solveSecondType()
@@ -755,6 +902,16 @@ public:
         cout << "divide the right side of the equation by a:\nx^2 = 0/" << parameters[0] << "\n";
         cout << "the only solution is x = 0.\n";
         cout << "Answer: x = 0\n";
+        string sign = "plus", sign2 = "plus";
+        if (number2[0] == '-') {
+            number2 = number2.substr(1);
+            sign = "minus";
+        }
+        if (number3[0] == '-') {
+            number3 = number3.substr(1);
+            sign2 = "minus";
+        }
+        displayFullForm(number1, sign, number2, sign2, number3);
     }
 
     void solveThirdType()
@@ -763,6 +920,16 @@ public:
         cout << "The expression is not correct, because " << parameters[2] << "!=0\n";
         cout << "That means the given parameters are incorrect and the solution does not exist.\n";
         cout << "Answer: the solution does not exist\n";
+        string sign = "plus", sign2 = "plus";
+        if (number2[0] == '-') {
+            number2 = number2.substr(1);
+            sign = "minus";
+        }
+        if (number3[0] == '-') {
+            number3 = number3.substr(1);
+            sign2 = "minus";
+        }
+        displayFullForm(number1, sign, number2, sign2, number3);
     }
 
     void solveFourthType()
@@ -781,6 +948,16 @@ public:
             cout << "and -sqrt(" << -1 * parameters[2] / parameters[0] << ")\n";
             cout << "Answer: " << sqrt(-1 * parameters[2] / parameters[0]) << "; " << -1 * sqrt(-1 * parameters[2] / parameters[0]) << endl;
         }
+        string sign = "plus", sign2 = "plus";
+        if (number2[0] == '-') {
+            number2 = number2.substr(1);
+            sign = "minus";
+        }
+        if (number3[0] == '-') {
+            number3 = number3.substr(1);
+            sign2 = "minus";
+        }
+        displayFullForm(number1, sign, number2, sign2, number3);
     }
 
     void solveFifthType()
@@ -791,6 +968,16 @@ public:
              << parameters[1] << "x = " << -1 * parameters[2] << endl;
         cout << "find the x:\n x = " << -1 * parameters[2] << " / " << parameters[1] << " = " << -1 * parameters[2] / parameters[1] << endl;
         cout << "Answer: x = " << -1 * parameters[2] / parameters[1] << endl;
+        string sign = "plus", sign2 = "plus";
+        if (number2[0] == '-') {
+            number2 = number2.substr(1);
+            sign = "minus";
+        }
+        if (number3[0] == '-') {
+            number3 = number3.substr(1);
+            sign2 = "minus";
+        }
+        displayFullForm(number1, sign, number2, sign2, number3);
     }
 
     void solveSixthType()
@@ -800,6 +987,16 @@ public:
         cout << "Find the Discriminant: \n";
         int D = parameters[1] * parameters[1] - 4 * parameters[0] * parameters[2];
         cout << "D = " << parameters[1] << "^2 - " << 4 << "*" << parameters[0] << "*" << parameters[2] << endl;
+        string sign = "plus", sign2 = "plus";
+        if (number2[0] == '-') {
+            number2 = number2.substr(1);
+            sign = "minus";
+        }
+        if (number3[0] == '-') {
+            number3 = number3.substr(1);
+            sign2 = "minus";
+        }
+        displayFullForm(number1, sign, number2, sign2, number3);
         if (D < 0)
         {
             cout << "D < 0, then the solution does not exist.\n";
@@ -822,6 +1019,7 @@ public:
                  << (-1 * parameters[1] - sqrt(D)) / (2 * parameters[0]) << endl;
             cout << "Answer: x1 = " << (-1 * parameters[1] + sqrt(D)) / (2 * parameters[0]) << "; x2 = " << (-1 * parameters[1] - sqrt(D)) / (2 * parameters[0]) << endl;
         }
+        
     }
 
     void solveSeventhType()
@@ -830,6 +1028,16 @@ public:
              << parameters[1] << "x = 0" << endl;
         cout << "x = " << 0 << " / " << parameters[1] << " = 0" << endl;
         cout << "Answer: x = 0" << endl;
+        string sign = "plus", sign2 = "plus";
+        if (number2[0] == '-') {
+            number2 = number2.substr(1);
+            sign = "minus";
+        }
+        if (number3[0] == '-') {
+            number3 = number3.substr(1);
+            sign2 = "minus";
+        }
+        displayFullForm(number1, sign, number2, sign2, number3);
     }
 
     void solveEigthType()
@@ -841,6 +1049,16 @@ public:
         cout << "Find the solution to the equation " << parameters[0] << "x + " << parameters[1] << " = 0" << endl;
         cout << "x = " << -1 * parameters[1] << "/" << parameters[0] << " = " << (-1 * parameters[1]) / parameters[0] << endl;
         cout << "Answer: x = 0; x = " << (-1 * parameters[1]) / (parameters[0]) << endl;
+        string sign = "plus", sign2 = "plus";
+        if (number2[0] == '-') {
+            number2 = number2.substr(1);
+            sign = "minus";
+        }
+        if (number3[0] == '-') {
+            number3 = number3.substr(1);
+            sign2 = "minus";
+        }
+        displayFullForm(number1, sign, number2, sign2, number3);
     }
 
     int determineType()
@@ -882,6 +1100,7 @@ public:
     void solveEquation()
     {
         int type = determineType();
+        initialEquationMessage();
         if (type == 1)
         {
             solveFirstType();
