@@ -1,7 +1,12 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <Windows.h>
 #include <cmath>
+#include <algorithm>
+#include <windows.h>
+
+bool russian = false;
 
 using namespace std;
 
@@ -42,6 +47,8 @@ private:
         "\n",
     };
 
+    // 0.234
+
     vector<string> onStartInstructions = {"\tShow help:\n\t\tHELP\n",
                                           "\tQuit the program:\n\t\tQUIT\n",
                                           "\tType an equation and find the solution:\n\t\tEQUATION\n"};
@@ -69,9 +76,9 @@ public:
             if (i == 3)
             {
                 int j = 0;
-                while (j < 50)
+                while (j < 60)
                 {
-                    if (j == 0)
+                    if (j == 0 || j == 35 || j == 59)
                     {
                         cout << "|";
                         j++;
@@ -83,43 +90,15 @@ public:
                         j += operation.size();
                         continue;
                     }
-                    if (j < 5)
-                    {
-                        cout << " ";
-                        j++;
-                        continue;
-                    }
-                    if (j < 25)
-                    {
-                        cout << " ";
-                        j++;
-                        continue;
-                    }
-                    if (j == 49)
-                    {
-                        cout << "|";
-                        j++;
-                        continue;
-                    }
-                    if (j == 25)
-                    {
-                        cout << "|";
-                        j++;
-                        continue;
-                    }
-                    if (j < 34)
-                    {
-                        cout << " ";
-                        j++;
-                        continue;
-                    }
-                    if (j == 34)
+
+                    if (j == 44)
                     {
                         cout << command;
                         j += command.size();
                         continue;
                     }
-                    if (j < 49)
+
+                    if (j < 5 || j < 35 || j < 44 || j < 59)
                     {
                         cout << " ";
                         j++;
@@ -131,9 +110,9 @@ public:
             else
             {
                 int j = 0;
-                while (j < 50)
+                while (j < 60)
                 {
-                    if (j == 0 || j == 49 || j == 25)
+                    if (j == 0 || j == 59 || j == 35)
                     {
                         cout << "|";
                         j++;
@@ -146,7 +125,7 @@ public:
             }
         }
         cout << "\t\t\t\t";
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 60; i++)
         {
             cout << "~";
         }
@@ -161,7 +140,14 @@ public:
             cout << '-';
         }
         cout << endl;
-        cout << "\t\t|    Welcome to the Quadratic Equation Solver. Here is the list of available commands     |" << endl;
+        if (russian)
+        {
+            cout << "\t\t|    Добро пожаловать в калькулятор по решению квадратных уравнений. Список доступных комманд:     |" << endl;
+        }
+        else
+        {
+            cout << "\t\t|    Welcome to the Quadratic Equation Solver. Here is the list of available commands     |" << endl;
+        }
         cout << "\t\t";
         for (int i = 0; i < 90; i++)
         {
@@ -169,11 +155,21 @@ public:
         }
         cout << endl;
         cout << "\t\t\t\t";
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 60; i++)
         {
             cout << "~";
         }
         cout << endl;
+        if (russian)
+        {
+            formatOutputTable("Операция", "Комманда");
+            formatOutputTable("показать помощь", "HELP");
+            formatOutputTable("Выйти из программы", "QUIT");
+            formatOutputTable("Решить уравнение", "EQUATION");
+            formatOutputTable("Информация об уравнениях", "INFO");
+            formatOutputTable("Смена языка", "SWITCH");
+            return;
+        }
         formatOutputTable("OPERATION", "COMMAND");
         formatOutputTable("Show help", "HELP");
         formatOutputTable("Exit the program", "QUIT");
@@ -316,6 +312,113 @@ public:
         cout << endl;
     }
 
+    void formatEquationColumnHeaderRussian()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            if (i == 3)
+            {
+                int j = 0;
+                while (j <= 140)
+                {
+                    if (j == 0 || j == 15 || j == 42 || j == 71 || j == 140)
+                    {
+                        cout << "|";
+                        j++;
+                        continue;
+                    }
+                    if (j == 6)
+                    {
+                        if (russian)
+                        {
+                            cout << "ТИП";
+                            j += 3;
+                        }
+                        else
+                        {
+                            cout << "TYPE";
+                            j += 4;
+                        }
+                        continue;
+                    }
+                    if (j == 22)
+                    {
+                        if (russian)
+                        {
+                            cout << "ПАРАМЕТРЫ";
+                            j += 9;
+                        }
+                        else
+                        {
+                            cout << "PARAMETERS";
+                            j += 10;
+                        }
+                        continue;
+                    }
+                    if (j == 53)
+                    {
+                        if (russian)
+                        {
+                            cout << "ФОРМА";
+                            j += 5;
+                        }
+                        else
+                        {
+                            cout << "FORM";
+                            j += 4;
+                        }
+                        continue;
+                    }
+                    if (j == 85)
+                    {
+                        if (russian)
+                        {
+                            cout << "РЕШЕНИЕ";
+                            j += 7;
+                        }
+                        else
+                        {
+                            cout << "SOLUTION";
+                            j += 8;
+                        }
+                        continue;
+                    }
+                    if (j < 6 || j < 15 || j < 22 || j < 42 || j < 53 || j < 70 || j < 85 || j < 140)
+                    {
+                        cout << " ";
+                        j++;
+                        continue;
+                    }
+                }
+                cout << endl;
+            }
+            else
+            {
+                int j = 0;
+                while (j <= 140)
+                {
+                    if (j == 0 || j == 15 || j == 42 || j == 71 || j == 140)
+                    {
+                        cout << "|";
+                        j++;
+                        continue;
+                    }
+                    if (j < 6 || j < 15 || j < 22 || j < 42 || j < 53 || j < 70 || j < 85 || j < 140)
+                    {
+                        cout << " ";
+                        j++;
+                        continue;
+                    }
+                }
+                cout << endl;
+            }
+        }
+        for (int i = 0; i <= 140; i++)
+        {
+            cout << "~";
+        }
+        cout << endl;
+    }
     void formatEquationColumnHeader()
     {
         for (int i = 0; i < 6; i++)
@@ -394,6 +497,28 @@ public:
 
     void showEquationInfo()
     {
+        if (russian)
+        {
+            cout << "\n\nКвадратное уравнение - это уравнение следующего вида:\n\n ";
+            cout << "\t\t\t\t\tax^2 + bx + c = 0\n\n";
+            cout << "В таблице представлено 8 типов квадратных уравнений...\n\n\n";
+            cout << "Таблица 1. Типы квадратных уравнений\n";
+            for (int i = 0; i <= 140; i++)
+            {
+                cout << "~";
+            }
+            cout << endl;
+            formatEquationColumnHeaderRussian();
+            formatEquationTable("1", "a=0,b=0,c=0", "0 * x^2 + 0 * x + 0 = 0", "все x в промежутке (-inf, +inf)");
+            formatEquationTable("2", "a != 0, b = 0, c = 0", "a * x^2 = 0", "единственное решение x = 0");
+            formatEquationTable("3", "c = 0", "не существует", "решений нет, так как дан только один параметр c");
+            formatEquationTable("4", "a != 0, b = 0, c != 0", "a * x^2 + c = 0", "x^2 = -c / a brесли -c / a < 0, то решения не существует brесли -c / a > 0: br    x1 = sqrt(-c/a), x2 = -sqrt(-c/a)");
+            formatEquationTable("5", "a = 0, b != 0, c != 0", "bx + c = 0", "x = -c / b");
+            formatEquationTable("6", "a != 0, b != 0, c != 0", "a * x^2 + bx + c = 0", "Дискриминант: D = b^2 - 4ac. br1. если D > 0 x = (-b +/- sqrt(b^2 - 4ac) / 2a); br2. если D = 0 x = -b / 2a; если D < 0 то решения brне существует");
+            formatEquationTable("7", "a = 0, b != 0, c = 0", "bx = 0", "единственное решение x = 0");
+            formatEquationTable("8", "a != 0, b != 0, c = 0", "ax^2 + bx = 0", "перепишем уравнение: br           x(ax + b) = 0. brx1 = 0, x2 = -b/a");
+            return;
+        }
         cout << "\n\nQuadratic equation is an equation that can be rearranged in standard form as:\n\n ";
         cout << "\t\t\t\t\tax^2 + bx + c = 0\n\n";
         cout << "The table below represents eight types of existing quadratic equations...\n\n\n";
@@ -442,6 +567,165 @@ private:
     vector<int> parameters;
 
 public:
+    // \/
+    // /\
+
+
+    /*
+                ASCII GRAPHICS CODE SETTERS
+
+//  \     /
+//   \   /
+//    \ /
+//    / \
+//   /   \
+//  /     \
+
+    */
+
+    vector<vector<string>> numberCodes;
+    vector<string> exponent = {"  ___", " /   \\ ", "/--^--\\"};
+    vector<string> variable = {"\\     /", " \\   /", "  \\./", "  / \\", " /   \\", "/     \\"};
+    // vector<string> multiply = {"    _    ", "  /\\| |/\\", "  \\ ` ' / ", " |_     _|", "  / , . \\", "  \\/|_|\\/"};
+    vector<string> multiplyX = {"     _     \\     / ", " /\\| |/\\   \\   / ", "  \\ ` ' /   \\./", " |_     _|  / \\", "  / , . \\  /   \\", "  \\/|_| \\//     \\"};
+    vector<string> multiply = {"\\/", "/\\"};
+    // display the number graphical code
+    void displayStep(int number1, int number2, int number3)
+    {
+        initNumberCodes();
+        for (int i = 0; i < numberCodes[number1].size(); i++)
+        {
+
+            // cout << numberCodes[number1][i] << "         " << multiply[i] << "       " << variable[i] << endl;
+            // cout << numberCodes[number1][i] << numberCodes[number2][i] << endl;
+            /*cout << numberCodes[1][i] << "                 " << variable[i];
+            if (i == 2)
+            {
+                cout << multiply[0] << " " << variable[2] << endl;
+                continue;
+            }
+            else if (i == 3)
+            {
+                cout << multiply[1] << " " << variable[3] << endl;
+                continue;
+            }
+            cout << endl; */
+            cout << numberCodes[2][i] << " " << variable[i] << endl;
+        }
+
+        for (int i = 0; i <= 10; i++)
+        {
+            for (int j = 0; j < 6; j++)
+            {
+                cout << numberCodes[i][j] << " " << variable[j] << endl;
+            }
+            cout << endl;
+        }
+
+        /*
+        for (int i = 0; i < numberCodes[number1].size(); i++)
+        {
+            cout << numberCodes[number1][i] << endl;
+        }
+        for (int i = 0; i < numberCodes[number2].size(); i++)
+        {
+            cout << numberCodes[number2][i] << endl;
+        }
+        for (int i = 0; i < numberCodes[number3].size(); i++)
+        {
+            cout << numberCodes[number3][i] << endl;
+        } */
+    }
+
+    void initNumberCodes()
+    {
+        vector<string> zero = {"  ___    ", " / _ \\   ", "| | | |  ", "| | | |  ", "| |_| |  ", " \\___/   "};
+        vector<string> one = {" __  ", "/_ | ", " | | ", " | | ", " | | ", " |_| "};
+        vector<string> two = {" ___  ", "|__ \\ ", "   ) |", "  / / ", " / /_ ", "|____|"};
+        vector<string> three = {" ____  ", "|___ \\ ", "  __) |", " |__ < ", " ___) |", "|____/ "};
+        vector<string> four = {" _  _   ", "| || |  ", "| || |_ ", "|__   _|", "   | |  ", "   |_|  "};
+        vector<string> five = {" _____ ", "| ____|", "| |__  ", "|___ \\ ", " ___) |", "|____/ "};
+        vector<string> six = {"   __   ", "  / /   ", " / /_   ", "| '_ \\  ", "| (_) | ", " \\___/  "};
+        vector<string> seven = {" ______ ", "|____  |", "    / / ", "   / /  ", "  / /   ", " /_/    "};
+        vector<string> eight = {"  ___   ", " / _ \\  ", "| (_) | ", " > _ <  ", "| (_) | ", " \\___/  "};
+        vector<string> nine = {"  ___  ", " / _ \\ ", "| (_) |", " \\__, |", "   / / ", "  /_/  "};
+
+        numberCodes.push_back(zero);
+        numberCodes.push_back(one);
+        numberCodes.push_back(two);
+        numberCodes.push_back(three);
+        numberCodes.push_back(four);
+        numberCodes.push_back(five);
+        numberCodes.push_back(six);
+        numberCodes.push_back(seven);
+        numberCodes.push_back(eight);
+        numberCodes.push_back(nine);
+    }
+
+    // vector<vector<int>> vec;
+
+    void showZero()
+    {
+        //    ___
+        //   / _ \  
+//  | | | |
+        //  | | | |
+        //  | |_| |
+        //   \___/
+        //
+        cout << "  ___ " << endl;
+        cout << " / _ \\" << endl;
+        cout << "| | | |" << endl;
+        cout << "| | | |" << endl;
+        cout << "| |_| |" << endl;
+        cout << " \\___/" << endl;
+    }
+
+    void showOne()
+    {
+        //   __
+        //  /_ |
+        //   | |
+        //   | |
+        //   | |
+        //   |_|
+        //
+        cout << " __" << endl;
+        cout << "/_ |" << endl;
+        cout << " | |" << endl;
+        cout << " | |" << endl;
+        cout << " | |" << endl;
+        cout << " |_|" << endl;
+    }
+
+    void showTwo()
+    {
+        //   ___
+        //  |__ \  
+        //     ) |
+        //    / /
+        //   / /_
+        //  |____|
+        //
+        cout << " ___" << endl;
+        cout << "|__ \\" << endl;
+        cout << "   ) |" << endl;
+        cout << "  / /" << endl;
+        cout << " / /_ " << endl;
+        cout << "|____|" << endl;
+    }
+
+    void showThree()
+    {
+        //   ____
+        //  |___ \  
+        //    __) |
+        //   |__ <
+        //   ___) |
+        //  |____/
+        //
+    }
+
     void setEquation(vector<int> params)
     {
         parameters = params;
@@ -457,9 +741,11 @@ public:
 
     void solveFirstType()
     {
+
         cout << "all parameters equal to zero, the equation is:\n0*x^2 + 0*x + 0 = 0\n";
         cout << "the x can be any integer in range (-inf, +inf)\n";
         cout << "Answer: x = (-inf, +inf)\n";
+        displayStep(1, 0, 0);
     }
 
     void solveSecondType()
@@ -685,6 +971,10 @@ public:
             {
                 showEquationInfo();
             }
+            else if (command == "SWITCH")
+            {
+                russian = !russian; // if russian then switch to english, otherwise switch to russian
+            }
             else if (command == "EQUATION")
             {
                 int num = 0;
@@ -705,6 +995,8 @@ public:
 
 int main()
 {
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
     userInterface UI;
     UI.processInput();
 }
