@@ -564,10 +564,51 @@ public:
 class Equation
 {
 private:
-    vector<int> parameters;
+    vector<double> parameters;
     string number1;
     string number2;
     string number3;
+
+    string removeTrailingZeros(string number, int maxLen)
+    {
+        // find the dot position
+        int dot = 0;
+        string current = "";
+        for (int i = 0; i < number.size(); i++)
+        {
+            current += number[i];
+            if (number[i] == '.')
+            {
+                dot = i;
+                break;
+            }
+        }
+        int cnt = 0;
+        for (int i = dot + 1; i < number.size(); i++)
+        {
+            cnt += 1;
+            current += number[i];
+            if (cnt >= maxLen)
+            {
+                break;
+            }
+        }
+        int toRemove = 0;
+        for (int i = current.size() - 1; i >= dot; i--)
+        {
+            if (current[i] != '0')
+            {
+                break;
+            }
+            toRemove += 1;
+        }
+        if (toRemove == maxLen)
+        {
+            toRemove++;
+        }
+        current = current.substr(0, current.size() - toRemove);
+        return current;
+    }
 
 public:
     // \/
@@ -597,16 +638,130 @@ public:
     vector<string> equal = {" ______ ", "|______|", " ______ ", "|______|"};
     // display the number graphical code
 
+    void tabs(int n)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            cout << "\t";
+        }
+    }
+
+    void newline(int n)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            cout << "\n";
+        }
+    }
+
+    void solutionMessage()
+    {
+        newline(3);
+        tabs(7);
+        cout << "  _____  ____  _     _    _ _______ _____ ____  _   _ " << endl;
+        tabs(7);
+        cout << " / ____|/ __ \\| |   | |  | |__   __|_   _/ __ \\| \\ | |" << endl;
+        tabs(7);
+        cout << "| (___ | |  | | |   | |  | |  | |    | || |  | |  \\| |" << endl;
+        tabs(7);
+        cout << " \\___ \\| |  | | |   | |  | |  | |    | || |  | | . ` |" << endl;
+        tabs(7);
+        cout << " ____) | |__| | |___| |__| |  | |   _| || |__| | |\\  |" << endl;
+        tabs(7);
+        cout << "|_____/ \\____/|______\\____/   |_|  |_____\\____/|_| \\_|" << endl;
+        newline(1);
+    }
+
     void initialEquationMessage()
     {
+        tabs(1);
         cout << " _______  _              _         _  _    _         _                              _    _                  " << endl;
+        tabs(1);
         cout << "|__   __|| |            (_)       (_)| |  (_)       | |                            | |  (_)               _ " << endl;
+        tabs(1);
         cout << "   | |   | |__    ___    _  _ __   _ | |_  _   __ _ | |   ___   __ _  _   _   __ _ | |_  _   ___   _ __  (_)" << endl;
+        tabs(1);
         cout << "   | |   | '_ \\  / _ \\  | || '_ \\ | || __|| | / _` || |  / _ \\ / _` || | | | / _` || __|| | / _ \\ | '_ \\    " << endl;
+        tabs(1);
         cout << "   | |   | | | ||  __/ |  || | | || || |_ | || (_| || | |  __/| (_| || |_| || (_| || |_ | || (_) || | | | _ " << endl;
+        tabs(1);
         cout << "   |_|   |_| |_| \\___|  |_||_| |_||_| \\__||_| \\__,_||_|  \\___| \\__, | \\__,_| \\__,_| \\__||_| \\___/ |_| |_|(_)" << endl;
+        tabs(1);
         cout << "                                                                 | |                                       " << endl;
+        tabs(1);
         cout << "                                                                 |_|                                       " << endl;
+        newline(1);
+    }
+
+    void firstStepMessage()
+    {
+        cout << "  _____ _______ ______ _____    __ " << endl;
+        cout << " / ____|__   __|  ____|  __ \\  /_ |" << endl;
+        cout << "| (___    | |  | |__  | |__) |  | |" << endl;
+        cout << " \\___ \\   | |  |  __| |  ___/   | |" << endl;
+        cout << " ____) |  | |  | |____| |       | |" << endl;
+        cout << "|_____/   |_|  |______|_|       |_|" << endl;
+        newline(2);
+    }
+
+    void secondStepMessage()
+    {
+        cout << "  _____ _______ ______ _____    ___  " << endl;
+        cout << " / ____|__   __|  ____|  __ \\  |__ \\ " << endl;
+        cout << "| (___    | |  | |__  | |__) |    ) |" << endl;
+        cout << " \\___ \\   | |  |  __| |  ___/    / / " << endl;
+        cout << " ____) |  | |  | |____| |       / /_ " << endl;
+        cout << "|_____/   |_|  |______|_|      |____|" << endl;
+        newline(2);
+    }
+
+    void thirdStepMessage()
+    {
+        cout << "  _____ _______ ______ _____    ____  " << endl;
+        cout << " / ____|__   __|  ____|  __ \\  |___ \\ " << endl;
+        cout << "| (___    | |  | |__  | |__) |   __) |" << endl;
+        cout << " \\___ \\   | |  |  __| |  ___/   |__ < " << endl;
+        cout << " ____) |  | |  | |____| |       ___) |" << endl;
+        cout << "|_____/   |_|  |______|_|      |____/ " << endl;
+        newline(2);
+    }
+
+    void fourthStepMessage()
+    {
+        cout << "  _____ _______ ______ _____    _  _   " << endl;
+        cout << " / ____|__   __|  ____|  __ \\  | || |  " << endl;
+        cout << "| (___    | |  | |__  | |__) | | || |_ " << endl;
+        cout << " \\___ \\   | |  |  __| |  ___/  |__   _|" << endl;
+        cout << " ____) |  | |  | |____| |         | |  " << endl;
+        cout << "|_____/   |_|  |______|_|         |_|  " << endl;
+        newline(2);
+    }
+
+    void answerMessage() {
+        cout << "          _   _  _______          ________ _____  " << endl;
+        cout << "    /\\   | \\ | |/ ____\\ \\        / /  ____|  __ \\ " << endl;
+        cout << "   /  \\  |  \\| | (___  \\ \\  /\\  / /| |__  | |__) |" << endl;
+        cout << "  / /\\ \\ | . ` |\\___ \\  \\ \\/  \\/ / |  __| |  _  / " << endl;
+        cout << " / ____ \\| |\\  |____) |  \\  /\\  /  | |____| | \\ \\ " << endl;
+        cout << "/_/    \\_\\_| \\_|_____/    \\/  \\/   |______|_|  \\_\"" << endl;
+        newline(2);
+    }
+
+    void transformEquationMessage()
+    {
+        tabs(1);
+        cout << " _______ _____            _   _  _____ ______ ____  _____  __  __            _   _   ______ ____  _    _      _______ _____ ____  _   _ " << endl;
+        tabs(1);
+        cout << "|__   __|  __ \\     /\\   | \\ | |/ ____|  ____/ __ \\|  __ \\|  \\/  |     /\\   | \\ | | |  ____/ __ \\| |  | |  /\\|__   __|_   _/ __ \\| \\ | |" << endl;
+        tabs(1);
+        cout << "   | |  | |__) |   /  \\  |  \\| | (___ | |__ | |  | | |__) | \\  / |    /  \\  |  \\| | | |__ | |  | | |  | | /  \\  | |    | || |  | |  \\| |" << endl;
+        tabs(1);
+        cout << "   | |  |  _  /   / /\\ \\ | . ` |\\___ \\|  __|| |  | |  _  /| |\\/| |   / /\\ \\ | . ` | |  __|| |  | | |  | |/ /\\ \\ | |    | || |  | | . ` |" << endl;
+        tabs(1);
+        cout << "   | |  | | \\ \\  / ____ \\| |\\  |____) | |   | |__| | | \\ \\| |  | |  / ____ \\| |\\  | | |___| |__| | |__| / ____ \\| |   _| || |__| | |\\  |" << endl;
+        tabs(1);
+        cout << "   |_|  |_|  \\_\\/_/    \\_\\_| \\_|_____/|_|    \\____/|_|  \\_\\_|  |_| /_/    \\_\\_| \\_| |______\\___\\_\\____/_/    \\_\\_|  |_____\\____/|_| \\_|" << endl;
+        newline(2);
     }
 
     void displayFullForm(string number1, string sign, string number2, string sign2, string number3)
@@ -619,13 +774,18 @@ public:
             {
                 count += 9;
             }
+            else if (number1[i] == '.')
+            {
+                count += 2;
+            }
             else
             {
                 int cur = number1[i] - '0';
                 count += numberCodes[cur][0].size();
             }
         }
-        count += 8; // for x variable
+        count += 8;  // for x variable
+        count += 32; // for tabs
         string s = "";
         for (int i = 0; i < count; i++)
         {
@@ -633,8 +793,10 @@ public:
         }
         cout << s << "2" << endl;
         int start = 0;
+        bool floatFirst = false, floatSecond = false, floatThird = false;
         for (int j = 0; j < 6; j++)
         {
+            tabs(4);
             if (number1[0] == '-')
             {
                 if (j >= 2 && j <= 3)
@@ -648,12 +810,29 @@ public:
                 }
                 start = 1;
             }
-                for (int i = start; i < number1.size(); i++)
+            for (int i = start; i < number1.size(); i++)
+            {
+                if (number1[i] == '.')
+                {
+                    if (j == 4)
+                    {
+                        cout << "__ ";
+                    }
+                    else if (j == 5)
+                    {
+                        cout << "|_|";
+                    }
+                    else
+                    {
+                        cout << "   ";
+                    }
+                }
+                else
                 {
                     int cur = number1[i] - '0';
                     cout << numberCodes[cur][j];
                 }
-
+            }
             cout << variable[j];
             cout << "       ";
             if (sign == "plus")
@@ -732,6 +911,252 @@ public:
             cout << numberCodes[0][j];
             cout << endl;
         }
+        newline(2);
+    }
+
+    void displayShortenedForm(string number1, string sign, string number2, string number3) // number3 is the right part of the equation
+    {
+        initNumberCodes();
+        int count = 0;
+        for (int i = 0; i < number1.size(); i++)
+        {
+            if (number1[i] == '-')
+            {
+                count += 9;
+            }
+            else if (number1[i] == '.')
+            {
+                count += 2;
+            }
+            else
+            {
+                int cur = number1[i] - '0';
+                count += numberCodes[cur][0].size();
+            }
+        }
+        count += 8;  // for x variable
+        count += 48; // for tabs
+        string s = "";
+        for (int i = 0; i < count; i++)
+        {
+            s = " " + s;
+        }
+        cout << s << "2" << endl;
+        int start = 0, start2 = 0;
+        bool floatFirst = false, floatSecond = false, floatThird = false;
+        for (int j = 0; j < 6; j++)
+        {
+            tabs(6);
+            if (number1[0] == '-')
+            {
+                if (j >= 2 && j <= 3)
+                {
+                    int index = j - 2;
+                    cout << minus[index];
+                }
+                else
+                {
+                    cout << "        ";
+                }
+                start = 1;
+            }
+            for (int i = start; i < number1.size(); i++)
+            {
+                if (number1[i] == '.')
+                {
+                    if (j == 4)
+                    {
+                        cout << "__ ";
+                    }
+                    else if (j == 5)
+                    {
+                        cout << "|_|";
+                    }
+                    else
+                    {
+                        cout << "   ";
+                    }
+                }
+                else
+                {
+                    int cur = number1[i] - '0';
+                    cout << numberCodes[cur][j];
+                }
+            }
+            cout << variable[j];
+            cout << "       ";
+            if (sign == "plus")
+            {
+                if (j >= 2 && j <= 4)
+                {
+                    int index = j - 2;
+                    cout << plus[index];
+                }
+                else
+                {
+                    cout << "       ";
+                }
+            }
+            else
+            {
+                if (j >= 2 && j <= 3)
+                {
+                    int index = j - 2;
+                    cout << minus[index];
+                }
+                else
+                {
+                    cout << "        ";
+                }
+            }
+            cout << "       ";
+            for (int i = 0; i < number2.size(); i++)
+            {
+                int cur = number2[i] - '0';
+                cout << numberCodes[cur][j];
+            }
+            cout << variable[j];
+            cout << "       ";
+            if (j >= 1 && j <= 4)
+            {
+                int index = j - 1;
+                cout << equal[index];
+            }
+            else
+            {
+                cout << "        ";
+            }
+            cout << "      ";
+            if (number3[0] == '-')
+            {
+                if (j >= 2 && j <= 3)
+                {
+                    int index = j - 2;
+                    cout << minus[index];
+                }
+                else
+                {
+                    cout << "        ";
+                }
+                start2 = 1;
+            }
+            for (int i = start2; i < number3.size(); i++)
+            {
+                if (number3[i] == '.')
+                {
+                    if (j == 4)
+                    {
+                        cout << "__ ";
+                    }
+                    else if (j == 5)
+                    {
+                        cout << "|_|";
+                    }
+                    else
+                    {
+                        cout << "   ";
+                    }
+                }
+                else
+                {
+                    int cur = number3[i] - '0';
+                    cout << numberCodes[cur][j];
+                }
+            }
+            cout << endl;
+        }
+        newline(2);
+    }
+
+    void displaySquaredVariableOnly(string number1, string number2) // number2 is the right part of the equation
+    {
+        initNumberCodes();
+        int count = 0;
+        for (int i = 0; i < number1.size(); i++)
+        {
+            if (number1[i] == '-')
+            {
+                count += 9;
+            }
+            else if (number1[i] == '.')
+            {
+                count += 2;
+            }
+            else
+            {
+                int cur = number1[i] - '0';
+                count += numberCodes[cur][0].size();
+            }
+        }
+        count += 8;  // for x variable
+        count += 64; // for tabs
+        string s = "";
+        for (int i = 0; i < count; i++)
+        {
+            s = " " + s;
+        }
+        cout << s << "2" << endl;
+        int start = 0;
+        bool floatFirst = false, floatSecond = false, floatThird = false;
+        for (int j = 0; j < 6; j++)
+        {
+            tabs(8);
+            if (number1[0] == '-')
+            {
+                if (j >= 2 && j <= 3)
+                {
+                    int index = j - 2;
+                    cout << minus[index];
+                }
+                else
+                {
+                    cout << "        ";
+                }
+                start = 1;
+            }
+            for (int i = start; i < number1.size(); i++)
+            {
+                if (number1[i] == '.')
+                {
+                    if (j == 4)
+                    {
+                        cout << "__ ";
+                    }
+                    else if (j == 5)
+                    {
+                        cout << "|_|";
+                    }
+                    else
+                    {
+                        cout << "   ";
+                    }
+                }
+                else
+                {
+                    int cur = number1[i] - '0';
+                    cout << numberCodes[cur][j];
+                }
+            }
+            cout << variable[j];
+            cout << "       ";
+            if (j >= 1 && j <= 4)
+            {
+                int index = j - 1;
+                cout << equal[index];
+            }
+            else
+            {
+                cout << "        ";
+            }
+            cout << "       ";
+            for (int i = 0; i < number2.size(); i++)
+            {
+                int cur = number2[i] - '0';
+                cout << numberCodes[cur][j];
+            }
+            cout << endl;
+        }
+        newline(2);
     }
 
     void displayStep(int number1, int number2, int number3)
@@ -806,76 +1231,13 @@ public:
         numberCodes.push_back(nine);
     }
 
-    // vector<vector<int>> vec;
-
-    void showZero()
-    {
-        //    ___
-        //   / _ \  
-//  | | | |
-        //  | | | |
-        //  | |_| |
-        //   \___/
-        //
-        cout << "  ___ " << endl;
-        cout << " / _ \\" << endl;
-        cout << "| | | |" << endl;
-        cout << "| | | |" << endl;
-        cout << "| |_| |" << endl;
-        cout << " \\___/" << endl;
-    }
-
-    void showOne()
-    {
-        //   __
-        //  /_ |
-        //   | |
-        //   | |
-        //   | |
-        //   |_|
-        //
-        cout << " __" << endl;
-        cout << "/_ |" << endl;
-        cout << " | |" << endl;
-        cout << " | |" << endl;
-        cout << " | |" << endl;
-        cout << " |_|" << endl;
-    }
-
-    void showTwo()
-    {
-        //   ___
-        //  |__ \  
-        //     ) |
-        //    / /
-        //   / /_
-        //  |____|
-        //
-        cout << " ___" << endl;
-        cout << "|__ \\" << endl;
-        cout << "   ) |" << endl;
-        cout << "  / /" << endl;
-        cout << " / /_ " << endl;
-        cout << "|____|" << endl;
-    }
-
-    void showThree()
-    {
-        //   ____
-        //  |___ \  
-        //    __) |
-        //   |__ <
-        //   ___) |
-        //  |____/
-        //
-    }
-
-    void setEquation(vector<int> params)
+    void setEquation(vector<double> params)
     {
         parameters = params;
-        number1 = to_string(parameters[0]);
-        number2 = to_string(parameters[1]);
-        number3 = to_string(parameters[2]);
+        number1 = removeTrailingZeros(to_string(parameters[0]), 3);
+        number2 = removeTrailingZeros(to_string(parameters[1]), 3);
+        number3 = removeTrailingZeros(to_string(parameters[2]), 3);
+        cout << number1 << " " << number2 << " " << number3 << endl;
     }
 
     void showEquation()
@@ -886,13 +1248,52 @@ public:
         }
     }
 
+    void leftSideRectangle(int n) {
+        for (int i = 0; i < n; i++) {
+            if (i == 0) {
+                cout << "|";
+            } else {
+                cout << " ";
+            }
+        }
+    }
+
+    void upperSideRectangle(int n) {
+        for (int i = 0; i < n; i++) {
+            cout << "_";
+        }
+    }
+
+    void answerFirstType() {
+        tabs(3);
+        cout << "    _    _ _            _                                           __        _        __            _        __  __  " << endl;
+        tabs(3);
+        cout << "   / \\  | | |  __  __  (_)_ __     _ __ __ _ _ __   __ _  ___      / /       (_)_ __  / _|     _    (_)_ __  / _| \\ \\ " << endl;
+        tabs(3);
+        cout << "  / _ \\ | | |  \\ \\/ /  | | '_ \\   | '__/ _` | '_ \\ / _` |/ _ \\    | |   _____| | '_ \\| |_    _| |_  | | '_ \\| |_   | |" << endl;
+        tabs(3);
+        cout << " / ___ \\| | |   >  <   | | | | |  | | | (_| | | | | (_| |  __/    | |  |_____| | | | |  _|  |_   _| | | | | |  _|  | |" << endl;
+        tabs(3);
+        cout << "/_/   \\_\\_|_|  /_/\\_\\  |_|_| |_|  |_|  \\__,_|_| |_|\\__, |\\___|    | |        |_|_| |_|_|( )   |_|   |_|_| |_|_|    | |" << endl;
+        tabs(3);
+        cout << "                                                   |___/           \\_\\                  |/                        /_/ " << endl;
+    }
+
     void solveFirstType()
     {
 
-        cout << "all parameters equal to zero, the equation is:\n0*x^2 + 0*x + 0 = 0\n";
+        /*cout << "all parameters equal to zero, the equation is:\n0*x^2 + 0*x + 0 = 0\n";
         cout << "the x can be any integer in range (-inf, +inf)\n";
-        cout << "Answer: x = (-inf, +inf)\n";
+        cout << "Answer: x = (-inf, +inf)\n"; */
         displayFullForm(number1, "plus", number2, "plus", number3);
+        secondStepMessage();
+        transformEquationMessage();
+        displayShortenedForm(number1, "plus", number2, "0");
+        thirdStepMessage();
+        transformEquationMessage();
+        displaySquaredVariableOnly(number1, "0");
+        answerMessage();
+        answerFirstType();
     }
 
     void solveSecondType()
@@ -903,14 +1304,18 @@ public:
         cout << "the only solution is x = 0.\n";
         cout << "Answer: x = 0\n";
         string sign = "plus", sign2 = "plus";
-        if (number2[0] == '-') {
+        if (number2[0] == '-')
+        {
             number2 = number2.substr(1);
             sign = "minus";
         }
-        if (number3[0] == '-') {
+        if (number3[0] == '-')
+        {
             number3 = number3.substr(1);
             sign2 = "minus";
         }
+        // cout << number1 << endl;
+        cout << number1 << endl;
         displayFullForm(number1, sign, number2, sign2, number3);
     }
 
@@ -921,11 +1326,13 @@ public:
         cout << "That means the given parameters are incorrect and the solution does not exist.\n";
         cout << "Answer: the solution does not exist\n";
         string sign = "plus", sign2 = "plus";
-        if (number2[0] == '-') {
+        if (number2[0] == '-')
+        {
             number2 = number2.substr(1);
             sign = "minus";
         }
-        if (number3[0] == '-') {
+        if (number3[0] == '-')
+        {
             number3 = number3.substr(1);
             sign2 = "minus";
         }
@@ -949,11 +1356,13 @@ public:
             cout << "Answer: " << sqrt(-1 * parameters[2] / parameters[0]) << "; " << -1 * sqrt(-1 * parameters[2] / parameters[0]) << endl;
         }
         string sign = "plus", sign2 = "plus";
-        if (number2[0] == '-') {
+        if (number2[0] == '-')
+        {
             number2 = number2.substr(1);
             sign = "minus";
         }
-        if (number3[0] == '-') {
+        if (number3[0] == '-')
+        {
             number3 = number3.substr(1);
             sign2 = "minus";
         }
@@ -969,11 +1378,13 @@ public:
         cout << "find the x:\n x = " << -1 * parameters[2] << " / " << parameters[1] << " = " << -1 * parameters[2] / parameters[1] << endl;
         cout << "Answer: x = " << -1 * parameters[2] / parameters[1] << endl;
         string sign = "plus", sign2 = "plus";
-        if (number2[0] == '-') {
+        if (number2[0] == '-')
+        {
             number2 = number2.substr(1);
             sign = "minus";
         }
-        if (number3[0] == '-') {
+        if (number3[0] == '-')
+        {
             number3 = number3.substr(1);
             sign2 = "minus";
         }
@@ -988,11 +1399,13 @@ public:
         int D = parameters[1] * parameters[1] - 4 * parameters[0] * parameters[2];
         cout << "D = " << parameters[1] << "^2 - " << 4 << "*" << parameters[0] << "*" << parameters[2] << endl;
         string sign = "plus", sign2 = "plus";
-        if (number2[0] == '-') {
+        if (number2[0] == '-')
+        {
             number2 = number2.substr(1);
             sign = "minus";
         }
-        if (number3[0] == '-') {
+        if (number3[0] == '-')
+        {
             number3 = number3.substr(1);
             sign2 = "minus";
         }
@@ -1019,7 +1432,6 @@ public:
                  << (-1 * parameters[1] - sqrt(D)) / (2 * parameters[0]) << endl;
             cout << "Answer: x1 = " << (-1 * parameters[1] + sqrt(D)) / (2 * parameters[0]) << "; x2 = " << (-1 * parameters[1] - sqrt(D)) / (2 * parameters[0]) << endl;
         }
-        
     }
 
     void solveSeventhType()
@@ -1029,11 +1441,13 @@ public:
         cout << "x = " << 0 << " / " << parameters[1] << " = 0" << endl;
         cout << "Answer: x = 0" << endl;
         string sign = "plus", sign2 = "plus";
-        if (number2[0] == '-') {
+        if (number2[0] == '-')
+        {
             number2 = number2.substr(1);
             sign = "minus";
         }
-        if (number3[0] == '-') {
+        if (number3[0] == '-')
+        {
             number3 = number3.substr(1);
             sign2 = "minus";
         }
@@ -1050,11 +1464,13 @@ public:
         cout << "x = " << -1 * parameters[1] << "/" << parameters[0] << " = " << (-1 * parameters[1]) / parameters[0] << endl;
         cout << "Answer: x = 0; x = " << (-1 * parameters[1]) / (parameters[0]) << endl;
         string sign = "plus", sign2 = "plus";
-        if (number2[0] == '-') {
+        if (number2[0] == '-')
+        {
             number2 = number2.substr(1);
             sign = "minus";
         }
-        if (number3[0] == '-') {
+        if (number3[0] == '-')
+        {
             number3 = number3.substr(1);
             sign2 = "minus";
         }
@@ -1100,6 +1516,9 @@ public:
     void solveEquation()
     {
         int type = determineType();
+        solutionMessage();
+        firstStepMessage();
+
         initialEquationMessage();
         if (type == 1)
         {
@@ -1140,7 +1559,7 @@ class userInterface
 {
 private:
     string command = "";
-    vector<int> nums = {-999, -999, -999};
+    vector<double> nums = {-999, -999, -999};
 
 public:
     Instructions instructions;
@@ -1196,7 +1615,7 @@ public:
             }
             else if (command == "EQUATION")
             {
-                int num = 0;
+                double num = 0;
                 for (int i = 0; i < 3; i++)
                 {
                     helpInstruction(i);
