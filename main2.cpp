@@ -797,15 +797,17 @@ public:
         newline(2);
     }
 
-    void displaySimpleDivision(string number1, string number2) {
+    void displaySimpleDivision(string number1, string number2, bool squared) {
         initNumberCodes();
-        int count = 48;
-        string s = "";
-        for (int i = 0; i < count; i++)
-        {
-            s = " " + s;
+        if (squared) {
+            int count = 48;
+            string s = "";
+            for (int i = 0; i < count; i++)
+            {
+                s = " " + s;
+            }
+            cout << s << "2" << endl;
         }
-        cout << s << "2" << endl;
         int start = 0, start2 = 0;
         for (int j = 0; j < 6; j++) {
             tabs(5);
@@ -1286,6 +1288,7 @@ public:
         newline(2);
     }
 
+
     void displaySquareRightNumber(string number1) {         // number1 is the right part of the equation
         initNumberCodes();
         int count = 48;
@@ -1761,7 +1764,7 @@ public:
         displaySquaredVariableOnly(number1, "0");
         fourthStepMessage();
         transformEquationMessage();
-        displaySimpleDivision("0", number1);
+        displaySimpleDivision("0", number1, true);
         newline(1);
         displaySquareRightNumber("0");
         fifthStepMessage();
@@ -1797,7 +1800,7 @@ public:
         number3 = removeTrailingZeros(to_string(num3), 3);
         displayShortenedForm(number1, sign, number2, number3);
         thirdStepMessage();
-        displaySimpleDivision(number3, number1);
+        displaySimpleDivision(number3, number1, true);
         double result = num3 / num1;
         string res = removeTrailingZeros(to_string(result), 3);
         newline(1);
@@ -1822,14 +1825,100 @@ public:
         }
     }
 
+    void displayVariableNumber(string number1, string number2) {
+        initNumberCodes();
+        int start = 0, start2 = 0;
+        for (int j = 0; j < 6; j++) {
+            tabs(5);
+            if (number1[0] == '-')
+            {
+                if (j >= 2 && j <= 3)
+                {
+                    int index = j - 2;
+                    cout << minus[index];
+                }
+                else
+                {
+                    cout << "        ";
+                }
+                start = 1;
+            }
+            for (int i = start; i < number1.size(); i++)
+            {
+                if (number1[i] == '.')
+                {
+                    if (j == 4)
+                    {
+                        cout << "__ ";
+                    }
+                    else if (j == 5)
+                    {
+                        cout << "|_|";
+                    }
+                    else
+                    {
+                        cout << "   ";
+                    }
+                }
+                else
+                {
+                    int cur = number1[i] - '0';
+                    cout << numberCodes[cur][j];
+                }
+            }
+            cout << variable[j] << "    ";
+            if (j >= 1 && j <= 4)
+            {
+                int index = j - 1;
+                cout << equal[index];
+            }
+            else
+            {
+                cout << "        ";
+            }
+            cout << "     ";
+            if (number2[0] == '-')
+            {
+                if (j >= 2 && j <= 3)
+                {
+                    int index = j - 2;
+                    cout << minus[index];
+                }
+                else
+                {
+                    cout << "        ";
+                }
+                start2 = 1;
+            }
+            for (int i = start2; i < number2.size(); i++)
+            {
+                if (number1[i] == '.')
+                {
+                    if (j == 4)
+                    {
+                        cout << "__ ";
+                    }
+                    else if (j == 5)
+                    {
+                        cout << "|_|";
+                    }
+                    else
+                    {
+                        cout << "   ";
+                    }
+                }
+                else
+                {
+                    int cur = number2[i] - '0';
+                    cout << numberCodes[cur][j];
+                }
+            }
+            cout << endl;
+        }
+    }
+
     void solveFifthType()
     {
-        cout << "Rewrite the equation as\n"
-             << parameters[1] << "x + " << parameters[2] << " = 0\n";
-        cout << "Shift the independent variables to the right side of the equation:\n"
-             << parameters[1] << "x = " << -1 * parameters[2] << endl;
-        cout << "find the x:\n x = " << -1 * parameters[2] << " / " << parameters[1] << " = " << -1 * parameters[2] / parameters[1] << endl;
-        cout << "Answer: x = " << -1 * parameters[2] / parameters[1] << endl;
         string sign = "plus", sign2 = "plus";
         if (number2[0] == '-')
         {
@@ -1842,6 +1931,19 @@ public:
             sign2 = "minus";
         }
         displayFullForm(number1, sign, number2, sign2, number3);
+        firstStepMessage();
+        transformEquationMessage();
+        num3 = -1 * num3;
+        number3 = removeTrailingZeros(to_string(num3), 3);
+        displayVariableNumber(number2, number3);
+        secondStepMessage();
+        displaySimpleDivision(number3, number2, false);
+        newline(1);
+        double x1 = num3 / num2;
+        string x1Str = removeTrailingZeros(to_string(x1), 3);
+        displayAnswer(x1Str, "1");
+        answerMessage();
+        displayAnswer(x1Str, "1");
     }
 
     void solveSixthType()
