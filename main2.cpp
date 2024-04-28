@@ -2357,6 +2357,208 @@ public:
         }
     }
 
+    void displayX(string number1) {
+        int start = 0;
+        for (int j = 0; j < 6; j++) {
+            cout << variable[j] << "     ";
+            if (number1[0] == '-')
+            {
+                if (j >= 2 && j <= 3)
+                {
+                    int index = j - 2;
+                    cout << minus[index];
+                }
+                else
+                {
+                    cout << "        ";
+                }
+                start = 1;
+            }
+            for (int i = start; i < number1.size(); i++)
+            {
+                if (number1[i] == '.')
+                {
+                    if (j == 4)
+                    {
+                        cout << "__ ";
+                    }
+                    else if (j == 5)
+                    {
+                        cout << "|_|";
+                    }
+                    else
+                    {
+                        cout << "   ";
+                    }
+                }
+                else
+                {
+                    int cur = number1[i] - '0';
+                    cout << numberCodes[cur][j];
+                }
+            }
+            cout << "     ";
+            if (j >= 1 && j <= 4)
+            {
+                int index = j - 1;
+                cout << equal[index];
+            }
+            else
+            {
+                cout << "        ";
+            }
+            cout << numberCodes[0][j] << endl;
+        }
+    }
+
+    void parenthesTransform(string number1, string sign, string number2) {
+        int start = 0, start2 = 0;
+        for (int j = 0; j < 6; j++) {
+            tabs(4);
+            cout << variable[j] << "   ";
+            cout << leftParenthesses[j + 1] << "  ";
+            if (number1[0] == '-')
+            {
+                if (j >= 2 && j <= 3)
+                {
+                    int index = j - 2;
+                    cout << minus[index];
+                }
+                else
+                {
+                    cout << "        ";
+                }
+                start = 1;
+            }
+            for (int i = start; i < number1.size(); i++)
+            {
+                if (number1[i] == '.')
+                {
+                    if (j == 4)
+                    {
+                        cout << "__ ";
+                    }
+                    else if (j == 5)
+                    {
+                        cout << "|_|";
+                    }
+                    else
+                    {
+                        cout << "   ";
+                    }
+                }
+                else
+                {
+                    int cur = number1[i] - '0';
+                    cout << numberCodes[cur][j];
+                }
+            }
+            cout << " ";
+            cout << variable[j] << "     ";
+            if (sign == "plus")
+            {
+                if (j >= 2 && j <= 4)
+                {
+                    int index = j - 2;
+                    cout << plus[index];
+                }
+                else
+                {
+                    cout << "       ";
+                }
+            }
+            else
+            {
+                if (j >= 2 && j <= 3)
+                {
+                    int index = j - 2;
+                    cout << minus[index];
+                }
+                else
+                {
+                    cout << "        ";
+                }
+            }
+            cout << "      ";
+            for (int i = 0; i < number2.size(); i++)
+            {
+                if (number2[i] == '.')
+                {
+                    if (j == 4)
+                    {
+                        cout << "__ ";
+                    }
+                    else if (j == 5)
+                    {
+                        cout << "|_|";
+                    }
+                    else
+                    {
+                        cout << "   ";
+                    }
+                }
+                else
+                {
+                    int cur = number2[i] - '0';
+                    cout << numberCodes[cur][j];
+                }
+            }
+            cout << "  ";
+            cout << rightParenthesses[j + 1];
+            cout << "     ";
+            if (j >= 1 && j <= 4)
+            {
+                int index = j - 1;
+                cout << equal[index];
+            }
+            else
+            {
+                cout << "        ";
+            }
+            cout << "  ";
+            cout << numberCodes[0][j];
+            cout << endl;
+        }
+        int count = 10;
+        tabs(4);
+        for (int i = 0; i < count; i++) {
+            cout << " ";
+        }
+        cout << leftParenthesses[7];
+        count = 3;
+        for (int i = 0; i < number1.size(); i++) {
+            if (number1[i] == '-') {
+                count += 7;
+            } else if (number1[i] == '.') {
+                count += 4;
+            } else {
+                count += numberCodes[number1[i] - '0'].size();
+            }
+        }
+        count += 14;
+        if (sign == "plus") {
+            count += 8;
+        } else {
+            count += 9;
+        }
+        count += 7;
+        for (int i = 0; i < number2.size(); i++) {
+            if (number2[i] == '-') {
+                count += 7;
+            } else if (number2[i] == '.') {
+                count += 4;
+            } else {
+                count += numberCodes[number2[i] - '0'].size();
+            }
+        }
+        count += 3;
+        for (int i = 0; i < count; i++) {
+            cout << " ";
+        }
+        cout << rightParenthesses[7];
+        cout << endl;
+    }
+
     void discriminantZeroFormula() {
         for (int j = 0; j < 6; j++) {
             tabs(5);
@@ -2696,33 +2898,19 @@ public:
 
     void solveSeventhType()
     {
-        cout << "Rewrite the equation:\n"
-             << parameters[1] << "x = 0" << endl;
-        cout << "x = " << 0 << " / " << parameters[1] << " = 0" << endl;
-        cout << "Answer: x = 0" << endl;
-        string sign = "plus", sign2 = "plus";
-        if (number2[0] == '-')
-        {
-            number2 = number2.substr(1);
-            sign = "minus";
-        }
-        if (number3[0] == '-')
-        {
-            number3 = number3.substr(1);
-            sign2 = "minus";
-        }
-        displayFullForm(number1, sign, number2, sign2, number3);
+        displayFullForm(number1, "plus", number2, "plus", number3);
+        secondStepMessage();
+        displayVariableNumber(number2, "0");
+        newline(1);
+        displaySimpleDivision("0", number2, false);
+        newline(1);
+        displayVariable("0");
+        answerMessage();
+        displayVariable("0");
     }
 
     void solveEigthType()
     {
-        cout << "Rewrite theb equation:\n"
-             << parameters[0] << "x^2 + " << parameters[1] << "x = 0" << endl;
-        cout << "Apply the factorization based on the x:\n x(" << parameters[0] << "x + " << parameters[1] << ") = 0" << endl;
-        cout << "The first root of the equation is 0\n";
-        cout << "Find the solution to the equation " << parameters[0] << "x + " << parameters[1] << " = 0" << endl;
-        cout << "x = " << -1 * parameters[1] << "/" << parameters[0] << " = " << (-1 * parameters[1]) / parameters[0] << endl;
-        cout << "Answer: x = 0; x = " << (-1 * parameters[1]) / (parameters[0]) << endl;
         string sign = "plus", sign2 = "plus";
         if (number2[0] == '-')
         {
@@ -2735,6 +2923,25 @@ public:
             sign2 = "minus";
         }
         displayFullForm(number1, sign, number2, sign2, number3);
+        firstStepMessage();
+        transformEquationMessage();
+        parenthesTransform(number1, sign, number2);
+        secondStepMessage();
+        displayAnswer("0", "1");
+        newline(1);
+        num2 *= -1;
+        number2 = removeTrailingZeros(to_string(num2), 3);
+        displayVariableNumber(number1, number2);
+        thirdStepMessage();
+        displaySimpleDivision(number2, number1, false);
+        newline(1);
+        double x2 = num2 / num1;
+        string x1Str = removeTrailingZeros(to_string(x2), 3);
+        displayAnswer(x1Str, "2");
+        answerMessage();
+        displayAnswer("0", "1");
+        newline(1);
+        displayAnswer(x1Str, "2");
     }
 
     int determineType()
