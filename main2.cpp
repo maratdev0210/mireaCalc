@@ -645,6 +645,11 @@ public:
     vector <string> lessThan = {"    __", "   / /", "  / / ", " < <  ", "  \\ \\ ", "   \\_\\"};
     vector <string> hence = {"             __   ", " ______ _____\\ \\  ", "|______|______\\ \\ ", " ______ ______ > >", "|______|______/ / ", "             /_/  "};
     vector <string> plusMinus = {"   _    ", " _| |_  ", "|_   _| ", " _|_|__ ", "|______|"};
+    vector <string> D = {" _____  ", "|  __ \\ ", "| |  | |", "| |  | |", "| |__| |", "|_____/ "};
+    vector <string> b = {" _     ", "| |    ", "| |__  ", "| '_ \\ ", "| |_) |", "|_.__/ "};
+    vector <string> a = {"       ", " __ _  ", " / _` |", "| (_| |", " \\__,_|", "       "};
+    vector <string> leftParenthesses = {" __ ", " / /", "| | ", "| | ", "| | ", "| | ", "| | ", " \\_\\"};
+    vector <string> rightParenthesses = {"__  ", "\\ \\ ", " | |", " | |", " | |", " | |", " | |", "/_/ "};
     // display the number graphical code
 
     void tabs(int n)
@@ -1134,6 +1139,228 @@ public:
         cout << order << endl;
     }
 
+    void discriminantFind(string number1, string number2, string number3) { // number1: b; number2: a, number3: c
+        newline(1);
+        initNumberCodes();
+        int count = 64;
+        for (int i = 0; i < number1.size(); i++) {
+            if (number1[i] == '.') {
+                count += 5;
+            } else if (number1[i] == '-') {
+                count += 9;
+            } else {
+                count += 6;
+            }
+        }
+        for (int i = 0; i < count; i++) {
+            cout << " ";
+        }
+        cout << "2" << endl;
+        int start = 0, start2 = 0, start3 = 0;
+        for (int j = 0; j < 6; j++) {
+            tabs(5);
+            cout << D[j] << "    ";
+            if (j >= 1 && j <= 4)
+            {
+                int index = j - 1;
+                cout << equal[index];
+            }
+            else
+            {
+                cout << "        ";
+            }
+            cout << "    ";
+            if (number1[0] == '-')
+            {
+                if (j >= 2 && j <= 3)
+                {
+                    int index = j - 2;
+                    cout << minus[index];
+                }
+                else
+                {
+                    cout << "        ";
+                }
+                start = 1;
+            }
+            for (int i = start; i < number1.size(); i++)
+            {
+                if (number1[i] == '.')
+                {
+                    if (j == 4)
+                    {
+                        cout << "__ ";
+                    }
+                    else if (j == 5)
+                    {
+                        cout << "|_|";
+                    }
+                    else
+                    {
+                        cout << "   ";
+                    }
+                }
+                else
+                {
+                    int cur = number1[i] - '0';
+                    cout << numberCodes[cur][j];
+                }
+            }
+            cout << "   ";
+            if (j >= 2 && j <= 3)
+            {
+                int index = j - 2;
+                cout << minus[index];
+            }
+            else
+            {
+                cout << "        ";
+            }
+            cout << "    ";
+            cout << numberCodes[4][j] << "   ";
+            if (j == 2 || j == 3) {
+                cout << multiply[j - 2] << "   ";
+            } else {
+                cout << "     ";
+            }
+            if (number2[0] == '-')
+            {
+                if (j >= 2 && j <= 3)
+                {
+                    int index = j - 2;
+                    cout << minus[index];
+                }
+                else
+                {
+                    cout << "        ";
+                }
+                start2 = 1;
+            }
+            for (int i = start2; i < number2.size(); i++)
+            {
+                if (number2[i] == '.')
+                {
+                    if (j == 4)
+                    {
+                        cout << "__ ";
+                    }
+                    else if (j == 5)
+                    {
+                        cout << "|_|";
+                    }
+                    else
+                    {
+                        cout << "   ";
+                    }
+                }
+                else
+                {
+                    int cur = number2[i] - '0';
+                    cout << numberCodes[cur][j];
+                }
+            }
+            cout << "    ";
+            if (j == 2 || j == 3) {
+                cout << multiply[j - 2] << "   ";
+            } else {
+                cout << "     ";
+            }
+            if (number3[0] == '-')
+            {
+                if (j >= 2 && j <= 3)
+                {
+                    int index = j - 2;
+                    cout << minus[index];
+                }
+                else
+                {
+                    cout << "        ";
+                }
+                start3 = 1;
+            }
+            for (int i = start3; i < number3.size(); i++)
+            {
+                if (number3[i] == '.')
+                {
+                    if (j == 4)
+                    {
+                        cout << "__ ";
+                    }
+                    else if (j == 5)
+                    {
+                        cout << "|_|";
+                    }
+                    else
+                    {
+                        cout << "   ";
+                    }
+                }
+                else
+                {
+                    int cur = number3[i] - '0';
+                    cout << numberCodes[cur][j];
+                }
+            }
+            cout << endl;
+        }
+    }
+
+    void discriminantEqual(string number1) {
+        initNumberCodes();
+        int start = 0;
+        for (int j = 0; j < 6; j++) {
+            tabs(5);
+            cout << D[j] << "    ";
+            if (j >= 1 && j <= 4)
+            {
+                int index = j - 1;
+                cout << equal[index];
+            }
+            else
+            {
+                cout << "        ";
+            }
+            cout << "    ";
+            if (number1[0] == '-')
+            {
+                if (j >= 2 && j <= 3)
+                {
+                    int index = j - 2;
+                    cout << minus[index];
+                }
+                else
+                {
+                    cout << "        ";
+                }
+                start = 1;
+            }
+            for (int i = start; i < number1.size(); i++)
+            {
+                if (number1[i] == '.')
+                {
+                    if (j == 4)
+                    {
+                        cout << "__ ";
+                    }
+                    else if (j == 5)
+                    {
+                        cout << "|_|";
+                    }
+                    else
+                    {
+                        cout << "   ";
+                    }
+                }
+                else
+                {
+                    int cur = number1[i] - '0';
+                    cout << numberCodes[cur][j];
+                }
+            }
+            cout << endl;
+        }
+    }
+
     void displayShortenedForm(string number1, string sign, string number2, string number3) // number3 is the right part of the equation
     {
         initNumberCodes();
@@ -1555,6 +1782,426 @@ public:
         cout << radical[7] << endl;
     }
 
+    void displayDiscriminantSqrt() {
+        cout << "                          " << leftParenthesses[0];
+        int count = 34;
+        for (int i = 0; i < count; i++) {
+            cout << " ";
+        }
+        cout << radical[0];
+        for (int i = 0; i < 4; i++) {
+            cout << " ";
+        }
+        cout << rightParenthesses[0] << endl;
+        for (int j = 0; j < 6; j++) {
+            cout << variable[j] << "      ";
+            if (j >= 1 && j <= 4)
+            {
+                int index = j - 1;
+                cout << equal[index];
+            }
+            else
+            {
+                cout << "        ";
+            }
+            cout << "     ";
+            cout << leftParenthesses[j + 1] << "    ";
+            if (j >= 2 && j <= 3) {
+                int index = j - 2; 
+                cout << minus[index];
+            } else {
+                cout << "        ";
+            }
+            cout << " ";
+            cout << b[j] << "    ";
+            if (j < 5) {
+                cout << plusMinus[j];
+            } else {
+                cout << "        ";
+            }
+            cout << "  ";
+            cout << radical[j + 1] << "  ";
+            cout << D[j] << " ";
+            cout << "                  ";
+            cout << rightParenthesses[j + 1];
+            cout << "     ";
+            cout << division[j] << "     ";
+            cout << numberCodes[2][j];
+            cout << a[j];
+            cout << endl;
+        } 
+        cout << "                          " << leftParenthesses[7];
+        for (int i = 0; i < count; i++) {
+            cout << " ";
+        }
+        cout << radical[7];
+        for (int i = 0; i < 30; i++) {
+            cout << " ";
+        }
+        cout << rightParenthesses[7];
+        cout << endl;
+    }
+
+    void displayDiscriminantSqrtNumbers(string number1, string number2, string number3, string type) {
+        cout << "                       " << leftParenthesses[0];
+        int count = 18;
+        for (int i = 0; i < number1.size(); i++) {
+            if (number1[i] == '-') {
+                count += 7;
+            } else if (number1[i] == '.') {
+                count += 5;
+            } else {
+                count += 6;
+            }
+        }
+        for (int i = 0; i < count; i++) {
+            cout << " ";
+        }
+        cout << radical[0];
+        for (int i = 0; i < 4; i++) {
+            cout << " ";
+        }
+        cout << rightParenthesses[0] << endl;
+        int start = 0, start2 = 0, start3 = 0;
+        for (int j = 0; j < 6; j++) {
+            cout << variable[j] << "      ";
+            if (j >= 1 && j <= 4)
+            {
+                int index = j - 1;
+                cout << equal[index];
+            }
+            else
+            {
+                cout << "        ";
+            }
+            cout << "     ";
+            cout << leftParenthesses[j + 1] << "    ";
+            if (number1[0] == '-')
+            {
+                if (j >= 2 && j <= 3)
+                {
+                    int index = j - 2;
+                    cout << minus[index];
+                }
+                else
+                {
+                    cout << "        ";
+                }
+                start = 1;
+            }
+            for (int i = start; i < number1.size(); i++)
+            {
+                if (number1[i] == '.')
+                {
+                    if (j == 4)
+                    {
+                        cout << "__ ";
+                    }
+                    else if (j == 5)
+                    {
+                        cout << "|_|";
+                    }
+                    else
+                    {
+                        cout << "   ";
+                    }
+                }
+                else
+                {
+                    int cur = number1[i] - '0';
+                    cout << numberCodes[cur][j];
+                }
+            }
+            cout << "     ";
+            if (j >= 2 && j <= 4)
+            {
+                int index = j - 2;
+                cout << plus[index];
+            }
+            else
+            {
+                cout << "       ";
+            }
+            cout << radical[j + 1] << "    ";
+            int len = 0;
+            if (number2[0] == '-')
+            {
+                if (j >= 2 && j <= 3)
+                {
+                    int index = j - 2;
+                    cout << minus[index];
+                }
+                else
+                {
+                    cout << "        ";
+                }
+                start2 = 1;
+                len += 9;
+            }
+            for (int i = start2; i < number2.size(); i++)
+            {
+                if (number2[i] == '.')
+                {
+                    if (j == 4)
+                    {
+                        cout << "__ ";
+                    }
+                    else if (j == 5)
+                    {
+                        cout << "|_|";
+        
+                    }
+                    else
+                    {
+                        cout << "   ";
+                    }
+                    len += 5;
+                }
+                else
+                {
+                    int cur = number2[i] - '0';
+                    cout << numberCodes[cur][j];
+                    len += 6;
+                }
+            }
+            for (int i = 0; i < 26 - len; i++) {
+                cout << " ";
+            }
+            cout << rightParenthesses[j + 1];
+            cout << "   ";
+            cout << division[j];
+            if (number3[0] == '-')
+            {
+                if (j >= 2 && j <= 3)
+                {
+                    int index = j - 2;
+                    cout << minus[index];
+                }
+                else
+                {
+                    cout << "        ";
+                }
+                start3 = 1;
+            }
+            for (int i = start3; i < number3.size(); i++)
+            {
+                if (number3[i] == '.')
+                {
+                    if (j == 4)
+                    {
+                        cout << "__ ";
+                    }
+                    else if (j == 5)
+                    {
+                        cout << "|_|";
+        
+                    }
+                    else
+                    {
+                        cout << "   ";
+                    }
+                }
+                else
+                {
+                    int cur = number3[i] - '0';
+                    cout << numberCodes[cur][j];
+                }
+            }
+            cout << endl;
+        }
+        cout << "       " << type;
+        cout << "                   " << leftParenthesses[7];
+        for (int i = 0; i < count - 2; i++) {
+            cout << " ";
+        }
+        cout << radical[7];
+        for (int i = 0; i < 30; i++) {
+            cout << " ";
+        }
+        cout << rightParenthesses[7];
+        cout << endl;
+    }
+
+    void displayDiscriminantSqrtNumbers2(string number1, string number2, string number3, string type) {
+        cout << "                       " << leftParenthesses[0];
+        int count = 18;
+        for (int i = 0; i < number1.size(); i++) {
+            if (number1[i] == '-') {
+                count += 7;
+            } else if (number1[i] == '.') {
+                count += 5;
+            } else {
+                count += 6;
+            }
+        }
+        for (int i = 0; i < count; i++) {
+            cout << " ";
+        }
+        cout << radical[0];
+        for (int i = 0; i < 4; i++) {
+            cout << " ";
+        }
+        cout << rightParenthesses[0] << endl;
+        int start = 0, start2 = 0, start3 = 0;
+        for (int j = 0; j < 6; j++) {
+            cout << variable[j] << "      ";
+            if (j >= 1 && j <= 4)
+            {
+                int index = j - 1;
+                cout << equal[index];
+            }
+            else
+            {
+                cout << "        ";
+            }
+            cout << "     ";
+            cout << leftParenthesses[j + 1] << "    ";
+            if (number1[0] == '-')
+            {
+                if (j >= 2 && j <= 3)
+                {
+                    int index = j - 2;
+                    cout << minus[index];
+                }
+                else
+                {
+                    cout << "        ";
+                }
+                start = 1;
+            }
+            for (int i = start; i < number1.size(); i++)
+            {
+                if (number1[i] == '.')
+                {
+                    if (j == 4)
+                    {
+                        cout << "__ ";
+                    }
+                    else if (j == 5)
+                    {
+                        cout << "|_|";
+                    }
+                    else
+                    {
+                        cout << "   ";
+                    }
+                }
+                else
+                {
+                    int cur = number1[i] - '0';
+                    cout << numberCodes[cur][j];
+                }
+            }
+            cout << "     ";
+            if (j >= 2 && j <= 3)
+            {
+                int index = j - 2;
+                cout << minus[index];
+            }
+            else
+            {
+                cout << "        ";
+            }
+            cout << radical[j + 1] << "    ";
+            int len = 0;
+            if (number2[0] == '-')
+            {
+                if (j >= 2 && j <= 3)
+                {
+                    int index = j - 2;
+                    cout << minus[index];
+                }
+                else
+                {
+                    cout << "        ";
+                }
+                start2 = 1;
+                len += 9;
+            }
+            for (int i = start2; i < number2.size(); i++)
+            {
+                if (number2[i] == '.')
+                {
+                    if (j == 4)
+                    {
+                        cout << "__ ";
+                    }
+                    else if (j == 5)
+                    {
+                        cout << "|_|";
+        
+                    }
+                    else
+                    {
+                        cout << "   ";
+                    }
+                    len += 5;
+                }
+                else
+                {
+                    int cur = number2[i] - '0';
+                    cout << numberCodes[cur][j];
+                    len += 6;
+                }
+            }
+            for (int i = 0; i < 26 - len; i++) {
+                cout << " ";
+            }
+            cout << rightParenthesses[j + 1];
+            cout << "   ";
+            cout << division[j];
+            if (number3[0] == '-')
+            {
+                if (j >= 2 && j <= 3)
+                {
+                    int index = j - 2;
+                    cout << minus[index];
+                }
+                else
+                {
+                    cout << "        ";
+                }
+                start3 = 1;
+            }
+            for (int i = start3; i < number3.size(); i++)
+            {
+                if (number3[i] == '.')
+                {
+                    if (j == 4)
+                    {
+                        cout << "__ ";
+                    }
+                    else if (j == 5)
+                    {
+                        cout << "|_|";
+        
+                    }
+                    else
+                    {
+                        cout << "   ";
+                    }
+                }
+                else
+                {
+                    int cur = number3[i] - '0';
+                    cout << numberCodes[cur][j];
+                }
+            }
+            cout << endl;
+        }
+        cout << "       " << type;
+        cout << "                   " << leftParenthesses[7];
+        for (int i = 0; i < count - 2; i++) {
+            cout << " ";
+        }
+        cout << radical[7];
+        for (int i = 0; i < 30; i++) {
+            cout << " ";
+        }
+        cout << rightParenthesses[7];
+        cout << endl;
+    }
+
     void displayVariable(string number1) {      // used for answer specific types
         initNumberCodes();
         int start = 0;
@@ -1710,6 +2357,34 @@ public:
         }
     }
 
+    void discriminantZeroFormula() {
+        for (int j = 0; j < 6; j++) {
+            tabs(5);
+            cout << variable[j] << "    ";
+            if (j >= 1 && j <= 4)
+            {
+                int index = j - 1;
+                cout << equal[index];
+            }
+            else
+            {
+                cout << "        ";
+            }
+            cout << "    ";
+            if (j >= 2 && j <= 3) {
+                int index = j - 2; 
+                cout << minus[index];
+            } else {
+                cout << "        ";
+            }
+            cout << "     ";
+            cout << b[j] << "     ";
+            cout << division[j] << "    ";
+            cout << numberCodes[2][j];
+            cout << a[j] << endl;
+        }
+    }
+
     void answerFirstType() {
         tabs(3);
         cout << "    _    _ _            _                                           __        _        __            _        __  __  " << endl;
@@ -1723,6 +2398,15 @@ public:
         cout << "/_/   \\_\\_|_|  /_/\\_\\  |_|_| |_|  |_|  \\__,_|_| |_|\\__, |\\___|    | |        |_|_| |_|_|( )   |_|   |_|_| |_|_|    | |" << endl;
         tabs(3);
         cout << "                                                   |___/           \\_\\                  |/                        /_/ " << endl;
+    }
+
+    void findDiscriminantMessage() {
+        cout << " ______ _           _   _   _            _____  _               _           _                   _   " << endl;
+        cout << "|  ____(_)         | | | | | |          |  __ \\(_)             (_)         (_)                 | |  " << endl;
+        cout << "| |__   _ _ __   __| | | |_| |__   ___  | |  | |_ ___  ___ _ __ _ _ __ ___  _ _ __   __ _ _ __ | |_ " << endl;
+        cout << "|  __| | | '_ \\ / _` | | __| '_ \\ / _ \\ | |  | | / __|/ __| '__| | '_ ` _ \\| | '_ \\ / _` | '_ \\| __|" << endl;
+        cout << "| |    | | | | | (_| | | |_| | | |  __/ | |__| | \\__ \\ (__| |  | | | | | | | | | | | (_| | | | | |_ " << endl;
+        cout << "|_|    |_|_| |_|\\__,_|  \\__|_| |_|\\___| |_____/|_|___/\\___|_|  |_|_| |_| |_|_|_| |_|\\__,_|_| |_|\\__|" << endl;
     }
 
     void solveFirstType()
@@ -1948,11 +2632,6 @@ public:
 
     void solveSixthType()
     {
-        cout << "Rewrite the equation as\n"
-             << parameters[0] << "x^2 + " << parameters[1] << "x + " << parameters[2] << " = 0\n";
-        cout << "Find the Discriminant: \n";
-        int D = parameters[1] * parameters[1] - 4 * parameters[0] * parameters[2];
-        cout << "D = " << parameters[1] << "^2 - " << 4 << "*" << parameters[0] << "*" << parameters[2] << endl;
         string sign = "plus", sign2 = "plus";
         if (number2[0] == '-')
         {
@@ -1965,27 +2644,53 @@ public:
             sign2 = "minus";
         }
         displayFullForm(number1, sign, number2, sign2, number3);
-        if (D < 0)
-        {
-            cout << "D < 0, then the solution does not exist.\n";
-            return;
-        }
-        cout << "General formula for finding the roots of the equaiton:\n x = (-b +/- sqrt(D)) / 2a\n";
-        if (D == 0)
-        {
-            cout << "There is only one solution to the equation\n";
-            cout << "according the formula described above: x = (" << -1 * parameters[1] << " + " << sqrt(D) << ") / " << 2 * parameters[0] << " = "
-                 << -1 * parameters[1] / (2 * parameters[0]) << endl;
-            cout << "Answer: x = " << (-1 * parameters[1] - sqrt(D)) / (2 * parameters[0]) << endl;
-        }
-        else
-        {
-            cout << "There are two solutions to the equation\n";
-            cout << "according the formula described above: x1 = (" << -1 * parameters[1] << " + " << sqrt(D) << ") / " << 2 * parameters[0] << " = "
-                 << (-1 * parameters[1] + sqrt(D)) / (2 * parameters[0]) << endl;
-            cout << "according the formula described above: x2 = (" << -1 * parameters[1] << " - " << sqrt(D) << ") / " << 2 * parameters[0] << " = "
-                 << (-1 * parameters[1] - sqrt(D)) / (2 * parameters[0]) << endl;
-            cout << "Answer: x1 = " << (-1 * parameters[1] + sqrt(D)) / (2 * parameters[0]) << "; x2 = " << (-1 * parameters[1] - sqrt(D)) / (2 * parameters[0]) << endl;
+        firstStepMessage();
+        findDiscriminantMessage();
+        number2 = removeTrailingZeros(to_string(num2), 3);
+        number3 = removeTrailingZeros(to_string(num3), 3);
+        discriminantFind(number2, number1, number3);
+        double dValue = num2 * num2 - 4 * num1 * num3;
+        string dStr = removeTrailingZeros(to_string(dValue), 3);
+        discriminantEqual(dStr);
+        secondStepMessage();
+        if (dValue < 0) {
+            displayLessThan(dStr);
+            noSolution(4);
+            newline(2);
+            answerMessage();
+            noSolution(1);
+        } else if (dValue == 0) {
+            num2 = -1 * num2;
+            number2 = removeTrailingZeros(to_string(num2), 3);
+            num1 *= 2;
+            number1 = removeTrailingZeros(to_string(num1), 3);
+            discriminantZeroFormula();
+            newline(1);
+            displaySimpleDivision(number2, number1, false);
+            double result = num2 / num1;
+            string xStr = removeTrailingZeros(to_string(result), 3);
+            newline(1);
+            displayVariable(xStr);
+            answerMessage();
+            displayVariable(xStr);
+        } else {
+            displayDiscriminantSqrt();
+            num2 = -1 * num2;
+            number2 = removeTrailingZeros(to_string(num2), 3);
+            num1 *= 2;
+            number1 = removeTrailingZeros(to_string(num1), 3);
+            thirdStepMessage();
+            displayDiscriminantSqrtNumbers(number2, dStr, number1, "1");
+            newline(1);
+            displayDiscriminantSqrtNumbers2(number2, dStr, number1, "2");
+            double x1 = (num2 + sqrt(dValue)) / num1;
+            double x2 = (num2 - sqrt(dValue)) / num2;
+            string x1Str = removeTrailingZeros(to_string(x1), 3);
+            string x2Str = removeTrailingZeros(to_string(x2), 3);
+            answerMessage();
+            displayAnswer(x1Str, "1");
+            newline(1);
+            displayAnswer(x2Str, "2");
         }
     }
 
