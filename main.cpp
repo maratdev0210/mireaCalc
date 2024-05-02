@@ -3,7 +3,6 @@
 #include <Windows.h>
 #include <cmath>
 #include <windows.h>
-#include <limits>
 
 bool russian = false;
 
@@ -20,31 +19,29 @@ public:
         for (int i = 0; i < 6; i++)
         {
             cout << "\t\t\t\t";
-            if (i == 3)
+            int j = 0;
+            while (j < 60)
             {
-                int j = 0;
-                while (j < 60)
+                if (j == 0 || j == 35 || j == 59)
                 {
-                    if (j == 0 || j == 35 || j == 59)
-                    {
-                        cout << "|";
-                        j++;
-                        continue;
-                    }
+                    cout << "|";
+                    j++;
+                    continue;
+                }
+                if (i == 3)
+                {
                     if (j == 8)
                     {
                         cout << operation;
                         j += operation.size();
                         continue;
                     }
-
                     if (j == 44)
                     {
                         cout << command;
                         j += command.size();
                         continue;
                     }
-
                     if (j < 5 || j < 35 || j < 44 || j < 59)
                     {
                         cout << " ";
@@ -52,41 +49,30 @@ public:
                         continue;
                     }
                 }
-                cout << endl;
-            }
-            else
-            {
-                int j = 0;
-                while (j < 60)
+                else
                 {
-                    if (j == 0 || j == 59 || j == 35)
-                    {
-                        cout << "|";
-                        j++;
-                        continue;
-                    }
                     cout << " ";
                     j++;
                 }
-                cout << endl;
             }
+            cout << endl;
         }
         cout << "\t\t\t\t";
-        for (int i = 0; i < 60; i++)
+        showCharDivider(60, '~');
+    }
+
+    void showCharDivider(int n, char ch)
+    {
+        for (int i = 0; i < n; i++)
         {
-            cout << "~";
+            (i == n - 1) ? cout << ch << '\n' : cout << ch;
         }
-        cout << endl;
     }
 
     void showOnStart()
     {
         cout << "\t\t";
-        for (int i = 0; i < 90; i++)
-        {
-            cout << '-';
-        }
-        cout << endl;
+        showCharDivider(90, '-');
         if (russian)
         {
             cout << "\t\t|    пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ:     |" << endl;
@@ -96,17 +82,9 @@ public:
             cout << "\t\t|    Welcome to the Quadratic Equation Solver. Here is the list of available commands     |" << endl;
         }
         cout << "\t\t";
-        for (int i = 0; i < 90; i++)
-        {
-            cout << '-';
-        }
-        cout << endl;
+        showCharDivider(90, '-');
         cout << "\t\t\t\t";
-        for (int i = 0; i < 60; i++)
-        {
-            cout << "~";
-        }
-        cout << endl;
+        showCharDivider(60, '~');
         if (russian)
         {
             formatOutputTable("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
@@ -135,17 +113,40 @@ public:
             {
                 solutionDisplayed = true;
             }
-            if (i == 3)
+            int j = 0;
+            while (j <= 140)
             {
-                int j = 0;
-                while (j <= 140)
+                if (j == 0 || j == 15 || j == 42 || j == 71 || j == 140)
                 {
-                    if (j == 0 || j == 15 || j == 42 || j == 71 || j == 140)
+                    cout << "|";
+                    j++;
+                    continue;
+                }
+                if (j == 75 && !solutionDisplayed)
+                {
+                    string line = "";
+                    bool seen = false;
+                    for (unsigned long long k = cur; k < cur + min(50ull, solution.size() - cur); k++)
                     {
-                        cout << "|";
-                        j++;
-                        continue;
+                        if (solution[k] == 'b' && solution[k + 1] == 'r')
+                        {
+                            j += (k - cur);
+                            cur += (k - cur + 2);
+                            seen = true;
+                            break;
+                        }
+                        line += solution[k];
                     }
+                    if (!seen)
+                    {
+                        j += min(50ull, solution.size() - cur);
+                        cur += 50;
+                    }
+                    cout << line;
+                    continue;
+                }
+                if (i == 3)
+                {
                     if (j == 6)
                     {
                         cout << type;
@@ -164,91 +165,20 @@ public:
                         j += form.size();
                         continue;
                     }
-                    if (j == 75 && !solutionDisplayed)
-                    {
-                        string line = "";
-                        bool seen = false;
-                        for (unsigned long long k = cur; k < cur + min(50ull, solution.size() - cur); k++)
-                        {
-                            if (solution[k] == 'b' && solution[k + 1] == 'r')
-                            {
-                                cur += (k - cur + 2);
-                                j += (k - cur + 2);
-                                seen = true;
-                                break;
-                            }
-                            line += solution[k];
-                        }
-                        if (!seen)
-                        {
-                            j += min(50ull, solution.size() - cur);
-                            cur += 50;
-                        }
-                        cout << line;
-                        continue;
-                    }
-                    if (j < 6 || j < 15 || j < 18 || j < 42 || j < 47 || j < 70 || j < 75 || j < 140)
-                    {
-                        cout << " ";
-                        j++;
-                        continue;
-                    }
                 }
-                cout << endl;
-            }
-            else
-            {
-                int j = 0;
-                while (j <= 140)
+                if (j < 6 || j < 15 || j < 18 || j < 42 || j < 47 || j < 70 || j < 75 || j < 140)
                 {
-                    if (j == 0 || j == 15 || j == 42 || j == 71 || j == 140)
-                    {
-                        cout << "|";
-                        j++;
-                        continue;
-                    }
-                    if (j == 75 && !solutionDisplayed)
-                    {
-                        string line = "";
-                        bool seen = false;
-                        for (unsigned long long k = cur; k < cur + min(50ull, solution.size() - cur); k++)
-                        {
-                            if (solution[k] == 'b' && solution[k + 1] == 'r')
-                            {
-
-                                j += (k - cur);
-                                cur += (k - cur + 2);
-                                seen = true;
-                                break;
-                            }
-                            line += solution[k];
-                        }
-                        if (!seen)
-                        {
-                            j += min(50ull, solution.size() - cur);
-                            cur += 50;
-                        }
-                        cout << line;
-                        continue;
-                    }
-                    if (j < 6 || j < 15 || j < 22 || j < 42 || j < 53 || j < 70 || j < 75 || j < 140)
-                    {
-                        cout << " ";
-                        j++;
-                        continue;
-                    }
+                    cout << " ";
+                    j++;
+                    continue;
                 }
-                cout << endl;
             }
+            cout << endl;
         }
-        for (int i = 0; i <= 140; i++)
-        {
-            cout << "~";
-        }
-        cout << endl;
+        showCharDivider(140, '~');
     }
 
-    void formatEquationColumnHeaderRussian()
+    void formatEquationColumnHeader(bool lang)
     {
         for (int i = 0; i < 6; i++)
         {
@@ -265,58 +195,26 @@ public:
                     }
                     if (j == 6)
                     {
-                        if (russian)
-                        {
-                            cout << "пїЅпїЅпїЅ";
-                            j += 3;
-                        }
-                        else
-                        {
-                            cout << "TYPE";
-                            j += 4;
-                        }
+                        lang ? cout << "ТИП" : cout << "TYPE";
+                        lang ? j += 3 : j += 4;
                         continue;
                     }
                     if (j == 22)
                     {
-                        if (russian)
-                        {
-                            cout << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
-                            j += 9;
-                        }
-                        else
-                        {
-                            cout << "PARAMETERS";
-                            j += 10;
-                        }
+                        lang ? cout << "ПАРАМЕТРЫ" : cout << "PARAMETERS";
+                        lang ? j += 9 : j += 10;
                         continue;
                     }
                     if (j == 53)
                     {
-                        if (russian)
-                        {
-                            cout << "пїЅпїЅпїЅпїЅпїЅ";
-                            j += 5;
-                        }
-                        else
-                        {
-                            cout << "FORM";
-                            j += 4;
-                        }
+                        lang ? cout << "ФОРМА" : cout << "FORM";
+                        lang ? j += 5 : j += 4;
                         continue;
                     }
                     if (j == 85)
                     {
-                        if (russian)
-                        {
-                            cout << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
-                            j += 7;
-                        }
-                        else
-                        {
-                            cout << "SOLUTION";
-                            j += 8;
-                        }
+                        lang ? cout << "РЕШЕНИЕ" : cout << "SOLUTION";
+                        lang ? j += 7 : j += 8;
                         continue;
                     }
                     if (j < 6 || j < 15 || j < 22 || j < 42 || j < 53 || j < 70 || j < 85 || j < 140)
@@ -349,122 +247,39 @@ public:
                 cout << endl;
             }
         }
-        for (int i = 0; i <= 140; i++)
-        {
-            cout << "~";
-        }
-        cout << endl;
-    }
-    void formatEquationColumnHeader()
-    {
-        for (int i = 0; i < 6; i++)
-        {
-            if (i == 3)
-            {
-                int j = 0;
-                while (j <= 140)
-                {
-                    if (j == 0 || j == 15 || j == 42 || j == 71 || j == 140)
-                    {
-                        cout << "|";
-                        j++;
-                        continue;
-                    }
-                    if (j == 6)
-                    {
-                        cout << "TYPE";
-                        j += 4;
-                        continue;
-                    }
-                    if (j == 22)
-                    {
-                        cout << "PARAMETERS";
-                        j += 10;
-                        continue;
-                    }
-                    if (j == 53)
-                    {
-                        cout << "FORM";
-                        j += 4;
-                        continue;
-                    }
-                    if (j == 85)
-                    {
-                        cout << "SOLUTION";
-                        j += 8;
-                        continue;
-                    }
-                    if (j < 6 || j < 15 || j < 22 || j < 42 || j < 53 || j < 70 || j < 85 || j < 140)
-                    {
-                        cout << " ";
-                        j++;
-                        continue;
-                    }
-                }
-                cout << endl;
-            }
-            else
-            {
-                int j = 0;
-                while (j <= 140)
-                {
-                    if (j == 0 || j == 15 || j == 42 || j == 71 || j == 140)
-                    {
-                        cout << "|";
-                        j++;
-                        continue;
-                    }
-                    if (j < 6 || j < 15 || j < 22 || j < 42 || j < 53 || j < 70 || j < 85 || j < 140)
-                    {
-                        cout << " ";
-                        j++;
-                        continue;
-                    }
-                }
-                cout << endl;
-            }
-        }
-        for (int i = 0; i <= 140; i++)
-        {
-            cout << "~";
-        }
-        cout << endl;
+        showCharDivider(140, '~');
     }
 
     void showEquationInfo()
     {
         if (russian)
         {
-            cout << "\n\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ:\n\n ";
+            cout << "\n\nКвадратное уравнение - это уравнение следующего вида:\n\n";
             cout << "\t\t\t\t\tax^2 + bx + c = 0\n\n";
-            cout << "пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 8 пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ...\n\n\n";
-            cout << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 1. пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\n";
-            for (int i = 0; i <= 140; i++)
-            {
-                cout << "~";
-            }
-            cout << endl;
-            formatEquationColumnHeaderRussian();
-            formatEquationTable("1", "a=0,b=0,c=0", "0 * x^2 + 0 * x + 0 = 0", "пїЅпїЅпїЅ x пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (-inf, +inf)");
-            formatEquationTable("2", "a != 0, b = 0, c = 0", "a * x^2 = 0", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ x = 0");
-            formatEquationTable("3", "c = 0", "пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ c");
-            formatEquationTable("4", "a != 0, b = 0, c != 0", "a * x^2 + c = 0", "x^2 = -c / a brпїЅпїЅпїЅпїЅ -c / a < 0, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ brпїЅпїЅпїЅпїЅ -c / a > 0: br    x1 = sqrt(-c/a), x2 = -sqrt(-c/a)");
+            cout << "В таблице ниже представлены 8 типов квадратных уравнений...\n\n\n";
+            cout << "Таблица 1. Типы квадратных уравнений\n";
+        }
+        else
+        {
+            cout << "\n\nQuadratic equation is an equation that can be rearranged in standard form as:\n\n ";
+            cout << "\t\t\t\t\tax^2 + bx + c = 0\n\n";
+            cout << "The table below represents eight types of existing quadratic equations...\n\n\n";
+            cout << "Table 1. Types of Quadratic Equations\n";
+        }
+        showCharDivider(140, '~');
+        formatEquationColumnHeader(russian);
+        if (russian)
+        {
+            formatEquationTable("1", "a=0,b=0,c=0", "0 * x^2 + 0 * x + 0 = 0", "все x в промежутке(-inf, +inf)");
+            formatEquationTable("2", "a != 0, b = 0, c = 0", "a * x^2 = 0", "единственное решение x = 0");
+            formatEquationTable("3", "c = 0", "form doesn't exist", "уравнение записано неверно, потому что дан только один параметр");
+            formatEquationTable("4", "a != 0, b = 0, c != 0", "a * x^2 + c = 0", "x^2 = -c / a brесли -c / a < 0, то решений нет brесли -c / a > 0: br    x1 = sqrt(-c/a), x2 = -sqrt(-c/a)");
             formatEquationTable("5", "a = 0, b != 0, c != 0", "bx + c = 0", "x = -c / b");
-            formatEquationTable("6", "a != 0, b != 0, c != 0", "a * x^2 + bx + c = 0", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: D = b^2 - 4ac. br1. пїЅпїЅпїЅпїЅ D > 0 x = (-b +/- sqrt(b^2 - 4ac) / 2a); br2. пїЅпїЅпїЅпїЅ D = 0 x = -b / 2a; пїЅпїЅпїЅпїЅ D < 0 пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ brпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
-            formatEquationTable("7", "a = 0, b != 0, c = 0", "bx = 0", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ x = 0");
-            formatEquationTable("8", "a != 0, b != 0, c = 0", "ax^2 + bx = 0", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: br           x(ax + b) = 0. brx1 = 0, x2 = -b/a");
+            formatEquationTable("6", "a != 0, b != 0, c != 0", "a * x^2 + bx + c = 0", "Найдем дискриминант: D = b^2 - 4ac. br1. если D > 0 x = (-b +/- sqrt(b^2 - 4ac) / 2a); br2. если D = 0 x = -b / 2a; если D < 0 решений brнет");
+            formatEquationTable("7", "a = 0, b != 0, c = 0", "bx = 0", "единственное решение x = 0");
+            formatEquationTable("8", "a != 0, b != 0, c = 0", "ax^2 + bx = 0", "перепишем уравнение: br           x(ax + b) = 0. brx1 = 0, x2 = -b/a");
             return;
         }
-        cout << "\n\nQuadratic equation is an equation that can be rearranged in standard form as:\n\n ";
-        cout << "\t\t\t\t\tax^2 + bx + c = 0\n\n";
-        cout << "The table below represents eight types of existing quadratic equations...\n\n\n";
-        cout << "Table 1. Types of Quadratic Equations\n";
-        for (int i = 0; i <= 140; i++)
-        {
-            cout << "~";
-        }
-        cout << endl;
-        formatEquationColumnHeader();
         formatEquationTable("1", "a=0,b=0,c=0", "0 * x^2 + 0 * x + 0 = 0", "all x in range(-inf, +inf)");
         formatEquationTable("2", "a != 0, b = 0, c = 0", "a * x^2 = 0", "the only solution is x = 0");
         formatEquationTable("3", "c = 0", "form doesn't exist", "equation is not valid, because only one parameter c is being passed");
@@ -551,7 +366,6 @@ private:
     }
 
 public:
-
     vector<vector<string>> numberCodes;
     vector<string> exponent = {"  ___", " /   \\ ", "/--^--\\"};
     vector<string> variable = {"\\     /", " \\   / ", "  \\./  ", "  / \\  ", " /   \\ ", "/     \\"};
@@ -2984,37 +2798,32 @@ public:
         {
             initialEquationMessage();
         }
-        if (type == 1)
+        switch (type)
         {
+        case 1:
             solveFirstType();
-        }
-        else if (type == 2)
-        {
+            break;
+        case 2:
             solveSecondType();
-        }
-        else if (type == 3)
-        {
+            break;
+        case 3:
             solveThirdType();
-        }
-        else if (type == 4)
-        {
+            break;
+        case 4:
             solveFourthType();
-        }
-        else if (type == 5)
-        {
+            break;
+        case 5:
             solveFifthType();
-        }
-        else if (type == 6)
-        {
+            break;
+        case 6:
             solveSixthType();
-        }
-        else if (type == 7)
-        {
+            break;
+        case 7:
             solveSeventhType();
-        }
-        else if (type == 8)
-        {
+            break;
+        case 8:
             solveEigthType();
+            break;
         }
     }
 };
