@@ -182,70 +182,47 @@ public:
     {
         for (int i = 0; i < 6; i++)
         {
-            if (i == 3)
+            int j = 0;
+            while (j <= 140)
             {
-                int j = 0;
-                while (j <= 140)
+                if (j == 0 || j == 15 || j == 42 || j == 71 || j == 140)
                 {
-                    if (j == 0 || j == 15 || j == 42 || j == 71 || j == 140)
-                    {
-                        cout << "|";
-                        j++;
-                        continue;
-                    }
-                    if (j == 6)
-                    {
-                        lang ? cout << "ÒÈÏ" : cout << "TYPE";
-                        lang ? j += 3 : j += 4;
-                        continue;
-                    }
-                    if (j == 22)
-                    {
-                        lang ? cout << "ÏÀÐÀÌÅÒÐÛ" : cout << "PARAMETERS";
-                        lang ? j += 9 : j += 10;
-                        continue;
-                    }
-                    if (j == 53)
-                    {
-                        lang ? cout << "ÔÎÐÌÀ" : cout << "FORM";
-                        lang ? j += 5 : j += 4;
-                        continue;
-                    }
-                    if (j == 85)
-                    {
-                        lang ? cout << "ÐÅØÅÍÈÅ" : cout << "SOLUTION";
-                        lang ? j += 7 : j += 8;
-                        continue;
-                    }
-                    if (j < 6 || j < 15 || j < 22 || j < 42 || j < 53 || j < 70 || j < 85 || j < 140)
-                    {
-                        cout << " ";
-                        j++;
-                        continue;
-                    }
+                    cout << "|";
+                    j++;
+                    continue;
                 }
-                cout << endl;
-            }
-            else
-            {
-                int j = 0;
-                while (j <= 140)
+                if (j == 6 && i == 3)
                 {
-                    if (j == 0 || j == 15 || j == 42 || j == 71 || j == 140)
-                    {
-                        cout << "|";
-                        j++;
-                        continue;
-                    }
-                    if (j < 6 || j < 15 || j < 22 || j < 42 || j < 53 || j < 70 || j < 85 || j < 140)
-                    {
-                        cout << " ";
-                        j++;
-                        continue;
-                    }
+                    lang ? cout << "ÒÈÏ" : cout << "TYPE";
+                    lang ? j += 3 : j += 4;
+                    continue;
                 }
-                cout << endl;
+                if (j == 22 && i == 3)
+                {
+                    lang ? cout << "ÏÀÐÀÌÅÒÐÛ" : cout << "PARAMETERS";
+                    lang ? j += 9 : j += 10;
+                    continue;
+                }
+                if (j == 53 && i == 3)
+                {
+                    lang ? cout << "ÔÎÐÌÀ" : cout << "FORM";
+                    lang ? j += 5 : j += 4;
+                    continue;
+                }
+                if (j == 85 && i == 3)
+                {
+                    lang ? cout << "ÐÅØÅÍÈÅ" : cout << "SOLUTION";
+                    lang ? j += 7 : j += 8;
+                    continue;
+                }
+                if (j < 6 || j < 15 || j < 22 || j < 42 || j < 53 || j < 70 || j < 85 || j < 140)
+                {
+                    cout << " ";
+                    j++;
+                    continue;
+                }
             }
+            cout << endl;
         }
         showCharDivider(140, '~');
     }
@@ -367,9 +344,7 @@ private:
 
 public:
     vector<vector<string>> numberCodes;
-    vector<string> exponent = {"  ___", " /   \\ ", "/--^--\\"};
     vector<string> variable = {"\\     /", " \\   / ", "  \\./  ", "  / \\  ", " /   \\ ", "/     \\"};
-    vector<string> multiplyX = {"     _     \\     / ", " /\\| |/\\   \\   / ", "  \\ ` ' /   \\./", " |_     _|  / \\", "  / , . \\  /   \\", "  \\/|_| \\//     \\"};
     vector<string> multiply = {"\\/", "/\\"};
     vector<string> minus = {" ______ ", "|______|"};
     vector<string> plus = {" _| |_ ", "|_   _|", "  |_|  "};
@@ -449,18 +424,12 @@ public:
 
     void noSolution(int tabsNumber)
     {
-        tabs(tabsNumber);
-        cout << " _   _  ____     _____  ____  _     _    _ _______ _____ ____  _   _ " << endl;
-        tabs(tabsNumber);
-        cout << "| \\ | |/ __ \\   / ____|/ __ \\| |   | |  | |__   __|_   _/ __ \\| \\ | |" << endl;
-        tabs(tabsNumber);
-        cout << "|  \\| | |  | | | (___ | |  | | |   | |  | |  | |    | || |  | |  \\| |" << endl;
-        tabs(tabsNumber);
-        cout << "| . ` | |  | |  \\___ \\| |  | | |   | |  | |  | |    | || |  | | . ` |" << endl;
-        tabs(tabsNumber);
-        cout << "| |\\  | |__| |  ____) | |__| | |___| |__| |  | |   _| || |__| | |\\  |" << endl;
-        tabs(tabsNumber);
-        cout << "|_| \\_|\\____/  |_____/ \\____/|______\\____/   |_|  |_____\\____/|_| \\_|" << endl;
+        cout << "\t _   _  ____     _____  ____  _     _    _ _______ _____ ____  _   _ " << endl;
+        cout << "\t| \\ | |/ __ \\   / ____|/ __ \\| |   | |  | |__   __|_   _/ __ \\| \\ | |" << endl;
+        cout << "\t|  \\| | |  | | | (___ | |  | | |   | |  | |  | |    | || |  | |  \\| |" << endl;
+        cout << "\t| . ` | |  | |  \\___ \\| |  | | |   | |  | |  | |    | || |  | | . ` |" << endl;
+        cout << "\t| |\\  | |__| |  ____) | |__| | |___| |__| |  | |   _| || |__| | |\\  |" << endl;
+        cout << "\t|_| \\_|\\____/  |_____/ \\____/|______\\____/   |_|  |_____\\____/|_| \\_|" << endl;
     }
 
     void transformEquationMessage()
@@ -595,7 +564,7 @@ public:
     void displayFullForm(string number1, string sign, string number2, string sign2, string number3)
     {
         initNumberCodes();
-        int count = 0;
+        int count = 40;
         for (int i = 0; i < number1.size(); i++)
         {
             if (number1[i] == '-')
@@ -612,8 +581,6 @@ public:
                 count += numberCodes[cur][0].size();
             }
         }
-        count += 8;  // for x variable
-        count += 32; // for tabs
         string s = "";
         for (int i = 0; i < count; i++)
         {
@@ -626,25 +593,11 @@ public:
             tabs(4);
             numberShow(number1, j, true);
             cout << variable[j] << "       ";
-            if (sign == "plus")
-            {
-                plusShow(j);
-            }
-            else
-            {
-                minusShow(j);
-            }
+            (sign == "plus") ? plusShow(j) : minusShow(j);
             cout << "       ";
             numberShow(number2, j, false);
             cout << variable[j] << "       ";
-            if (sign2 == "plus")
-            {
-                plusShow(j);
-            }
-            else
-            {
-                minusShow(j);
-            }
+            (sign2 == "plus") ? plusShow(j) : minusShow(j);
             cout << "       ";
             numberShow(number3, j, false);
             cout << "       ";
@@ -657,7 +610,6 @@ public:
     void displayAnswer(string number1, string order)
     { // x1 = answer (order = 1), x2 = answer(order = 2)
         initNumberCodes();
-        int start = 0;
         for (int j = 0; j < 6; j++)
         {
             tabs(5);
@@ -736,7 +688,6 @@ public:
     void discriminantEqual(string number1)
     {
         initNumberCodes();
-        int start = 0;
         for (int j = 0; j < 6; j++)
         {
             tabs(5);
@@ -751,7 +702,7 @@ public:
     void displayShortenedForm(string number1, string sign, string number2, string number3) // number3 is the right part of the equation
     {
         initNumberCodes();
-        int count = 0;
+        int count = 56;
         for (int i = 0; i < number1.size(); i++)
         {
             if (number1[i] == '-')
@@ -768,8 +719,6 @@ public:
                 count += numberCodes[cur][0].size();
             }
         }
-        count += 8;  // for x variable
-        count += 48; // for tabs
         string s = "";
         for (int i = 0; i < count; i++)
         {
@@ -780,16 +729,8 @@ public:
         {
             tabs(6);
             numberShow(number1, j, true);
-            cout << variable[j];
-            cout << "       ";
-            if (sign == "plus")
-            {
-                plusShow(j);
-            }
-            else
-            {
-                minusShow(j);
-            }
+            cout << variable[j] << "       ";
+            (sign == "plus") ? plusShow(j) : minusShow(j);
             cout << "       ";
             for (int i = 0; i < number2.size(); i++)
             {
@@ -881,7 +822,6 @@ public:
             cout << " ";
         }
         cout << radical[0] << endl;
-        int start = 0;
         for (int j = 0; j < 6; j++)
         {
             tabs(5);
@@ -916,18 +856,12 @@ public:
         {
             cout << " ";
         }
-        cout << radical[0];
-        for (int i = 0; i < 4; i++)
-        {
-            cout << " ";
-        }
-        cout << rightParenthesses[0] << endl;
+        cout << radical[0] << "       " << rightParenthesses[0] << endl;
         for (int j = 0; j < 6; j++)
         {
             cout << variable[j] << "      ";
             equalShow(j);
-            cout << "     ";
-            cout << leftParenthesses[j + 1] << "    ";
+            cout << "     " << leftParenthesses[j + 1] << "    ";
             minusShow(j);
             cout << " " << b[j] << "    ";
             if (j < 5)
@@ -954,11 +888,10 @@ public:
         {
             cout << " ";
         }
-        cout << rightParenthesses[7];
-        cout << endl;
+        cout << rightParenthesses[7] << endl;
     }
 
-    void displayDiscriminantSqrtNumbers(string number1, string number2, string number3, string type)
+    void displayDiscriminantSqrtNumbers(string number1, string number2, string number3, string type, string sign)
     {
         cout << "                       " << leftParenthesses[0];
         int count = 18;
@@ -981,102 +914,15 @@ public:
         {
             cout << " ";
         }
-        cout << radical[0];
-        for (int i = 0; i < 4; i++)
-        {
-            cout << " ";
-        }
-        cout << rightParenthesses[0] << endl;
+        cout << radical[0] << "       " << rightParenthesses[0] << endl;
         for (int j = 0; j < 6; j++)
         {
             cout << variable[j] << "      ";
             equalShow(j);
-            cout << "     ";
-            cout << leftParenthesses[j + 1] << "    ";
+            cout << "     " << leftParenthesses[j + 1] << "    ";
             numberShow(number1, j, true);
             cout << "     ";
-            plusShow(j);
-            cout << radical[j + 1] << "    ";
-            int len = 0;
-            for (int i = 0; i < number2.size(); i++)
-            {
-                if (number2[i] == '-')
-                {
-                    len += 9;
-                }
-                else if (number2[i] == '.')
-                {
-                    len += 5;
-                }
-                else
-                {
-                    len += 6;
-                }
-            }
-            numberShow(number2, j, true);
-            for (int i = 0; i < 26 - len; i++)
-            {
-                cout << " ";
-            }
-            cout << rightParenthesses[j + 1];
-            cout << "   " << division[j];
-            numberShow(number3, j, true);
-            cout << endl;
-        }
-        cout << "       " << type;
-        cout << "                   " << leftParenthesses[7];
-        for (int i = 0; i < count - 2; i++)
-        {
-            cout << " ";
-        }
-        cout << radical[7];
-        for (int i = 0; i < 30; i++)
-        {
-            cout << " ";
-        }
-        cout << rightParenthesses[7];
-        cout << endl;
-    }
-
-    void displayDiscriminantSqrtNumbers2(string number1, string number2, string number3, string type)
-    {
-        cout << "                       " << leftParenthesses[0];
-        int count = 18;
-        for (int i = 0; i < number1.size(); i++)
-        {
-            if (number1[i] == '-')
-            {
-                count += 7;
-            }
-            else if (number1[i] == '.')
-            {
-                count += 5;
-            }
-            else
-            {
-                count += 6;
-            }
-        }
-        for (int i = 0; i < count; i++)
-        {
-            cout << " ";
-        }
-        cout << radical[0];
-        for (int i = 0; i < 4; i++)
-        {
-            cout << " ";
-        }
-        cout << rightParenthesses[0] << endl;
-        int start = 0, start2 = 0, start3 = 0;
-        for (int j = 0; j < 6; j++)
-        {
-            cout << variable[j] << "      ";
-            equalShow(j);
-            cout << "     ";
-            cout << leftParenthesses[j + 1] << "    ";
-            numberShow(number1, j, true);
-            cout << "     ";
-            minusShow(j);
+            (sign == "plus") ? plusShow(j) : minusShow(j);
             cout << radical[j + 1] << "    ";
             int len = 0;
             for (int i = 0; i < number2.size(); i++)
@@ -1139,8 +985,7 @@ public:
             tabs(5);
             numberShow(number1, j, true);
             cout << "   " << lessThan[j] << "    ";
-            cout << numberCodes[0][j] << "        " << hence[j];
-            cout << endl;
+            cout << numberCodes[0][j] << "        " << hence[j] << endl;
         }
     }
 
@@ -1194,7 +1039,6 @@ public:
 
     void parenthesTransform(string number1, string sign, string number2)
     {
-        int start = 0, start2 = 0;
         for (int j = 0; j < 6; j++)
         {
             tabs(4);
@@ -1203,14 +1047,7 @@ public:
             numberShow(number1, j, true);
             cout << " ";
             cout << variable[j] << "     ";
-            if (sign == "plus")
-            {
-                plusShow(j);
-            }
-            else
-            {
-                minusShow(j);
-            }
+            (sign == "plus") ? plusShow(j) : minusShow(j);
             cout << "      ";
             numberShow(number2, j, false);
             cout << "  " << rightParenthesses[j + 1] << "     ";
@@ -1240,16 +1077,7 @@ public:
                 count += numberCodes[number1[i] - '0'].size();
             }
         }
-        count += 14;
-        if (sign == "plus")
-        {
-            count += 8;
-        }
-        else
-        {
-            count += 9;
-        }
-        count += 7;
+        (sign == "plus") ? count += 29 : count += 30;
         for (int i = 0; i < number2.size(); i++)
         {
             if (number2[i] == '-')
@@ -1265,8 +1093,7 @@ public:
                 count += numberCodes[number2[i] - '0'].size();
             }
         }
-        count += 3;
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < count + 3; i++)
         {
             cout << " ";
         }
@@ -1505,9 +1332,9 @@ public:
             num1 *= 2;
             number1 = removeTrailingZeros(to_string(num1), 3);
             showStep(4);
-            displayDiscriminantSqrtNumbers(number2, dStr, number1, "1");
+            displayDiscriminantSqrtNumbers(number2, dStr, number1, "1", "plus");
             newline(1);
-            displayDiscriminantSqrtNumbers2(number2, dStr, number1, "2");
+            displayDiscriminantSqrtNumbers(number2, dStr, number1, "2", "minus");
             double x1 = (num2 + sqrt(dValue)) / num1;
             double x2 = (num2 - sqrt(dValue)) / num2;
             string x1Str = removeTrailingZeros(to_string(x1), 3);
@@ -1711,18 +1538,7 @@ public:
                     while (!(cin >> num))
                     {
                         cout << "ERROR\n";
-                        if (i == 0)
-                        {
-                            cout << "Enter a: " << endl;
-                        }
-                        else if (i == 1)
-                        {
-                            cout << "Enter b: " << endl;
-                        }
-                        else
-                        {
-                            cout << "Enter c: " << endl;
-                        }
+                        helpInstruction(i);
                         cin.clear();
                         cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     }
