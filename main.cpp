@@ -404,94 +404,36 @@ public:
     void solutionMessage()
     {
         newline(3);
-        tabs(7);
-        cout << "  _____  ____  _     _    _ _______ _____ ____  _   _ " << endl;
-        tabs(7);
-        cout << " / ____|/ __ \\| |   | |  | |__   __|_   _/ __ \\| \\ | |" << endl;
-        tabs(7);
-        cout << "| (___ | |  | | |   | |  | |  | |    | || |  | |  \\| |" << endl;
-        tabs(7);
-        cout << " \\___ \\| |  | | |   | |  | |  | |    | || |  | | . ` |" << endl;
-        tabs(7);
-        cout << " ____) | |__| | |___| |__| |  | |   _| || |__| | |\\  |" << endl;
-        tabs(7);
-        cout << "|_____/ \\____/|______\\____/   |_|  |_____\\____/|_| \\_|" << endl;
+        cout << "\t\t\t\t\t\t\t  _____  ____  _     _    _ _______ _____ ____  _   _ " << endl;
+        cout << "\t\t\t\t\t\t\t / ____|/ __ \\| |   | |  | |__   __|_   _/ __ \\| \\ | |" << endl;
+        cout << "\t\t\t\t\t\t\t| (___ | |  | | |   | |  | |  | |    | || |  | |  \\| |" << endl;
+        cout << "\t\t\t\t\t\t\t \\___ \\| |  | | |   | |  | |  | |    | || |  | | . ` |" << endl;
+        cout << "\t\t\t\t\t\t\t ____) | |__| | |___| |__| |  | |   _| || |__| | |\\  |" << endl;
+        cout << "\t\t\t\t\t\t\t|_____/ \\____/|______\\____/   |_|  |_____\\____/|_| \\_|" << endl;
         newline(1);
     }
 
     void initialEquationMessage()
     {
-        tabs(1);
-        cout << " _______  _              _         _  _    _         _                              _    _                  " << endl;
-        tabs(1);
-        cout << "|__   __|| |            (_)       (_)| |  (_)       | |                            | |  (_)               _ " << endl;
-        tabs(1);
-        cout << "   | |   | |__    ___    _  _ __   _ | |_  _   __ _ | |   ___   __ _  _   _   __ _ | |_  _   ___   _ __  (_)" << endl;
-        tabs(1);
-        cout << "   | |   | '_ \\  / _ \\  | || '_ \\ | || __|| | / _` || |  / _ \\ / _` || | | | / _` || __|| | / _ \\ | '_ \\    " << endl;
-        tabs(1);
-        cout << "   | |   | | | ||  __/ |  || | | || || |_ | || (_| || | |  __/| (_| || |_| || (_| || |_ | || (_) || | | | _ " << endl;
-        tabs(1);
-        cout << "   |_|   |_| |_| \\___|  |_||_| |_||_| \\__||_| \\__,_||_|  \\___| \\__, | \\__,_| \\__,_| \\__||_| \\___/ |_| |_|(_)" << endl;
-        tabs(1);
-        cout << "                                                                 | |                                       " << endl;
-        tabs(1);
-        cout << "                                                                 |_|                                       " << endl;
+        cout << "\t _______  _              _         _  _    _         _                              _    _                  " << endl;
+        cout << "\t|__   __|| |            (_)       (_)| |  (_)       | |                            | |  (_)               _ " << endl;
+        cout << "\t   | |   | |__    ___    _  _ __   _ | |_  _   __ _ | |   ___   __ _  _   _   __ _ | |_  _   ___   _ __  (_)" << endl;
+        cout << "\t   | |   | '_ \\  / _ \\  | || '_ \\ | || __|| | / _` || |  / _ \\ / _` || | | | / _` || __|| | / _ \\ | '_ \\    " << endl;
+        cout << "\t   | |   | | | ||  __/ |  || | | || || |_ | || (_| || | |  __/| (_| || |_| || (_| || |_ | || (_) || | | | _ " << endl;
+        cout << "\t   |_|   |_| |_| \\___|  |_||_| |_||_| \\__||_| \\__,_||_|  \\___| \\__, | \\__,_| \\__,_| \\__||_| \\___/ |_| |_|(_)" << endl;
+        cout << "\t                                                                 | |                                       " << endl;
+        cout << "\t                                                                 |_|                                       " << endl;
         newline(1);
     }
 
-    void firstStepMessage()
+    void showStep(int n)
     {
-        cout << "  _____ _______ ______ _____    __ " << endl;
-        cout << " / ____|__   __|  ____|  __ \\  /_ |" << endl;
-        cout << "| (___    | |  | |__  | |__) |  | |" << endl;
-        cout << " \\___ \\   | |  |  __| |  ___/   | |" << endl;
-        cout << " ____) |  | |  | |____| |       | |" << endl;
-        cout << "|_____/   |_|  |______|_|       |_|" << endl;
-        newline(2);
-    }
-
-    void secondStepMessage()
-    {
-        cout << "  _____ _______ ______ _____    ___  " << endl;
-        cout << " / ____|__   __|  ____|  __ \\  |__ \\ " << endl;
-        cout << "| (___    | |  | |__  | |__) |    ) |" << endl;
-        cout << " \\___ \\   | |  |  __| |  ___/    / / " << endl;
-        cout << " ____) |  | |  | |____| |       / /_ " << endl;
-        cout << "|_____/   |_|  |______|_|      |____|" << endl;
-        newline(2);
-    }
-
-    void thirdStepMessage()
-    {
-        cout << "  _____ _______ ______ _____    ____  " << endl;
-        cout << " / ____|__   __|  ____|  __ \\  |___ \\ " << endl;
-        cout << "| (___    | |  | |__  | |__) |   __) |" << endl;
-        cout << " \\___ \\   | |  |  __| |  ___/   |__ < " << endl;
-        cout << " ____) |  | |  | |____| |       ___) |" << endl;
-        cout << "|_____/   |_|  |______|_|      |____/ " << endl;
-        newline(2);
-    }
-
-    void fourthStepMessage()
-    {
-        cout << "  _____ _______ ______ _____    _  _   " << endl;
-        cout << " / ____|__   __|  ____|  __ \\  | || |  " << endl;
-        cout << "| (___    | |  | |__  | |__) | | || |_ " << endl;
-        cout << " \\___ \\   | |  |  __| |  ___/  |__   _|" << endl;
-        cout << " ____) |  | |  | |____| |         | |  " << endl;
-        cout << "|_____/   |_|  |______|_|         |_|  " << endl;
-        newline(2);
-    }
-
-    void fifthStepMessage()
-    {
-        cout << "  _____ _______ ______ _____    _____ " << endl;
-        cout << " / ____|__   __|  ____|  __ \\  | ____|" << endl;
-        cout << "| (___    | |  | |__  | |__) | | |__  " << endl;
-        cout << " \\___ \\   | |  |  __| |  ___/  |___ \\ " << endl;
-        cout << " ____) |  | |  | |____| |       ___) |" << endl;
-        cout << "|_____/   |_|  |______|_|      |____/ " << endl;
+        initNumberCodes();
+        vector<string> stepArray = {"  _____ _______ ______ _____  ", " / ____|__   __|  ____|  __ \\ ", "| (___    | |  | |__  | |__) |", " \\___ \\   | |  |  __| |  ___/ ", " ____) |  | |  | |____| |     ", "|_____/   |_|  |______|_|     "};
+        for (int i = 0; i < 6; i++)
+        {
+            cout << stepArray[i] << "   " << numberCodes[n][i] << endl;
+        }
     }
 
     void answerMessage()
@@ -523,18 +465,12 @@ public:
 
     void transformEquationMessage()
     {
-        tabs(1);
-        cout << " _______ _____            _   _  _____ ______ ____  _____  __  __            _   _   ______ ____  _    _      _______ _____ ____  _   _ " << endl;
-        tabs(1);
-        cout << "|__   __|  __ \\     /\\   | \\ | |/ ____|  ____/ __ \\|  __ \\|  \\/  |     /\\   | \\ | | |  ____/ __ \\| |  | |  /\\|__   __|_   _/ __ \\| \\ | |" << endl;
-        tabs(1);
-        cout << "   | |  | |__) |   /  \\  |  \\| | (___ | |__ | |  | | |__) | \\  / |    /  \\  |  \\| | | |__ | |  | | |  | | /  \\  | |    | || |  | |  \\| |" << endl;
-        tabs(1);
-        cout << "   | |  |  _  /   / /\\ \\ | . ` |\\___ \\|  __|| |  | |  _  /| |\\/| |   / /\\ \\ | . ` | |  __|| |  | | |  | |/ /\\ \\ | |    | || |  | | . ` |" << endl;
-        tabs(1);
-        cout << "   | |  | | \\ \\  / ____ \\| |\\  |____) | |   | |__| | | \\ \\| |  | |  / ____ \\| |\\  | | |___| |__| | |__| / ____ \\| |   _| || |__| | |\\  |" << endl;
-        tabs(1);
-        cout << "   |_|  |_|  \\_\\/_/    \\_\\_| \\_|_____/|_|    \\____/|_|  \\_\\_|  |_| /_/    \\_\\_| \\_| |______\\___\\_\\____/_/    \\_\\_|  |_____\\____/|_| \\_|" << endl;
+        cout << "\t _______ _____            _   _  _____ ______ ____  _____  __  __            _   _   ______ ____  _    _      _______ _____ ____  _   _ " << endl;
+        cout << "\t|__   __|  __ \\     /\\   | \\ | |/ ____|  ____/ __ \\|  __ \\|  \\/  |     /\\   | \\ | | |  ____/ __ \\| |  | |  /\\|__   __|_   _/ __ \\| \\ | |" << endl;
+        cout << "\t   | |  | |__) |   /  \\  |  \\| | (___ | |__ | |  | | |__) | \\  / |    /  \\  |  \\| | | |__ | |  | | |  | | /  \\  | |    | || |  | |  \\| |" << endl;
+        cout << "\t   | |  |  _  /   / /\\ \\ | . ` |\\___ \\|  __|| |  | |  _  /| |\\/| |   / /\\ \\ | . ` | |  __|| |  | | |  | |/ /\\ \\ | |    | || |  | | . ` |" << endl;
+        cout << "\t   | |  | | \\ \\  / ____ \\| |\\  |____) | |   | |__| | | \\ \\| |  | |  / ____ \\| |\\  | | |___| |__| | |__| / ____ \\| |   _| || |__| | |\\  |" << endl;
+        cout << "\t   |_|  |_|  \\_\\/_/    \\_\\_| \\_|_____/|_|    \\____/|_|  \\_\\_|  |_| /_/    \\_\\_| \\_| |______\\___\\_\\____/_/    \\_\\_|  |_____\\____/|_| \\_|" << endl;
         newline(2);
     }
 
@@ -644,6 +580,10 @@ public:
             }
             cout << endl;
         }
+    }
+
+    void numberShow(string number) {
+        
     }
 
     void displayFullForm(string number1, string sign, string number2, string sign2, string number3)
@@ -1479,7 +1419,6 @@ public:
                 cout << "        ";
             }
             cout << " ";
-            // cout << plusMinus[j] << "     ";
             cout << radical[j + 1] << " ";
             if (number1[0] == '-')
             {
@@ -2384,18 +2323,12 @@ public:
 
     void answerFirstType()
     {
-        tabs(3);
-        cout << "    _    _ _            _                                           __        _        __            _        __  __  " << endl;
-        tabs(3);
-        cout << "   / \\  | | |  __  __  (_)_ __     _ __ __ _ _ __   __ _  ___      / /       (_)_ __  / _|     _    (_)_ __  / _| \\ \\ " << endl;
-        tabs(3);
-        cout << "  / _ \\ | | |  \\ \\/ /  | | '_ \\   | '__/ _` | '_ \\ / _` |/ _ \\    | |   _____| | '_ \\| |_    _| |_  | | '_ \\| |_   | |" << endl;
-        tabs(3);
-        cout << " / ___ \\| | |   >  <   | | | | |  | | | (_| | | | | (_| |  __/    | |  |_____| | | | |  _|  |_   _| | | | | |  _|  | |" << endl;
-        tabs(3);
-        cout << "/_/   \\_\\_|_|  /_/\\_\\  |_|_| |_|  |_|  \\__,_|_| |_|\\__, |\\___|    | |        |_|_| |_|_|( )   |_|   |_|_| |_|_|    | |" << endl;
-        tabs(3);
-        cout << "                                                   |___/           \\_\\                  |/                        /_/ " << endl;
+        cout << "\t\t\t    _    _ _            _                                           __        _        __            _        __  __  " << endl;
+        cout << "\t\t\t   / \\  | | |  __  __  (_)_ __     _ __ __ _ _ __   __ _  ___      / /       (_)_ __  / _|     _    (_)_ __  / _| \\ \\ " << endl;
+        cout << "\t\t\t  / _ \\ | | |  \\ \\/ /  | | '_ \\   | '__/ _` | '_ \\ / _` |/ _ \\    | |   _____| | '_ \\| |_    _| |_  | | '_ \\| |_   | |" << endl;
+        cout << "\t\t\t / ___ \\| | |   >  <   | | | | |  | | | (_| | | | | (_| |  __/    | |  |_____| | | | |  _|  |_   _| | | | | |  _|  | |" << endl;
+        cout << "\t\t\t/_/   \\_\\_|_|  /_/\\_\\  |_|_| |_|  |_|  \\__,_|_| |_|\\__, |\\___|    | |        |_|_| |_|_|( )   |_|   |_|_| |_|_|    | |" << endl;
+        cout << "\t\t\t                                                   |___/           \\_\\                  |/                        /_/ " << endl;
     }
 
     void findDiscriminantMessage()
@@ -2411,10 +2344,10 @@ public:
     void solveFirstType()
     {
         displayFullForm(number1, "plus", number2, "plus", number3);
-        secondStepMessage();
+        showStep(2);
         transformEquationMessage();
         displayShortenedForm(number1, "plus", number2, "0");
-        thirdStepMessage();
+        showStep(3);
         transformEquationMessage();
         displaySquaredVariableOnly(number1, "0");
         answerMessage();
@@ -2435,18 +2368,18 @@ public:
             sign2 = "minus";
         }
         displayFullForm(number1, sign, number2, sign2, number3);
-        secondStepMessage();
+        showStep(2);
         transformEquationMessage();
         displayShortenedForm(number1, sign, number2, "0");
-        thirdStepMessage();
+        showStep(3);
         transformEquationMessage();
         displaySquaredVariableOnly(number1, "0");
-        fourthStepMessage();
+        showStep(4);
         transformEquationMessage();
         displaySimpleDivision("0", number1, true);
         newline(1);
         displaySquareRightNumber("0");
-        fifthStepMessage();
+        showStep(5);
         displaySqrt("0");
         answerMessage();
         displayVariable("0");
@@ -2474,17 +2407,17 @@ public:
         num3 = -1 * num3;
 
         displayFullForm(number1, sign, number2, sign2, number3);
-        secondStepMessage();
+        showStep(2);
         transformEquationMessage();
         number3 = removeTrailingZeros(to_string(num3), 3);
         displayShortenedForm(number1, sign, number2, number3);
-        thirdStepMessage();
+        showStep(3);
         displaySimpleDivision(number3, number1, true);
         double result = num3 / num1;
         string res = removeTrailingZeros(to_string(result), 3);
         newline(1);
         displaySquareRightNumber(res);
-        fourthStepMessage();
+        showStep(4);
         if (result < 0)
         {
             displayLessThan(res);
@@ -2615,12 +2548,12 @@ public:
             sign2 = "minus";
         }
         displayFullForm(number1, sign, number2, sign2, number3);
-        firstStepMessage();
+        showStep(1);
         transformEquationMessage();
         num3 = -1 * num3;
         number3 = removeTrailingZeros(to_string(num3), 3);
         displayVariableNumber(number2, number3);
-        secondStepMessage();
+        showStep(2);
         displaySimpleDivision(number3, number2, false);
         newline(1);
         double x1 = num3 / num2;
@@ -2644,7 +2577,7 @@ public:
             sign2 = "minus";
         }
         displayFullForm(number1, sign, number2, sign2, number3);
-        firstStepMessage();
+        showStep(2);
         findDiscriminantMessage();
         number2 = removeTrailingZeros(to_string(num2), 3);
         number3 = removeTrailingZeros(to_string(num3), 3);
@@ -2652,7 +2585,7 @@ public:
         double dValue = num2 * num2 - 4 * num1 * num3;
         string dStr = removeTrailingZeros(to_string(dValue), 3);
         discriminantEqual(dStr);
-        secondStepMessage();
+        showStep(3);
         if (dValue < 0)
         {
             displayLessThan(dStr);
@@ -2684,7 +2617,7 @@ public:
             number2 = removeTrailingZeros(to_string(num2), 3);
             num1 *= 2;
             number1 = removeTrailingZeros(to_string(num1), 3);
-            thirdStepMessage();
+            showStep(4);
             displayDiscriminantSqrtNumbers(number2, dStr, number1, "1");
             newline(1);
             displayDiscriminantSqrtNumbers2(number2, dStr, number1, "2");
@@ -2708,7 +2641,7 @@ public:
             number2 = number2.substr(1);
         }
         displayFullForm(number1, sign, number2, "plus", number3);
-        secondStepMessage();
+        showStep(2);
         displayVariableNumber(number2, "0");
         newline(1);
         displaySimpleDivision("0", number2, false);
@@ -2732,16 +2665,16 @@ public:
             sign2 = "minus";
         }
         displayFullForm(number1, sign, number2, sign2, number3);
-        firstStepMessage();
+        showStep(2);
         transformEquationMessage();
         parenthesTransform(number1, sign, number2);
-        secondStepMessage();
+        showStep(3);
         displayAnswer("0", "1");
         newline(1);
         num2 *= -1;
         number2 = removeTrailingZeros(to_string(num2), 3);
         displayVariableNumber(number1, number2);
-        thirdStepMessage();
+        showStep(4);
         displaySimpleDivision(number2, number1, false);
         newline(1);
         double x2 = num2 / num1;
@@ -2793,7 +2726,7 @@ public:
     {
         int type = determineType();
         solutionMessage();
-        firstStepMessage();
+        showStep(1);
         if (type != 3)
         {
             initialEquationMessage();
