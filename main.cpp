@@ -501,29 +501,32 @@ public:
                 cout << "        ";
             }
             cout << "      ";
-            numberShow(number1, j);
+            numberShow(number1, j, true);
             cout << "      " << division[j] << "  ";
-            numberShow(number2, j);
+            numberShow(number2, j, true);
             cout << endl;
         }
     }
 
-    void numberShow(string number1, int j)
+    void numberShow(string number1, int j, bool isMinus)
     {
         initNumberCodes();
         int start = 0;
-        if (number1[0] == '-')
+        if (isMinus)
         {
-            if (j >= 2 && j <= 3)
+            if (number1[0] == '-')
             {
-                int index = j - 2;
-                cout << minus[index];
+                if (j >= 2 && j <= 3)
+                {
+                    int index = j - 2;
+                    cout << minus[index];
+                }
+                else
+                {
+                    cout << "        ";
+                }
+                start = 1;
             }
-            else
-            {
-                cout << "        ";
-            }
-            start = 1;
         }
         for (int i = start; i < number1.size(); i++)
         {
@@ -547,6 +550,45 @@ public:
                 int cur = number1[i] - '0';
                 cout << numberCodes[cur][j];
             }
+        }
+    }
+
+    void equalShow(int j)
+    {
+        if (j >= 1 && j <= 4)
+        {
+            int index = j - 1;
+            cout << equal[index];
+        }
+        else
+        {
+            cout << "        ";
+        }
+    }
+
+    void minusShow(int j)
+    {
+        if (j >= 2 && j <= 3)
+        {
+            int index = j - 2;
+            cout << minus[index];
+        }
+        else
+        {
+            cout << "        ";
+        }
+    }
+
+    void plusShow(int j)
+    {
+        if (j >= 2 && j <= 4)
+        {
+            int index = j - 2;
+            cout << plus[index];
+        }
+        else
+        {
+            cout << "       ";
         }
     }
 
@@ -582,119 +624,32 @@ public:
         for (int j = 0; j < 6; j++)
         {
             tabs(4);
-            numberShow(number1, j);
+            numberShow(number1, j, true);
             cout << variable[j] << "       ";
             if (sign == "plus")
             {
-                if (j >= 2 && j <= 4)
-                {
-                    int index = j - 2;
-                    cout << plus[index];
-                }
-                else
-                {
-                    cout << "       ";
-                }
+                plusShow(j);
             }
             else
             {
-                if (j >= 2 && j <= 3)
-                {
-                    int index = j - 2;
-                    cout << minus[index];
-                }
-                else
-                {
-                    cout << "        ";
-                }
+                minusShow(j);
             }
             cout << "       ";
-            for (int i = 0; i < number2.size(); i++)
-            {
-                if (number2[i] == '.')
-                {
-                    if (j == 4)
-                    {
-                        cout << "__ ";
-                    }
-                    else if (j == 5)
-                    {
-                        cout << "|_|";
-                    }
-                    else
-                    {
-                        cout << "   ";
-                    }
-                }
-                else
-                {
-                    int cur = number2[i] - '0';
-                    cout << numberCodes[cur][j];
-                }
-            }
-            cout << variable[j];
-            cout << "       ";
+            numberShow(number2, j, false);
+            cout << variable[j] << "       ";
             if (sign2 == "plus")
             {
-                if (j >= 2 && j <= 4)
-                {
-                    int index = j - 2;
-                    cout << plus[index];
-                }
-                else
-                {
-                    cout << "       ";
-                }
+                plusShow(j);
             }
             else
             {
-                if (j >= 2 && j <= 3)
-                {
-                    int index = j - 2;
-                    cout << minus[index];
-                }
-                else
-                {
-                    cout << "        ";
-                }
+                minusShow(j);
             }
             cout << "       ";
-            for (int i = 0; i < number3.size(); i++)
-            {
-                if (number3[i] == '.')
-                {
-                    if (j == 4)
-                    {
-                        cout << "__ ";
-                    }
-                    else if (j == 5)
-                    {
-                        cout << "|_|";
-                    }
-                    else
-                    {
-                        cout << "   ";
-                    }
-                }
-                else
-                {
-                    int cur = number3[i] - '0';
-                    cout << numberCodes[cur][j];
-                }
-            }
+            numberShow(number3, j, false);
             cout << "       ";
-            if (j >= 1 && j <= 4)
-            {
-                int index = j - 1;
-                cout << equal[index];
-            }
-            else
-            {
-                cout << "        ";
-            }
-            cout << "       ";
-            cout << numberCodes[0][j];
-            cout << endl;
+            equalShow(j);
+            cout << "       " << numberCodes[0][j] << endl;
         }
         newline(2);
     }
@@ -707,17 +662,9 @@ public:
         {
             tabs(5);
             cout << variable[j] << "    ";
-            if (j >= 1 && j <= 4)
-            {
-                int index = j - 1;
-                cout << equal[index];
-            }
-            else
-            {
-                cout << "        ";
-            }
+            equalShow(j);
             cout << "    ";
-            numberShow(number1, j);
+            numberShow(number1, j, true);
             cout << endl;
         }
         int count = 47;
@@ -757,27 +704,11 @@ public:
         {
             tabs(5);
             cout << D[j] << "    ";
-            if (j >= 1 && j <= 4)
-            {
-                int index = j - 1;
-                cout << equal[index];
-            }
-            else
-            {
-                cout << "        ";
-            }
+            equalShow(j);
             cout << "    ";
-            numberShow(number1, j);
+            numberShow(number1, j, true);
             cout << "   ";
-            if (j >= 2 && j <= 3)
-            {
-                int index = j - 2;
-                cout << minus[index];
-            }
-            else
-            {
-                cout << "        ";
-            }
+            minusShow(j);
             cout << "    " << numberCodes[4][j] << "   ";
             if (j == 2 || j == 3)
             {
@@ -787,7 +718,7 @@ public:
             {
                 cout << "     ";
             }
-            numberShow(number2, j);
+            numberShow(number2, j, true);
             cout << "    ";
             if (j == 2 || j == 3)
             {
@@ -797,7 +728,7 @@ public:
             {
                 cout << "     ";
             }
-            numberShow(number3, j);
+            numberShow(number3, j, true);
             cout << endl;
         }
     }
@@ -810,17 +741,9 @@ public:
         {
             tabs(5);
             cout << D[j] << "    ";
-            if (j >= 1 && j <= 4)
-            {
-                int index = j - 1;
-                cout << equal[index];
-            }
-            else
-            {
-                cout << "        ";
-            }
+            equalShow(j);
             cout << "    ";
-            numberShow(number1, j);
+            numberShow(number1, j, true);
             cout << endl;
         }
     }
@@ -853,36 +776,19 @@ public:
             s = " " + s;
         }
         cout << s << "2" << endl;
-        bool floatFirst = false, floatSecond = false, floatThird = false;
         for (int j = 0; j < 6; j++)
         {
             tabs(6);
-            numberShow(number1, j);
+            numberShow(number1, j, true);
             cout << variable[j];
             cout << "       ";
             if (sign == "plus")
             {
-                if (j >= 2 && j <= 4)
-                {
-                    int index = j - 2;
-                    cout << plus[index];
-                }
-                else
-                {
-                    cout << "       ";
-                }
+                plusShow(j);
             }
             else
             {
-                if (j >= 2 && j <= 3)
-                {
-                    int index = j - 2;
-                    cout << minus[index];
-                }
-                else
-                {
-                    cout << "        ";
-                }
+                minusShow(j);
             }
             cout << "       ";
             for (int i = 0; i < number2.size(); i++)
@@ -891,17 +797,9 @@ public:
                 cout << numberCodes[cur][j];
             }
             cout << variable[j] << "       ";
-            if (j >= 1 && j <= 4)
-            {
-                int index = j - 1;
-                cout << equal[index];
-            }
-            else
-            {
-                cout << "        ";
-            }
+            equalShow(j);
             cout << "      ";
-            numberShow(number3, j);
+            numberShow(number3, j, true);
             cout << endl;
         }
         newline(2);
@@ -921,17 +819,9 @@ public:
         {
             tabs(5);
             cout << variable[j] << "    ";
-            if (j >= 1 && j <= 4)
-            {
-                int index = j - 1;
-                cout << equal[index];
-            }
-            else
-            {
-                cout << "        ";
-            }
+            equalShow(j);
             cout << "      ";
-            numberShow(number1, j);
+            numberShow(number1, j, true);
             cout << endl;
         }
     }
@@ -967,18 +857,10 @@ public:
         for (int j = 0; j < 6; j++)
         {
             tabs(8);
-            numberShow(number1, j);
+            numberShow(number1, j, true);
             cout << variable[j];
             cout << "       ";
-            if (j >= 1 && j <= 4)
-            {
-                int index = j - 1;
-                cout << equal[index];
-            }
-            else
-            {
-                cout << "        ";
-            }
+            equalShow(j);
             cout << "       ";
             for (int i = 0; i < number2.size(); i++)
             {
@@ -1004,15 +886,7 @@ public:
         {
             tabs(5);
             cout << variable[j] << "    ";
-            if (j >= 1 && j <= 4)
-            {
-                int index = j - 1;
-                cout << equal[index];
-            }
-            else
-            {
-                cout << "        ";
-            }
+            equalShow(j);
             cout << "    ";
             if (j < 5)
             {
@@ -1023,7 +897,7 @@ public:
                 cout << "        ";
             }
             cout << " " << radical[j + 1] << " ";
-            numberShow(number1, j);
+            numberShow(number1, j, true);
             cout << endl;
         }
         cout << " ";
@@ -1051,28 +925,11 @@ public:
         for (int j = 0; j < 6; j++)
         {
             cout << variable[j] << "      ";
-            if (j >= 1 && j <= 4)
-            {
-                int index = j - 1;
-                cout << equal[index];
-            }
-            else
-            {
-                cout << "        ";
-            }
+            equalShow(j);
             cout << "     ";
             cout << leftParenthesses[j + 1] << "    ";
-            if (j >= 2 && j <= 3)
-            {
-                int index = j - 2;
-                cout << minus[index];
-            }
-            else
-            {
-                cout << "        ";
-            }
-            cout << " ";
-            cout << b[j] << "    ";
+            minusShow(j);
+            cout << " " << b[j] << "    ";
             if (j < 5)
             {
                 cout << plusMinus[j];
@@ -1130,80 +987,40 @@ public:
             cout << " ";
         }
         cout << rightParenthesses[0] << endl;
-        int start = 0, start2 = 0, start3 = 0;
         for (int j = 0; j < 6; j++)
         {
             cout << variable[j] << "      ";
-            if (j >= 1 && j <= 4)
-            {
-                int index = j - 1;
-                cout << equal[index];
-            }
-            else
-            {
-                cout << "        ";
-            }
+            equalShow(j);
             cout << "     ";
             cout << leftParenthesses[j + 1] << "    ";
-            numberShow(number1, j);
+            numberShow(number1, j, true);
             cout << "     ";
-            if (j >= 2 && j <= 4)
-            {
-                int index = j - 2;
-                cout << plus[index];
-            }
-            else
-            {
-                cout << "       ";
-            }
+            plusShow(j);
             cout << radical[j + 1] << "    ";
             int len = 0;
-            if (number2[0] == '-')
+            for (int i = 0; i < number2.size(); i++)
             {
-                if (j >= 2 && j <= 3)
+                if (number2[i] == '-')
                 {
-                    int index = j - 2;
-                    cout << minus[index];
+                    len += 9;
                 }
-                else
+                else if (number2[i] == '.')
                 {
-                    cout << "        ";
-                }
-                start2 = 1;
-                len += 9;
-            }
-            for (int i = start2; i < number2.size(); i++)
-            {
-                if (number2[i] == '.')
-                {
-                    if (j == 4)
-                    {
-                        cout << "__ ";
-                    }
-                    else if (j == 5)
-                    {
-                        cout << "|_|";
-                    }
-                    else
-                    {
-                        cout << "   ";
-                    }
                     len += 5;
                 }
                 else
                 {
-                    int cur = number2[i] - '0';
-                    cout << numberCodes[cur][j];
                     len += 6;
                 }
             }
+            numberShow(number2, j, true);
             for (int i = 0; i < 26 - len; i++)
             {
                 cout << " ";
             }
             cout << rightParenthesses[j + 1];
             cout << "   " << division[j];
-            numberShow(number3, j);
+            numberShow(number3, j, true);
             cout << endl;
         }
         cout << "       " << type;
@@ -1254,75 +1071,36 @@ public:
         for (int j = 0; j < 6; j++)
         {
             cout << variable[j] << "      ";
-            if (j >= 1 && j <= 4)
-            {
-                int index = j - 1;
-                cout << equal[index];
-            }
-            else
-            {
-                cout << "        ";
-            }
+            equalShow(j);
             cout << "     ";
             cout << leftParenthesses[j + 1] << "    ";
-            numberShow(number1, j);
+            numberShow(number1, j, true);
             cout << "     ";
-            if (j >= 2 && j <= 3)
-            {
-                int index = j - 2;
-                cout << minus[index];
-            }
-            else
-            {
-                cout << "        ";
-            }
+            minusShow(j);
             cout << radical[j + 1] << "    ";
             int len = 0;
-            if (number2[0] == '-')
+            for (int i = 0; i < number2.size(); i++)
             {
-                if (j >= 2 && j <= 3)
+                if (number2[i] == '-')
                 {
-                    int index = j - 2;
-                    cout << minus[index];
+                    len += 9;
                 }
-                else
+                else if (number2[i] == '.')
                 {
-                    cout << "        ";
-                }
-                start2 = 1;
-                len += 9;
-            }
-            for (int i = start2; i < number2.size(); i++)
-            {
-                if (number2[i] == '.')
-                {
-                    if (j == 4)
-                    {
-                        cout << "__ ";
-                    }
-                    else if (j == 5)
-                    {
-                        cout << "|_|";
-                    }
-                    else
-                    {
-                        cout << "   ";
-                    }
                     len += 5;
                 }
                 else
                 {
-                    int cur = number2[i] - '0';
-                    cout << numberCodes[cur][j];
                     len += 6;
                 }
             }
+            numberShow(number2, j, true);
             for (int i = 0; i < 26 - len; i++)
             {
                 cout << " ";
             }
             cout << rightParenthesses[j + 1] << "   " << division[j];
-            numberShow(number3, j);
+            numberShow(number3, j, true);
             cout << endl;
         }
         cout << "       " << type;
@@ -1347,17 +1125,9 @@ public:
         {
             tabs(5);
             cout << variable[j] << "    ";
-            if (j >= 1 && j <= 4)
-            {
-                int index = j - 1;
-                cout << equal[index];
-            }
-            else
-            {
-                cout << "        ";
-            }
+            equalShow(j);
             cout << "      ";
-            numberShow(number1, j);
+            numberShow(number1, j, true);
             cout << endl;
         }
     }
@@ -1367,7 +1137,7 @@ public:
         for (int j = 0; j < 6; j++)
         {
             tabs(5);
-            numberShow(number1, j);
+            numberShow(number1, j, true);
             cout << "   " << lessThan[j] << "    ";
             cout << numberCodes[0][j] << "        " << hence[j];
             cout << endl;
@@ -1415,17 +1185,9 @@ public:
         for (int j = 0; j < 6; j++)
         {
             cout << variable[j] << "     ";
-            numberShow(number1, j);
+            numberShow(number1, j, true);
             cout << "     ";
-            if (j >= 1 && j <= 4)
-            {
-                int index = j - 1;
-                cout << equal[index];
-            }
-            else
-            {
-                cout << "        ";
-            }
+            equalShow(j);
             cout << numberCodes[0][j] << endl;
         }
     }
@@ -1438,72 +1200,22 @@ public:
             tabs(4);
             cout << variable[j] << "   ";
             cout << leftParenthesses[j + 1] << "  ";
-            numberShow(number1, j);
+            numberShow(number1, j, true);
             cout << " ";
             cout << variable[j] << "     ";
             if (sign == "plus")
             {
-                if (j >= 2 && j <= 4)
-                {
-                    int index = j - 2;
-                    cout << plus[index];
-                }
-                else
-                {
-                    cout << "       ";
-                }
+                plusShow(j);
             }
             else
             {
-                if (j >= 2 && j <= 3)
-                {
-                    int index = j - 2;
-                    cout << minus[index];
-                }
-                else
-                {
-                    cout << "        ";
-                }
+                minusShow(j);
             }
             cout << "      ";
-            for (int i = 0; i < number2.size(); i++)
-            {
-                if (number2[i] == '.')
-                {
-                    if (j == 4)
-                    {
-                        cout << "__ ";
-                    }
-                    else if (j == 5)
-                    {
-                        cout << "|_|";
-                    }
-                    else
-                    {
-                        cout << "   ";
-                    }
-                }
-                else
-                {
-                    int cur = number2[i] - '0';
-                    cout << numberCodes[cur][j];
-                }
-            }
-            cout << "  ";
-            cout << rightParenthesses[j + 1];
-            cout << "     ";
-            if (j >= 1 && j <= 4)
-            {
-                int index = j - 1;
-                cout << equal[index];
-            }
-            else
-            {
-                cout << "        ";
-            }
-            cout << "  ";
-            cout << numberCodes[0][j];
-            cout << endl;
+            numberShow(number2, j, false);
+            cout << "  " << rightParenthesses[j + 1] << "     ";
+            equalShow(j);
+            cout << "  " << numberCodes[0][j] << endl;
         }
         int count = 10;
         tabs(4);
@@ -1558,8 +1270,7 @@ public:
         {
             cout << " ";
         }
-        cout << rightParenthesses[7];
-        cout << endl;
+        cout << rightParenthesses[7] << endl;
     }
 
     void discriminantZeroFormula()
@@ -1568,30 +1279,11 @@ public:
         {
             tabs(5);
             cout << variable[j] << "    ";
-            if (j >= 1 && j <= 4)
-            {
-                int index = j - 1;
-                cout << equal[index];
-            }
-            else
-            {
-                cout << "        ";
-            }
+            equalShow(j);
             cout << "    ";
-            if (j >= 2 && j <= 3)
-            {
-                int index = j - 2;
-                cout << minus[index];
-            }
-            else
-            {
-                cout << "        ";
-            }
-            cout << "     ";
-            cout << b[j] << "     ";
-            cout << division[j] << "    ";
-            cout << numberCodes[2][j];
-            cout << a[j] << endl;
+            minusShow(j);
+            cout << "     " << b[j] << "     " << division[j] << "    ";
+            cout << numberCodes[2][j] << a[j] << endl;
         }
     }
 
@@ -1720,19 +1412,11 @@ public:
         for (int j = 0; j < 6; j++)
         {
             tabs(5);
-            numberShow(number1, j);
+            numberShow(number1, j, true);
             cout << variable[j] << "    ";
-            if (j >= 1 && j <= 4)
-            {
-                int index = j - 1;
-                cout << equal[index];
-            }
-            else
-            {
-                cout << "        ";
-            }
+            equalShow(j);
             cout << "     ";
-            numberShow(number2, j);
+            numberShow(number2, j, true);
             cout << endl;
         }
     }
