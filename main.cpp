@@ -182,49 +182,20 @@ public:
     {
         for (int i = 0; i < 6; i++)
         {
-            int j = 0;
-            while (j <= 140)
+            if (i == 3)
             {
-                if (j == 0 || j == 15 || j == 42 || j == 71 || j == 140)
+                if (lang)
                 {
-                    cout << "|";
-                    j++;
-                    continue;
+                    cout << "|     ÒÈÏ      |      ÏÀÐÀÌÅÒÐÛ           |          ÔÎÐÌÀ             |             ÐÅØÅÍÈÅ                                                |" << endl;
                 }
-                if (j == 6 && i == 3)
+                else
                 {
-                    lang ? cout << "ÒÈÏ" : cout << "TYPE";
-                    lang ? j += 3 : j += 4;
-                    continue;
+                    cout << "|     TYPE     |      PARAMETERS          |          FORM              |             SOLUTION                                               |" << endl;
                 }
-                if (j == 22 && i == 3)
-                {
-                    lang ? cout << "ÏÀÐÀÌÅÒÐÛ" : cout << "PARAMETERS";
-                    lang ? j += 9 : j += 10;
-                    continue;
-                }
-                if (j == 53 && i == 3)
-                {
-                    lang ? cout << "ÔÎÐÌÀ" : cout << "FORM";
-                    lang ? j += 5 : j += 4;
-                    continue;
-                }
-                if (j == 85 && i == 3)
-                {
-                    lang ? cout << "ÐÅØÅÍÈÅ" : cout << "SOLUTION";
-                    lang ? j += 7 : j += 8;
-                    continue;
-                }
-                if (j < 6 || j < 15 || j < 22 || j < 42 || j < 53 || j < 70 || j < 85 || j < 140)
-                {
-                    cout << " ";
-                    j++;
-                    continue;
-                }
+                continue;
             }
-            cout << endl;
+            cout << "|              |                          |                            |                                                                    |" << endl;
         }
-        showCharDivider(140, '~');
     }
 
     void showEquationInfo()
@@ -245,6 +216,7 @@ public:
         }
         showCharDivider(140, '~');
         formatEquationColumnHeader(russian);
+        showCharDivider(140, '~');
         if (russian)
         {
             formatEquationTable("1", "a=0,b=0,c=0", "0 * x^2 + 0 * x + 0 = 0", "âñå x â ïðîìåæóòêå(-inf, +inf)");
@@ -333,24 +305,15 @@ public:
         }
     }
 
-    void newline(int n)
-    {
-        for (int i = 0; i < n; i++)
-        {
-            cout << "\n";
-        }
-    }
-
     void solutionMessage()
     {
-        newline(3);
-        cout << "\t\t\t\t\t\t\t  _____  ____  _     _    _ _______ _____ ____  _   _ " << endl;
+        cout << "\n\n\n\t\t\t\t\t\t\t  _____  ____  _     _    _ _______ _____ ____  _   _ " << endl;
         cout << "\t\t\t\t\t\t\t / ____|/ __ \\| |   | |  | |__   __|_   _/ __ \\| \\ | |" << endl;
         cout << "\t\t\t\t\t\t\t| (___ | |  | | |   | |  | |  | |    | || |  | |  \\| |" << endl;
         cout << "\t\t\t\t\t\t\t \\___ \\| |  | | |   | |  | |  | |    | || |  | | . ` |" << endl;
         cout << "\t\t\t\t\t\t\t ____) | |__| | |___| |__| |  | |   _| || |__| | |\\  |" << endl;
-        cout << "\t\t\t\t\t\t\t|_____/ \\____/|______\\____/   |_|  |_____\\____/|_| \\_|" << endl;
-        newline(1);
+        cout << "\t\t\t\t\t\t\t|_____/ \\____/|______\\____/   |_|  |_____\\____/|_| \\_|"
+             << "\n\n";
     }
 
     void initialEquationMessage()
@@ -362,8 +325,8 @@ public:
         cout << "\t   | |   | | | ||  __/ |  || | | || || |_ | || (_| || | |  __/| (_| || |_| || (_| || |_ | || (_) || | | | _ " << endl;
         cout << "\t   |_|   |_| |_| \\___|  |_||_| |_||_| \\__||_| \\__,_||_|  \\___| \\__, | \\__,_| \\__,_| \\__||_| \\___/ |_| |_|(_)" << endl;
         cout << "\t                                                                 | |                                       " << endl;
-        cout << "\t                                                                 |_|                                       " << endl;
-        newline(1);
+        cout << "\t                                                                 |_|                                       "
+             << "\n\n";
     }
 
     void showStep(int n)
@@ -383,8 +346,8 @@ public:
         cout << "   /  \\  |  \\| | (___  \\ \\  /\\  / /| |__  | |__) |" << endl;
         cout << "  / /\\ \\ | . ` |\\___ \\  \\ \\/  \\/ / |  __| |  _  / " << endl;
         cout << " / ____ \\| |\\  |____) |  \\  /\\  /  | |____| | \\ \\ " << endl;
-        cout << "/_/    \\_\\_| \\_|_____/    \\/  \\/   |______|_|  \\_\"" << endl;
-        newline(2);
+        cout << "/_/    \\_\\_| \\_|_____/    \\/  \\/   |______|_|  \\_\""
+             << "\n\n\n";
     }
 
     void noSolution(int tabsNumber)
@@ -404,8 +367,8 @@ public:
         cout << "\t   | |  | |__) |   /  \\  |  \\| | (___ | |__ | |  | | |__) | \\  / |    /  \\  |  \\| | | |__ | |  | | |  | | /  \\  | |    | || |  | |  \\| |" << endl;
         cout << "\t   | |  |  _  /   / /\\ \\ | . ` |\\___ \\|  __|| |  | |  _  /| |\\/| |   / /\\ \\ | . ` | |  __|| |  | | |  | |/ /\\ \\ | |    | || |  | | . ` |" << endl;
         cout << "\t   | |  | | \\ \\  / ____ \\| |\\  |____) | |   | |__| | | \\ \\| |  | |  / ____ \\| |\\  | | |___| |__| | |__| / ____ \\| |   _| || |__| | |\\  |" << endl;
-        cout << "\t   |_|  |_|  \\_\\/_/    \\_\\_| \\_|_____/|_|    \\____/|_|  \\_\\_|  |_| /_/    \\_\\_| \\_| |______\\___\\_\\____/_/    \\_\\_|  |_____\\____/|_| \\_|" << endl;
-        newline(2);
+        cout << "\t   |_|  |_|  \\_\\/_/    \\_\\_| \\_|_____/|_|    \\____/|_|  \\_\\_|  |_| /_/    \\_\\_| \\_| |______\\___\\_\\____/_/    \\_\\_|  |_____\\____/|_| \\_|\n\n"
+             << endl;
     }
 
     void displaySimpleDivision(string number1, string number2, bool squared)
@@ -413,27 +376,13 @@ public:
         initNumberCodes();
         if (squared)
         {
-            int count = 48;
-            string s = "";
-            for (int i = 0; i < count; i++)
-            {
-                s = " " + s;
-            }
-            cout << s << "2" << endl;
+            displayPowerOfTwo(48);
         }
         for (int j = 0; j < 6; j++)
         {
             tabs(5);
             cout << variable[j] << "    ";
-            if (j >= 1 && j <= 4)
-            {
-                int index = j - 1;
-                cout << equal[index];
-            }
-            else
-            {
-                cout << "        ";
-            }
+            equalShow(j);
             cout << "      ";
             numberShow(number1, j, true);
             cout << "      " << division[j] << "  ";
@@ -450,15 +399,7 @@ public:
         {
             if (number1[0] == '-')
             {
-                if (j >= 2 && j <= 3)
-                {
-                    int index = j - 2;
-                    cout << minus[index];
-                }
-                else
-                {
-                    cout << "        ";
-                }
+                (j >= 2 && j <= 3) ? cout << minus[j - 2] : cout << "        ";
                 start = 1;
             }
         }
@@ -481,66 +422,49 @@ public:
             }
             else
             {
-                int cur = number1[i] - '0';
-                cout << numberCodes[cur][j];
+                cout << numberCodes[number1[i] - '0'][j];
             }
         }
     }
 
     void equalShow(int j)
     {
-        if (j >= 1 && j <= 4)
-        {
-            int index = j - 1;
-            cout << equal[index];
-        }
-        else
-        {
-            cout << "        ";
-        }
+        (j >= 1 && j <= 4) ? cout << equal[j - 1] : cout << "        ";
     }
 
     void minusShow(int j)
     {
-        if (j >= 2 && j <= 3)
-        {
-            int index = j - 2;
-            cout << minus[index];
-        }
-        else
-        {
-            cout << "        ";
-        }
+        (j >= 2 && j <= 3) ? cout << minus[j - 2] : cout << "        ";
     }
 
     void plusShow(int j)
     {
-        if (j >= 2 && j <= 4)
-        {
-            int index = j - 2;
-            cout << plus[index];
-        }
-        else
-        {
-            cout << "       ";
-        }
+        (j >= 2 && j <= 4) ? cout << plus[j - 2] : cout << "       ";
     }
 
-    int increaseCount(string number, int param1, int param2, int param3) {
+    int increaseCount(string number, int param1, int param2, int param3)
+    {
         int count = 0;
-        for (int i = 0; i < number.size(); i++) {
-            if (number[i] == '-') {
+        for (int i = 0; i < number.size(); i++)
+        {
+            if (number[i] == '-')
+            {
                 count += param1;
-            } else if (number[i] == '.') {
+            }
+            else if (number[i] == '.')
+            {
                 count += param2;
-            } else {
+            }
+            else
+            {
                 count += param3;
             }
         }
         return count;
     }
 
-    void stepBlock(int stepNumber) {
+    void stepBlock(int stepNumber)
+    {
         showStep(stepNumber);
         transformEquationMessage();
     }
@@ -556,30 +480,15 @@ public:
     void displayFullForm(string number1, string sign, string number2, string sign2, string number3, bool full, bool square)
     {
         initNumberCodes();
-        int count = 40;
-        for (int i = 0; i < number1.size(); i++)
-        {
-            if (number1[i] == '-')
-            {
-                count += 9;
-            }
-            else if (number1[i] == '.')
-            {
-                count += 2;
-            }
-            else
-            {
-                int cur = number1[i] - '0';
-                count += numberCodes[cur][0].size();
-            }
-        }
+        int count = 40 + increaseCount(number1, 9, 2, 6);
         displayPowerOfTwo(count);
         for (int j = 0; j < 6; j++)
         {
             tabs(4);
             numberShow(number1, j, true);
             cout << variable[j] << "       ";
-            if (square) {  // form: number1 * x^2 = number2
+            if (square)
+            { // form: number1 * x^2 = number2
                 equalShow(j);
                 (number2[0] == '-') ? numberShow(number2, j, true) : numberShow(number2, j, false);
                 cout << endl;
@@ -589,7 +498,8 @@ public:
             cout << "       ";
             numberShow(number2, j, false);
             cout << variable[j] << "       ";
-            if (!full) {
+            if (!full)
+            {
                 equalShow(j);
                 (number3[0] == '-') ? numberShow(number3, j, true) : numberShow(number3, j, false);
                 cout << endl;
@@ -602,7 +512,7 @@ public:
             equalShow(j);
             cout << "       " << numberCodes[0][j] << endl;
         }
-        newline(2);
+        cout << "\n\n";
     }
 
     void displayAnswer(string number1, string order)
@@ -619,14 +529,13 @@ public:
         }
         for (int i = 0; i < 47; i++)
         {
-            cout << " ";
+            (i == 46) ? cout << " " << order << "\n\n" : cout << " ";
         }
-        cout << order << endl;
     }
 
     void discriminantFind(string number1, string number2, string number3)
     { // number1: b; number2: a, number3: c
-        newline(1);
+        cout << "\n";
         initNumberCodes();
         int count = 64 + increaseCount(number1, 9, 5, 6);
         displayPowerOfTwo(count);
@@ -640,24 +549,10 @@ public:
             cout << "   ";
             minusShow(j);
             cout << "    " << numberCodes[4][j] << "   ";
-            if (j == 2 || j == 3)
-            {
-                cout << multiply[j - 2] << "   ";
-            }
-            else
-            {
-                cout << "     ";
-            }
+            (j == 2 || j == 3) ? cout << multiply[j - 2] << "   " : cout << "     ";
             numberShow(number2, j, true);
             cout << "    ";
-            if (j == 2 || j == 3)
-            {
-                cout << multiply[j - 2] << "   ";
-            }
-            else
-            {
-                cout << "     ";
-            }
+            (j == 2 || j == 3) ? cout << multiply[j - 2] << "   " : cout << "     ";
             numberShow(number3, j, true);
             cout << endl;
         }
@@ -682,9 +577,8 @@ public:
         initNumberCodes();
         for (int i = 0; i < 71; i++)
         {
-            cout << " ";
+            (i == 70) ? cout << " " << radical[0] << "\n" : cout << " ";
         }
-        cout << radical[0] << endl;
         for (int j = 0; j < 6; j++)
         {
             tabs(5);
@@ -816,7 +710,7 @@ public:
         number3 = removeTrailingZeros(to_string(parameters[2]), 3);
         num1 = params[0], num2 = params[1], num3 = params[2];
     }
-    
+
     void parenthesTransform(string number1, string sign, string number2)
     {
         for (int j = 0; j < 6; j++)
@@ -832,21 +726,18 @@ public:
             equalShow(j);
             cout << "  " << numberCodes[0][j] << endl;
         }
-        int count = 10;
         tabs(4);
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < 10; i++)
         {
-            cout << " ";
+            (i == 9) ? cout << " " << leftParenthesses[7] : cout << " ";
         }
-        cout << leftParenthesses[7];
-        count = 3 + increaseCount(number1, 7, 4, 6);
+        int count = 13 + increaseCount(number1, 7, 4, 6);
         (sign == "plus") ? count += 29 : count += 30;
         count += increaseCount(number2, 7, 4, 6);
         for (int i = 0; i < count + 3; i++)
         {
-            cout << " ";
+            (i == count + 2) ? cout << " " << rightParenthesses[7] << "\n" : cout << " ";
         }
-        cout << rightParenthesses[7] << endl;
     }
 
     void discriminantZeroFormula()
@@ -912,7 +803,6 @@ public:
         displayFullForm(number1, "plus", "0", "plus", "0", false, true);
         stepBlock(4);
         displaySimpleDivision("0", number1, true);
-        newline(1);
         displayFullForm("1", "plus", "0", "plus", "0", false, true);
         showStep(5);
         displaySqrt("0");
@@ -947,16 +837,12 @@ public:
         displaySimpleDivision(number3, number1, true);
         double result = num3 / num1;
         string res = removeTrailingZeros(to_string(result), 3);
-        newline(1);
         displayFullForm("1", "plus", res, "plus", "0", false, true);
         showStep(4);
         if (result < 0)
         {
             displayLessThan(res);
             noSolution(4);
-            newline(2);
-            answerMessage();
-            noSolution(1);
         }
         else
         {
@@ -965,7 +851,6 @@ public:
             double x1 = sqrt(result), x2 = -x1;
             string x1Str = removeTrailingZeros(to_string(x1), 3), x2Str = removeTrailingZeros(to_string(x2), 3);
             displayAnswer(x1Str, "1");
-            newline(1);
             displayAnswer(x2Str, "2");
         }
     }
@@ -1003,7 +888,6 @@ public:
         displayVariableNumber(number2, number3);
         showStep(2);
         displaySimpleDivision(number3, number2, false);
-        newline(1);
         double x1 = num3 / num2;
         string x1Str = removeTrailingZeros(to_string(x1), 3);
         displayAnswer(x1Str, "1");
@@ -1038,18 +922,13 @@ public:
         {
             displayLessThan(dStr);
             noSolution(4);
-            newline(2);
-            answerMessage();
-            noSolution(1);
         }
         else if (dValue == 0)
         {
             discriminantZeroFormula();
-            newline(1);
             displaySimpleDivision(number2, number1, false);
             double result = num2 / num1;
             string xStr = removeTrailingZeros(to_string(result), 3);
-            newline(1);
             displayVariable(xStr);
             answerMessage();
             displayVariable(xStr);
@@ -1059,13 +938,11 @@ public:
             displayDiscriminantSqrt();
             showStep(4);
             displayDiscriminantSqrtNumbers(number2, dStr, number1, "1", "plus");
-            newline(1);
             displayDiscriminantSqrtNumbers(number2, dStr, number1, "2", "minus");
             double x1 = (num2 + sqrt(dValue)) / num1, x2 = (num2 - sqrt(dValue)) / num2;
             string x1Str = removeTrailingZeros(to_string(x1), 3), x2Str = removeTrailingZeros(to_string(x2), 3);
             answerMessage();
             displayAnswer(x1Str, "1");
-            newline(1);
             displayAnswer(x2Str, "2");
         }
     }
@@ -1080,10 +957,7 @@ public:
         displayFullForm(number1, sign, number2, "plus", number3, true, false);
         showStep(2);
         displayVariableNumber(number2, "0");
-        newline(1);
         displaySimpleDivision("0", number2, false);
-        newline(1);
-        displayVariable("0");
         answerMessage();
         displayVariable("0");
     }
@@ -1105,18 +979,15 @@ public:
         parenthesTransform(number1, sign, number2);
         showStep(3);
         displayAnswer("0", "1");
-        newline(1);
         num2 *= -1, number2 = removeTrailingZeros(to_string(num2), 3);
         displayVariableNumber(number1, number2);
         showStep(4);
         displaySimpleDivision(number2, number1, false);
-        newline(1);
         double x2 = num2 / num1;
         string x1Str = removeTrailingZeros(to_string(x2), 3);
         displayAnswer(x1Str, "2");
         answerMessage();
         displayAnswer("0", "1");
-        newline(1);
         displayAnswer(x1Str, "2");
     }
 
