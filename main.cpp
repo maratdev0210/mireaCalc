@@ -293,52 +293,17 @@ class Equation
 {
 private:
     vector<double> parameters;
-    string number1;
-    string number2;
-    string number3;
-
-    double num1;
-    double num2;
-    double num3;
+    string number1, number2, number3;
+    double num1, num2, num3;
+    string sign = "plus", sign2 = "plus";
 
     string removeTrailingZeros(string number, int maxLen)
     {
-        // find the dot position
-        int dot = 0;
-        string current = "";
-        for (int i = 0; i < number.size(); i++)
+        string current = number.substr(0, number.find_last_not_of('0') + 1);
+        if (number.find('.') == current.size() - 1)
         {
-            current += number[i];
-            if (number[i] == '.')
-            {
-                dot = i;
-                break;
-            }
+            current = current.substr(0, current.size() - 1);
         }
-        int cnt = 0;
-        for (int i = dot + 1; i < number.size(); i++)
-        {
-            cnt += 1;
-            current += number[i];
-            if (cnt >= maxLen)
-            {
-                break;
-            }
-        }
-        int toRemove = 0;
-        for (int i = current.size() - 1; i >= dot; i--)
-        {
-            if (current[i] != '0')
-            {
-                break;
-            }
-            toRemove += 1;
-        }
-        if (toRemove == maxLen)
-        {
-            toRemove++;
-        }
-        current = current.substr(0, current.size() - toRemove);
         return current;
     }
 
@@ -561,7 +526,34 @@ public:
         }
     }
 
-    void displayFullForm(string number1, string sign, string number2, string sign2, string number3)
+    int increaseCount(string number, int param1, int param2, int param3) {
+        int count = 0;
+        for (int i = 0; i < number.size(); i++) {
+            if (number[i] == '-') {
+                count += param1;
+            } else if (number[i] == '.') {
+                count += param2;
+            } else {
+                count += param3;
+            }
+        }
+        return count;
+    }
+
+    void stepBlock(int stepNumber) {
+        showStep(stepNumber);
+        transformEquationMessage();
+    }
+
+    void displayPowerOfTwo(int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            (i == count - 1) ? cout << " 2\n" : cout << " ";
+        }
+    }
+
+    void displayFullForm(string number1, string sign, string number2, string sign2, string number3, bool full, bool square)
     {
         initNumberCodes();
         int count = 40;
@@ -581,22 +573,28 @@ public:
                 count += numberCodes[cur][0].size();
             }
         }
-        string s = "";
-        for (int i = 0; i < count; i++)
-        {
-            s = " " + s;
-        }
-        cout << s << "2" << endl;
-        bool floatFirst = false, floatSecond = false, floatThird = false;
+        displayPowerOfTwo(count);
         for (int j = 0; j < 6; j++)
         {
             tabs(4);
             numberShow(number1, j, true);
             cout << variable[j] << "       ";
+            if (square) {  // form: number1 * x^2 = number2
+                equalShow(j);
+                (number2[0] == '-') ? numberShow(number2, j, true) : numberShow(number2, j, false);
+                cout << endl;
+                continue;
+            }
             (sign == "plus") ? plusShow(j) : minusShow(j);
             cout << "       ";
             numberShow(number2, j, false);
             cout << variable[j] << "       ";
+            if (!full) {
+                equalShow(j);
+                (number3[0] == '-') ? numberShow(number3, j, true) : numberShow(number3, j, false);
+                cout << endl;
+                continue;
+            }
             (sign2 == "plus") ? plusShow(j) : minusShow(j);
             cout << "       ";
             numberShow(number3, j, false);
@@ -619,8 +617,7 @@ public:
             numberShow(number1, j, true);
             cout << endl;
         }
-        int count = 47;
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < 47; i++)
         {
             cout << " ";
         }
@@ -631,27 +628,8 @@ public:
     { // number1: b; number2: a, number3: c
         newline(1);
         initNumberCodes();
-        int count = 64;
-        for (int i = 0; i < number1.size(); i++)
-        {
-            if (number1[i] == '.')
-            {
-                count += 5;
-            }
-            else if (number1[i] == '-')
-            {
-                count += 9;
-            }
-            else
-            {
-                count += 6;
-            }
-        }
-        for (int i = 0; i < count; i++)
-        {
-            cout << " ";
-        }
-        cout << "2" << endl;
+        int count = 64 + increaseCount(number1, 9, 5, 6);
+        displayPowerOfTwo(count);
         for (int j = 0; j < 6; j++)
         {
             tabs(5);
@@ -699,125 +677,10 @@ public:
         }
     }
 
-    void displayShortenedForm(string number1, string sign, string number2, string number3) // number3 is the right part of the equation
-    {
-        initNumberCodes();
-        int count = 56;
-        for (int i = 0; i < number1.size(); i++)
-        {
-            if (number1[i] == '-')
-            {
-                count += 9;
-            }
-            else if (number1[i] == '.')
-            {
-                count += 2;
-            }
-            else
-            {
-                int cur = number1[i] - '0';
-                count += numberCodes[cur][0].size();
-            }
-        }
-        string s = "";
-        for (int i = 0; i < count; i++)
-        {
-            s = " " + s;
-        }
-        cout << s << "2" << endl;
-        for (int j = 0; j < 6; j++)
-        {
-            tabs(6);
-            numberShow(number1, j, true);
-            cout << variable[j] << "       ";
-            (sign == "plus") ? plusShow(j) : minusShow(j);
-            cout << "       ";
-            for (int i = 0; i < number2.size(); i++)
-            {
-                int cur = number2[i] - '0';
-                cout << numberCodes[cur][j];
-            }
-            cout << variable[j] << "       ";
-            equalShow(j);
-            cout << "      ";
-            numberShow(number3, j, true);
-            cout << endl;
-        }
-        newline(2);
-    }
-
-    void displaySquareRightNumber(string number1)
-    { // number1 is the right part of the equation
-        initNumberCodes();
-        int count = 48;
-        string s = "";
-        for (int i = 0; i < count; i++)
-        {
-            s = " " + s;
-        }
-        cout << s << "2" << endl;
-        for (int j = 0; j < 6; j++)
-        {
-            tabs(5);
-            cout << variable[j] << "    ";
-            equalShow(j);
-            cout << "      ";
-            numberShow(number1, j, true);
-            cout << endl;
-        }
-    }
-
-    void displaySquaredVariableOnly(string number1, string number2) // number2 is the right part of the equation
-    {
-        initNumberCodes();
-        int count = 0;
-        for (int i = 0; i < number1.size(); i++)
-        {
-            if (number1[i] == '-')
-            {
-                count += 9;
-            }
-            else if (number1[i] == '.')
-            {
-                count += 2;
-            }
-            else
-            {
-                int cur = number1[i] - '0';
-                count += numberCodes[cur][0].size();
-            }
-        }
-        count += 8;  // for x variable
-        count += 64; // for tabs
-        string s = "";
-        for (int i = 0; i < count; i++)
-        {
-            s = " " + s;
-        }
-        cout << s << "2" << endl;
-        for (int j = 0; j < 6; j++)
-        {
-            tabs(8);
-            numberShow(number1, j, true);
-            cout << variable[j];
-            cout << "       ";
-            equalShow(j);
-            cout << "       ";
-            for (int i = 0; i < number2.size(); i++)
-            {
-                int cur = number2[i] - '0';
-                cout << numberCodes[cur][j];
-            }
-            cout << endl;
-        }
-        newline(2);
-    }
-
     void displaySqrt(string number1)
     {
         initNumberCodes();
-        int count = 71;
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < 71; i++)
         {
             cout << " ";
         }
@@ -828,35 +691,24 @@ public:
             cout << variable[j] << "    ";
             equalShow(j);
             cout << "    ";
-            if (j < 5)
-            {
-                cout << plusMinus[j];
-            }
-            else
-            {
-                cout << "        ";
-            }
+            (j < 5) ? cout << plusMinus[j] : cout << "        ";
             cout << " " << radical[j + 1] << " ";
             numberShow(number1, j, true);
             cout << endl;
         }
-        cout << " ";
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < 73; i++)
         {
-            cout << " ";
+            (i == 72) ? cout << " " << radical[7] << "\n" : cout << " ";
         }
-        cout << radical[7] << endl;
     }
 
     void displayDiscriminantSqrt()
     {
         cout << "                          " << leftParenthesses[0];
-        int count = 34;
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < 34; i++)
         {
-            cout << " ";
+            (i == 33) ? cout << " " << radical[0] << "       " << rightParenthesses[0] << "\n" : cout << " ";
         }
-        cout << radical[0] << "       " << rightParenthesses[0] << endl;
         for (int j = 0; j < 6; j++)
         {
             cout << variable[j] << "      ";
@@ -864,57 +716,29 @@ public:
             cout << "     " << leftParenthesses[j + 1] << "    ";
             minusShow(j);
             cout << " " << b[j] << "    ";
-            if (j < 5)
-            {
-                cout << plusMinus[j];
-            }
-            else
-            {
-                cout << "        ";
-            }
-            cout << "  " << radical[j + 1] << "  " << D[j] << " ";
-            cout << "                  ";
-            cout << rightParenthesses[j + 1] << "     ";
-            cout << division[j] << "     " << numberCodes[2][j] << a[j];
-            cout << endl;
+            (j < 5) ? cout << plusMinus[j] : cout << "        ";
+            cout << "  " << radical[j + 1] << "  " << D[j] << "                   " << rightParenthesses[j + 1] << "     ";
+            cout << division[j] << "     " << numberCodes[2][j] << a[j] << endl;
         }
         cout << "                          " << leftParenthesses[7];
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < 34; i++)
         {
-            cout << " ";
+            (i == 33) ? cout << " " << radical[7] : cout << " ";
         }
-        cout << radical[7];
         for (int i = 0; i < 30; i++)
         {
-            cout << " ";
+            (i == 29) ? cout << " " << rightParenthesses[7] << "\n" : cout << " ";
         }
-        cout << rightParenthesses[7] << endl;
     }
 
     void displayDiscriminantSqrtNumbers(string number1, string number2, string number3, string type, string sign)
     {
         cout << "                       " << leftParenthesses[0];
-        int count = 18;
-        for (int i = 0; i < number1.size(); i++)
+        int count = 18 + increaseCount(number1, 7, 5, 6);
+        for (int i = 0; i < count + 1; i++)
         {
-            if (number1[i] == '-')
-            {
-                count += 7;
-            }
-            else if (number1[i] == '.')
-            {
-                count += 5;
-            }
-            else
-            {
-                count += 6;
-            }
+            (i == count - 1) ? cout << radical[0] << "       " << rightParenthesses[0] << "\n" : cout << " ";
         }
-        for (int i = 0; i < count; i++)
-        {
-            cout << " ";
-        }
-        cout << radical[0] << "       " << rightParenthesses[0] << endl;
         for (int j = 0; j < 6; j++)
         {
             cout << variable[j] << "      ";
@@ -924,22 +748,7 @@ public:
             cout << "     ";
             (sign == "plus") ? plusShow(j) : minusShow(j);
             cout << radical[j + 1] << "    ";
-            int len = 0;
-            for (int i = 0; i < number2.size(); i++)
-            {
-                if (number2[i] == '-')
-                {
-                    len += 9;
-                }
-                else if (number2[i] == '.')
-                {
-                    len += 5;
-                }
-                else
-                {
-                    len += 6;
-                }
-            }
+            int len = increaseCount(number2, 9, 5, 6);
             numberShow(number2, j, true);
             for (int i = 0; i < 26 - len; i++)
             {
@@ -949,24 +758,20 @@ public:
             numberShow(number3, j, true);
             cout << endl;
         }
-        cout << "       " << type;
-        cout << "                   " << leftParenthesses[7];
-        for (int i = 0; i < count - 2; i++)
+        cout << "       " << type << "                   " << leftParenthesses[7];
+        for (int i = 0; i < count - 1; i++)
         {
-            cout << " ";
+            (i == count - 2) ? cout << radical[7] : cout << " ";
         }
-        cout << radical[7];
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i <= 30; i++)
         {
-            cout << " ";
+            (i == 30) ? cout << rightParenthesses[7] << "\n" : cout << " ";
         }
-        cout << rightParenthesses[7] << endl;
     }
 
     void displayVariable(string number1)
     { // used for answer specific types
         initNumberCodes();
-        int start = 0;
         for (int j = 0; j < 6; j++)
         {
             tabs(5);
@@ -984,8 +789,7 @@ public:
         {
             tabs(5);
             numberShow(number1, j, true);
-            cout << "   " << lessThan[j] << "    ";
-            cout << numberCodes[0][j] << "        " << hence[j] << endl;
+            cout << "   " << lessThan[j] << "    " << numberCodes[0][j] << "        " << hence[j] << endl;
         }
     }
 
@@ -1001,17 +805,7 @@ public:
         vector<string> seven = {" ______ ", "|____  |", "    / / ", "   / /  ", "  / /   ", " /_/    "};
         vector<string> eight = {"  ___  ", " / _ \\ ", "| (_) |", " > _ < ", "| (_) |", " \\___/ "};
         vector<string> nine = {"  ___  ", " / _ \\ ", "| (_) |", " \\__, |", "   / / ", "  /_/  "};
-
-        numberCodes.push_back(zero);
-        numberCodes.push_back(one);
-        numberCodes.push_back(two);
-        numberCodes.push_back(three);
-        numberCodes.push_back(four);
-        numberCodes.push_back(five);
-        numberCodes.push_back(six);
-        numberCodes.push_back(seven);
-        numberCodes.push_back(eight);
-        numberCodes.push_back(nine);
+        numberCodes = {zero, one, two, three, four, five, six, seven, eight, nine};
     }
 
     void setEquation(vector<double> params)
@@ -1020,33 +814,17 @@ public:
         number1 = removeTrailingZeros(to_string(parameters[0]), 3);
         number2 = removeTrailingZeros(to_string(parameters[1]), 3);
         number3 = removeTrailingZeros(to_string(parameters[2]), 3);
-        num1 = params[0];
-        num2 = params[1];
-        num3 = params[2];
+        num1 = params[0], num2 = params[1], num3 = params[2];
     }
-
-    void displayX(string number1)
-    {
-        for (int j = 0; j < 6; j++)
-        {
-            cout << variable[j] << "     ";
-            numberShow(number1, j, true);
-            cout << "     ";
-            equalShow(j);
-            cout << numberCodes[0][j] << endl;
-        }
-    }
-
+    
     void parenthesTransform(string number1, string sign, string number2)
     {
         for (int j = 0; j < 6; j++)
         {
             tabs(4);
-            cout << variable[j] << "   ";
-            cout << leftParenthesses[j + 1] << "  ";
+            cout << variable[j] << "   " << leftParenthesses[j + 1] << "  ";
             numberShow(number1, j, true);
-            cout << " ";
-            cout << variable[j] << "     ";
+            cout << " " << variable[j] << "     ";
             (sign == "plus") ? plusShow(j) : minusShow(j);
             cout << "      ";
             numberShow(number2, j, false);
@@ -1061,38 +839,9 @@ public:
             cout << " ";
         }
         cout << leftParenthesses[7];
-        count = 3;
-        for (int i = 0; i < number1.size(); i++)
-        {
-            if (number1[i] == '-')
-            {
-                count += 7;
-            }
-            else if (number1[i] == '.')
-            {
-                count += 4;
-            }
-            else
-            {
-                count += numberCodes[number1[i] - '0'].size();
-            }
-        }
+        count = 3 + increaseCount(number1, 7, 4, 6);
         (sign == "plus") ? count += 29 : count += 30;
-        for (int i = 0; i < number2.size(); i++)
-        {
-            if (number2[i] == '-')
-            {
-                count += 7;
-            }
-            else if (number2[i] == '.')
-            {
-                count += 4;
-            }
-            else
-            {
-                count += numberCodes[number2[i] - '0'].size();
-            }
-        }
+        count += increaseCount(number2, 7, 4, 6);
         for (int i = 0; i < count + 3; i++)
         {
             cout << " ";
@@ -1109,8 +858,7 @@ public:
             equalShow(j);
             cout << "    ";
             minusShow(j);
-            cout << "     " << b[j] << "     " << division[j] << "    ";
-            cout << numberCodes[2][j] << a[j] << endl;
+            cout << "     " << b[j] << "     " << division[j] << "    " << numberCodes[2][j] << a[j] << endl;
         }
     }
 
@@ -1136,20 +884,17 @@ public:
 
     void solveFirstType()
     {
-        displayFullForm(number1, "plus", number2, "plus", number3);
-        showStep(2);
-        transformEquationMessage();
-        displayShortenedForm(number1, "plus", number2, "0");
-        showStep(3);
-        transformEquationMessage();
-        displaySquaredVariableOnly(number1, "0");
+        displayFullForm(number1, "plus", number2, "plus", number3, true, false);
+        stepBlock(2);
+        displayFullForm(number1, "plus", number2, "plus", "0", false, false);
+        stepBlock(3);
+        displayFullForm(number1, "plus", "0", "plus", "0", false, true);
         answerMessage();
         answerFirstType();
     }
 
     void solveSecondType()
     {
-        string sign = "plus", sign2 = "plus";
         if (number2[0] == '-')
         {
             number2 = number2.substr(1);
@@ -1160,18 +905,15 @@ public:
             number3 = number3.substr(1);
             sign2 = "minus";
         }
-        displayFullForm(number1, sign, number2, sign2, number3);
-        showStep(2);
-        transformEquationMessage();
-        displayShortenedForm(number1, sign, number2, "0");
-        showStep(3);
-        transformEquationMessage();
-        displaySquaredVariableOnly(number1, "0");
-        showStep(4);
-        transformEquationMessage();
+        displayFullForm(number1, sign, number2, sign2, number3, true, false);
+        stepBlock(2);
+        displayFullForm(number1, sign, number2, sign, "0", false, false);
+        stepBlock(3);
+        displayFullForm(number1, "plus", "0", "plus", "0", false, true);
+        stepBlock(4);
         displaySimpleDivision("0", number1, true);
         newline(1);
-        displaySquareRightNumber("0");
+        displayFullForm("1", "plus", "0", "plus", "0", false, true);
         showStep(5);
         displaySqrt("0");
         answerMessage();
@@ -1186,7 +928,6 @@ public:
 
     void solveFourthType()
     {
-        string sign = "plus", sign2 = "plus";
         if (number2[0] == '-')
         {
             number2 = number2.substr(1);
@@ -1198,18 +939,16 @@ public:
             sign2 = "minus";
         }
         num3 = -1 * num3;
-
-        displayFullForm(number1, sign, number2, sign2, number3);
-        showStep(2);
-        transformEquationMessage();
+        displayFullForm(number1, sign, number2, sign2, number3, true, false);
+        stepBlock(2);
         number3 = removeTrailingZeros(to_string(num3), 3);
-        displayShortenedForm(number1, sign, number2, number3);
+        displayFullForm(number1, sign, number2, sign, number3, false, false);
         showStep(3);
         displaySimpleDivision(number3, number1, true);
         double result = num3 / num1;
         string res = removeTrailingZeros(to_string(result), 3);
         newline(1);
-        displaySquareRightNumber(res);
+        displayFullForm("1", "plus", res, "plus", "0", false, true);
         showStep(4);
         if (result < 0)
         {
@@ -1223,10 +962,8 @@ public:
         {
             displaySqrt(res);
             answerMessage();
-            double x1 = sqrt(result);
-            double x2 = -1 * sqrt(result);
-            string x1Str = removeTrailingZeros(to_string(x1), 3);
-            string x2Str = removeTrailingZeros(to_string(x2), 3);
+            double x1 = sqrt(result), x2 = -x1;
+            string x1Str = removeTrailingZeros(to_string(x1), 3), x2Str = removeTrailingZeros(to_string(x2), 3);
             displayAnswer(x1Str, "1");
             newline(1);
             displayAnswer(x2Str, "2");
@@ -1250,7 +987,6 @@ public:
 
     void solveFifthType()
     {
-        string sign = "plus", sign2 = "plus";
         if (number2[0] == '-')
         {
             number2 = number2.substr(1);
@@ -1261,11 +997,9 @@ public:
             number3 = number3.substr(1);
             sign2 = "minus";
         }
-        displayFullForm(number1, sign, number2, sign2, number3);
-        showStep(1);
-        transformEquationMessage();
-        num3 = -1 * num3;
-        number3 = removeTrailingZeros(to_string(num3), 3);
+        displayFullForm(number1, sign, number2, sign2, number3, true, false);
+        stepBlock(1);
+        num3 = -1 * num3, number3 = removeTrailingZeros(to_string(num3), 3);
         displayVariableNumber(number2, number3);
         showStep(2);
         displaySimpleDivision(number3, number2, false);
@@ -1279,7 +1013,6 @@ public:
 
     void solveSixthType()
     {
-        string sign = "plus", sign2 = "plus";
         if (number2[0] == '-')
         {
             number2 = number2.substr(1);
@@ -1290,16 +1023,17 @@ public:
             number3 = number3.substr(1);
             sign2 = "minus";
         }
-        displayFullForm(number1, sign, number2, sign2, number3);
+        displayFullForm(number1, sign, number2, sign2, number3, true, false);
         showStep(2);
         findDiscriminantMessage();
-        number2 = removeTrailingZeros(to_string(num2), 3);
-        number3 = removeTrailingZeros(to_string(num3), 3);
+        number2 = removeTrailingZeros(to_string(num2), 3), number3 = removeTrailingZeros(to_string(num3), 3);
         discriminantFind(number2, number1, number3);
         double dValue = num2 * num2 - 4 * num1 * num3;
         string dStr = removeTrailingZeros(to_string(dValue), 3);
         discriminantEqual(dStr);
         showStep(3);
+        num2 = -1 * num2, num2 *= 2;
+        number2 = removeTrailingZeros(to_string(num2), 3), number1 = removeTrailingZeros(to_string(num1), 3);
         if (dValue < 0)
         {
             displayLessThan(dStr);
@@ -1310,10 +1044,6 @@ public:
         }
         else if (dValue == 0)
         {
-            num2 = -1 * num2;
-            number2 = removeTrailingZeros(to_string(num2), 3);
-            num1 *= 2;
-            number1 = removeTrailingZeros(to_string(num1), 3);
             discriminantZeroFormula();
             newline(1);
             displaySimpleDivision(number2, number1, false);
@@ -1327,18 +1057,12 @@ public:
         else
         {
             displayDiscriminantSqrt();
-            num2 = -1 * num2;
-            number2 = removeTrailingZeros(to_string(num2), 3);
-            num1 *= 2;
-            number1 = removeTrailingZeros(to_string(num1), 3);
             showStep(4);
             displayDiscriminantSqrtNumbers(number2, dStr, number1, "1", "plus");
             newline(1);
             displayDiscriminantSqrtNumbers(number2, dStr, number1, "2", "minus");
-            double x1 = (num2 + sqrt(dValue)) / num1;
-            double x2 = (num2 - sqrt(dValue)) / num2;
-            string x1Str = removeTrailingZeros(to_string(x1), 3);
-            string x2Str = removeTrailingZeros(to_string(x2), 3);
+            double x1 = (num2 + sqrt(dValue)) / num1, x2 = (num2 - sqrt(dValue)) / num2;
+            string x1Str = removeTrailingZeros(to_string(x1), 3), x2Str = removeTrailingZeros(to_string(x2), 3);
             answerMessage();
             displayAnswer(x1Str, "1");
             newline(1);
@@ -1348,13 +1072,12 @@ public:
 
     void solveSeventhType()
     {
-        string sign = "plus";
         if (number2[0] == '-')
         {
             sign = "minus";
             number2 = number2.substr(1);
         }
-        displayFullForm(number1, sign, number2, "plus", number3);
+        displayFullForm(number1, sign, number2, "plus", number3, true, false);
         showStep(2);
         displayVariableNumber(number2, "0");
         newline(1);
@@ -1367,7 +1090,6 @@ public:
 
     void solveEigthType()
     {
-        string sign = "plus", sign2 = "plus";
         if (number2[0] == '-')
         {
             number2 = number2.substr(1);
@@ -1378,15 +1100,13 @@ public:
             number3 = number3.substr(1);
             sign2 = "minus";
         }
-        displayFullForm(number1, sign, number2, sign2, number3);
-        showStep(2);
-        transformEquationMessage();
+        displayFullForm(number1, sign, number2, sign2, number3, true, false);
+        stepBlock(2);
         parenthesTransform(number1, sign, number2);
         showStep(3);
         displayAnswer("0", "1");
         newline(1);
-        num2 *= -1;
-        number2 = removeTrailingZeros(to_string(num2), 3);
+        num2 *= -1, number2 = removeTrailingZeros(to_string(num2), 3);
         displayVariableNumber(number1, number2);
         showStep(4);
         displaySimpleDivision(number2, number1, false);
